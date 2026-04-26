@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Giáo trình Power Apps & Power Automate - Học từ cơ bản đến nâng cao với lý thuyết chi tiết và bài tập thực hành">
+    <title>Giáo trình Power Apps & Power Automate</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <button class="sidebar-toggle" onclick="toggleSidebar()" aria-label="Menu">☰</button>
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+    <div class="layout">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">
+                    <div class="sidebar-logo-icon">⚡</div>
+                    <div class="sidebar-logo-text">
+                        Power Platform
+                        <span>Giáo trình tổng hợp</span>
+                    </div>
+                </a>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-section-title">Tổng quan</div>
+                    <a href="index.html" class="nav-link active">
+                        <span class="nav-link-icon">🏠</span> Trang chủ
+                    </a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">Power Apps</div>
+                    <a href="chuong1-gioi-thieu.html" class="nav-link">
+                        <span class="nav-link-icon">📖</span> Ch.1 Giới thiệu
+                        <span class="nav-link-badge">Mới</span>
+                    </a>
+                    <a href="chuong2-canvas-apps.html" class="nav-link">
+                        <span class="nav-link-icon">🎨</span> Ch.2 Canvas Apps
+                    </a>
+                    <a href="chuong3-model-driven.html" class="nav-link">
+                        <span class="nav-link-icon">🏗️</span> Ch.3 Model-driven
+                    </a>
+                    <a href="chuong4-dataverse.html" class="nav-link">
+                        <span class="nav-link-icon">🗄️</span> Ch.4 Dataverse
+                    </a>
+                    <a href="chuong5-ket-noi-du-lieu.html" class="nav-link">
+                        <span class="nav-link-icon">🔗</span> Ch.5 Kết nối dữ liệu
+                    </a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">Power Automate</div>
+                    <a href="chuong6-power-automate.html" class="nav-link">
+                        <span class="nav-link-icon">⚙️</span> Ch.6 Giới thiệu PA
+                    </a>
+                    <a href="chuong7-cloud-flows.html" class="nav-link">
+                        <span class="nav-link-icon">☁️</span> Ch.7 Cloud Flows
+                    </a>
+                    <a href="chuong8-desktop-flows.html" class="nav-link">
+                        <span class="nav-link-icon">🖥️</span> Ch.8 Desktop Flows
+                    </a>
+                    <a href="chuong9-business-process.html" class="nav-link">
+                        <span class="nav-link-icon">📋</span> Ch.9 Business Process
+                    </a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">Nâng cao</div>
+                    <a href="chuong10-nang-cao.html" class="nav-link">
+                        <span class="nav-link-icon">🚀</span> Ch.10 Nâng cao
+                    </a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">Thực hành</div>
+                    <a href="bai-tap-thuc-hanh.html" class="nav-link">
+                        <span class="nav-link-icon">💻</span> Bài tập thực hành
+                        <span class="nav-link-badge">10</span>
+                    </a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="hero-content">
+                    <div class="hero-badge">⚡ Microsoft Power Platform</div>
+                    <h1>Power Apps &<br>Power Automate</h1>
+                    <p>Giáo trình tổng hợp từ cơ bản đến nâng cao — xây dựng ứng dụng, tự động hóa quy trình, và kết nối dữ liệu doanh nghiệp</p>
+                    <div class="hero-stats">
+                        <div class="hero-stat">
+                            <div class="hero-stat-value">10</div>
+                            <div class="hero-stat-label">Chương học</div>
+                        </div>
+                        <div class="hero-stat">
+                            <div class="hero-stat-value">10</div>
+                            <div class="hero-stat-label">Bài tập thực hành</div>
+                        </div>
+                        <div class="hero-stat">
+                            <div class="hero-stat-value">3</div>
+                            <div class="hero-stat-label">Nguồn tài liệu PDF</div>
+                        </div>
+                        <div class="hero-stat">
+                            <div class="hero-stat-value">40+</div>
+                            <div class="hero-stat-label">Giờ học tập</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Power Apps Section -->
+            <div class="section-title">
+                <h2><span class="icon">💜</span> Power Apps</h2>
+                <p>Xây dựng ứng dụng doanh nghiệp mà không cần viết code phức tạp</p>
+            </div>
+            <div class="cards-grid">
+                <a href="chuong1-gioi-thieu.html" class="card animate-in">
+                    <div class="card-icon">📖</div>
+                    <div class="card-chapter">Chương 1</div>
+                    <h3>Giới thiệu Power Platform & Power Apps</h3>
+                    <p>Tìm hiểu Power Platform, các thành phần, 4 môi trường làm việc, 2 loại ứng dụng Canvas vs Model-driven, và license.</p>
+                    <span class="card-tag power-apps">Power Apps</span>
+                </a>
+                <a href="chuong2-canvas-apps.html" class="card animate-in delay-1">
+                    <div class="card-icon">🎨</div>
+                    <div class="card-chapter">Chương 2</div>
+                    <h3>Canvas Apps</h3>
+                    <p>Thiết kế ứng dụng pixel-perfect với Canvas Apps — screens, controls, Power Fx formulas, kết nối dữ liệu, publish & share.</p>
+                    <span class="card-tag power-apps">Power Apps</span>
+                </a>
+                <a href="chuong3-model-driven.html" class="card animate-in delay-2">
+                    <div class="card-icon">🏗️</div>
+                    <div class="card-chapter">Chương 3</div>
+                    <h3>Model-driven Apps</h3>
+                    <p>Xây dựng ứng dụng dựa trên dữ liệu với forms, views, charts, dashboards, business rules và site map designer.</p>
+                    <span class="card-tag power-apps">Power Apps</span>
+                </a>
+                <a href="chuong4-dataverse.html" class="card animate-in delay-3">
+                    <div class="card-icon">🗄️</div>
+                    <div class="card-chapter">Chương 4</div>
+                    <h3>Microsoft Dataverse</h3>
+                    <p>Lưu trữ & quản lý dữ liệu với Dataverse — tables, columns, relationships, business logic, solutions, và security.</p>
+                    <span class="card-tag power-apps">Power Apps</span>
+                </a>
+                <a href="chuong5-ket-noi-du-lieu.html" class="card animate-in delay-4">
+                    <div class="card-icon">🔗</div>
+                    <div class="card-chapter">Chương 5</div>
+                    <h3>Kết nối dữ liệu & Connectors</h3>
+                    <p>Kết nối với 200+ data sources — SharePoint, Excel, SQL, custom connectors, on-premises gateway, và data integration.</p>
+                    <span class="card-tag power-apps">Power Apps</span>
+                </a>
+            </div>
+
+            <!-- Power Automate Section -->
+            <div class="section-title">
+                <h2><span class="icon">💙</span> Power Automate</h2>
+                <p>Tự động hóa quy trình kinh doanh và tăng năng suất làm việc</p>
+            </div>
+            <div class="cards-grid">
+                <a href="chuong6-power-automate.html" class="card animate-in">
+                    <div class="card-icon">⚙️</div>
+                    <div class="card-chapter">Chương 6</div>
+                    <h3>Giới thiệu Power Automate</h3>
+                    <p>Tổng quan Power Automate, các loại flows (Cloud, Desktop, Business Process), Process Advisor, và đăng ký tài khoản.</p>
+                    <span class="card-tag power-automate">Power Automate</span>
+                </a>
+                <a href="chuong7-cloud-flows.html" class="card animate-in delay-1">
+                    <div class="card-icon">☁️</div>
+                    <div class="card-chapter">Chương 7</div>
+                    <h3>Cloud Flows</h3>
+                    <p>Automated, Scheduled, Instant flows — triggers, actions, conditions, loops, expressions, và kịch bản phổ biến.</p>
+                    <span class="card-tag power-automate">Power Automate</span>
+                </a>
+                <a href="chuong8-desktop-flows.html" class="card animate-in delay-2">
+                    <div class="card-icon">🖥️</div>
+                    <div class="card-chapter">Chương 8</div>
+                    <h3>Desktop Flows & RPA</h3>
+                    <p>Power Automate for Desktop — thiết lập, flow designer, actions, machines, giám sát, và kịch bản tự động hóa RPA.</p>
+                    <span class="card-tag power-automate">Power Automate</span>
+                </a>
+                <a href="chuong9-business-process.html" class="card animate-in delay-3">
+                    <div class="card-icon">📋</div>
+                    <div class="card-chapter">Chương 9</div>
+                    <h3>Business Process Flows</h3>
+                    <p>Quy trình nghiệp vụ — tạo BPF, branching, custom controls, instant flows trong BPF, và best practices.</p>
+                    <span class="card-tag power-automate">Power Automate</span>
+                </a>
+            </div>
+
+            <!-- Advanced & Practice Section -->
+            <div class="section-title">
+                <h2><span class="icon">🚀</span> Nâng cao & Thực hành</h2>
+                <p>Kiến thức nâng cao và bài tập thực hành tổng hợp</p>
+            </div>
+            <div class="cards-grid">
+                <a href="chuong10-nang-cao.html" class="card animate-in">
+                    <div class="card-icon">🚀</div>
+                    <div class="card-chapter">Chương 10</div>
+                    <h3>Nâng cao & Tích hợp</h3>
+                    <p>Power Pages, Teams integration, AI Builder, Cards, mobile app, administration, governance, và best practices.</p>
+                    <span class="card-tag advanced">Nâng cao</span>
+                </a>
+                <a href="bai-tap-thuc-hanh.html" class="card animate-in delay-1">
+                    <div class="card-icon">💻</div>
+                    <div class="card-chapter">Thực hành</div>
+                    <h3>10 Bài tập thực hành</h3>
+                    <p>Bài tập từ cơ bản đến nâng cao — Canvas App, Model-driven, Cloud Flow, Desktop Flow, BPF, và tích hợp PA+PA.</p>
+                    <span class="card-tag practice">Thực hành</span>
+                </a>
+            </div>
+
+            <!-- Footer -->
+            <footer class="footer">
+                <p>📚 Giáo trình Power Apps & Power Automate — Tổng hợp từ tài liệu Microsoft Official Documentation</p>
+                <p style="margin-top: 6px;">© 2026 Power Platform Tutorial. Xây dựng để phục vụ học tập.</p>
+            </footer>
+        </main>
+    </div>
+
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            sidebar.classList.toggle('open');
+            overlay.classList.toggle('show');
+        }
+
+        // Close sidebar on window resize
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 1024) {
+                document.getElementById('sidebar').classList.remove('open');
+                document.getElementById('sidebarOverlay').classList.remove('show');
+            }
+        });
+    </script>
+</body>
+</html>

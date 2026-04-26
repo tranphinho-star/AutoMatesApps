@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Chương 9: Business Process Flows - Quy trình nghiệp vụ, branching, custom controls, best practices">
+    <title>Chương 9: Business Process Flows</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <button class="sidebar-toggle" onclick="toggleSidebar()" aria-label="Menu">☰</button>
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+    <div class="layout">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header"><a href="index.html" class="sidebar-logo"><div class="sidebar-logo-icon">⚡</div><div class="sidebar-logo-text">Power Platform<span>Giáo trình tổng hợp</span></div></a></div>
+            <nav class="sidebar-nav">
+                <div class="nav-section"><div class="nav-section-title">Tổng quan</div><a href="index.html" class="nav-link"><span class="nav-link-icon">🏠</span> Trang chủ</a></div>
+                <div class="nav-section"><div class="nav-section-title">Power Apps</div>
+                    <a href="chuong1-gioi-thieu.html" class="nav-link"><span class="nav-link-icon">📖</span> Ch.1 Giới thiệu</a>
+                    <a href="chuong2-canvas-apps.html" class="nav-link"><span class="nav-link-icon">🎨</span> Ch.2 Canvas Apps</a>
+                    <a href="chuong3-model-driven.html" class="nav-link"><span class="nav-link-icon">🏗️</span> Ch.3 Model-driven</a>
+                    <a href="chuong4-dataverse.html" class="nav-link"><span class="nav-link-icon">🗄️</span> Ch.4 Dataverse</a>
+                    <a href="chuong5-ket-noi-du-lieu.html" class="nav-link"><span class="nav-link-icon">🔗</span> Ch.5 Kết nối dữ liệu</a>
+                </div>
+                <div class="nav-section"><div class="nav-section-title">Power Automate</div>
+                    <a href="chuong6-power-automate.html" class="nav-link"><span class="nav-link-icon">⚙️</span> Ch.6 Giới thiệu PA</a>
+                    <a href="chuong7-cloud-flows.html" class="nav-link"><span class="nav-link-icon">☁️</span> Ch.7 Cloud Flows</a>
+                    <a href="chuong8-desktop-flows.html" class="nav-link"><span class="nav-link-icon">🖥️</span> Ch.8 Desktop Flows</a>
+                    <a href="chuong9-business-process.html" class="nav-link active"><span class="nav-link-icon">📋</span> Ch.9 Business Process</a>
+                </div>
+                <div class="nav-section"><div class="nav-section-title">Nâng cao</div><a href="chuong10-nang-cao.html" class="nav-link"><span class="nav-link-icon">🚀</span> Ch.10 Nâng cao</a></div>
+                <div class="nav-section"><div class="nav-section-title">Thực hành</div><a href="bai-tap-thuc-hanh.html" class="nav-link"><span class="nav-link-icon">💻</span> Bài tập thực hành</a></div>
+            </nav>
+        </aside>
+        <main class="main-content">
+            <div class="chapter-header">
+                <div class="chapter-header-content">
+                    <div class="chapter-badge">📋 Chương 9</div>
+                    <h1>Business Process Flows</h1>
+                    <p class="description">Xây dựng quy trình nghiệp vụ chuẩn hóa với stages, steps, branching, custom controls và tích hợp instant flows.</p>
+                </div>
+            </div>
+            <div class="content-area">
+                <div class="toc">
+                    <div class="toc-title">📑 Mục lục chương này</div>
+                    <ul class="toc-list">
+                        <li><a href="#khai-niem">Business Process Flows là gì?</a></li>
+                        <li><a href="#components">Thành phần BPF</a></li>
+                        <li><a href="#tao-bpf">Tạo Business Process Flow</a></li>
+                        <li><a href="#branching">Branching (Phân nhánh)</a></li>
+                        <li><a href="#instant-flows">Instant Flows trong BPF</a></li>
+                        <li><a href="#custom-controls">Custom Controls</a></li>
+                        <li><a href="#best-practices">Best Practices</a></li>
+                    </ul>
+                </div>
+
+                <section class="content-section" id="khai-niem">
+                    <h2>📋 Business Process Flows là gì?</h2>
+                    <p>Business Process Flows (BPF) cung cấp <strong>hướng dẫn từng bước</strong> cho người dùng khi xử lý các quy trình nghiệp vụ. BPF hiển thị dưới dạng <strong>thanh tiến trình</strong> ở đầu form trong model-driven apps.</p>
+
+                    <div class="feature-grid">
+                        <div class="feature-item"><div class="feature-item-icon">📊</div><h4>Consistency</h4><p>Đảm bảo mọi người thực hiện quy trình theo cùng một cách thức chuẩn.</p></div>
+                        <div class="feature-item"><div class="feature-item-icon">✅</div><h4>Compliance</h4><p>Thu thập dữ liệu cần thiết tại mỗi stage, tuân thủ regulations.</p></div>
+                        <div class="feature-item"><div class="feature-item-icon">📈</div><h4>Visibility</h4><p>Biết chính xác record đang ở giai đoạn nào trong quy trình.</p></div>
+                        <div class="feature-item"><div class="feature-item-icon">🔄</div><h4>Automation</h4><p>Tích hợp flows, business rules, actions tại mỗi stage.</p></div>
+                    </div>
+
+                    <div class="info-box note">
+                        <div class="info-box-title">📝 BPF vs Cloud Flows</div>
+                        BPF <strong>hướng dẫn</strong> người dùng qua quy trình (human-driven). Cloud Flows <strong>tự động hóa</strong> tác vụ (system-driven). Thường dùng kết hợp: BPF cho guidance + Cloud Flows cho automation.
+                    </div>
+                </section>
+
+                <section class="content-section" id="components">
+                    <h2>🧩 Thành phần BPF</h2>
+                    <div class="table-container">
+                        <table>
+                            <thead><tr><th>Component</th><th>Mô tả</th><th>Giới hạn</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>Stages</strong></td><td>Giai đoạn chính trong quy trình (hiển thị trên progress bar)</td><td>Max 30 stages</td></tr>
+                                <tr><td><strong>Steps</strong></td><td>Data fields cần điền ở mỗi stage</td><td>Max 30 steps/stage</td></tr>
+                                <tr><td><strong>Branches</strong></td><td>Phân nhánh dựa trên điều kiện</td><td>Max 5 branches</td></tr>
+                                <tr><td><strong>Tables</strong></td><td>BPF có thể span nhiều tables</td><td>Max 5 tables</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3>Ví dụ: Sales Process</h3>
+                    <div class="code-block">
+                        <div class="code-block-header">BPF — Quy trình bán hàng</div>
+                        <pre>Stage 1: QUALIFY          Stage 2: DEVELOP        Stage 3: PROPOSE       Stage 4: CLOSE
+┌───────────┐         ┌──────────────┐       ┌──────────────┐     ┌──────────────┐
+│ ● Company │───►     │ ● Need       │──►    │ ● Proposal   │──►  │ ● Decision   │
+│ ● Budget  │         │ ● Timeline   │       │ ● Price      │     │ ● Contract   │
+│ ● Contact │         │ ● Decision   │       │ ● Demo       │     │ ● Close Date │
+│            │         │   Maker      │       │   completed  │     │ ● Revenue    │
+└───────────┘         └──────────────┘       └──────────────┘     └──────────────┘</pre>
+                    </div>
+                </section>
+
+                <section class="content-section" id="tao-bpf">
+                    <h2>🚀 Tạo Business Process Flow</h2>
+                    <div class="steps">
+                        <div class="step" data-step="1"><h4>Mở Solution</h4><p><strong>make.powerapps.com → Solutions</strong> → Chọn solution → <strong>New → Automation → Process → Business process flow</strong></p></div>
+                        <div class="step" data-step="2"><h4>Chọn Primary Table</h4><p>Chọn Dataverse table chính mà BPF sẽ gắn vào (Account, Case, custom table...).</p></div>
+                        <div class="step" data-step="3"><h4>Thêm Stages</h4><p>Kéo "Stage" component vào designer. Đặt tên cho mỗi stage (Qualify, Develop, Close...).</p></div>
+                        <div class="step" data-step="4"><h4>Thêm Steps</h4><p>Trong mỗi stage, thêm steps — mỗi step tương ứng với một column trong table. Đánh dấu Required nếu cần.</p></div>
+                        <div class="step" data-step="5"><h4>Cấu hình Flow Logic</h4><p>Thêm branching conditions, xác định khi nào user có thể advance sang stage tiếp.</p></div>
+                        <div class="step" data-step="6"><h4>Validate & Activate</h4><p>Click <strong>Validate</strong>, fix errors, rồi <strong>Activate</strong> để BPF available cho users.</p></div>
+                    </div>
+                </section>
+
+                <section class="content-section" id="branching">
+                    <h2>🔀 Branching (Phân nhánh)</h2>
+                    <p>BPF hỗ trợ <strong>conditional branching</strong> — chuyển hướng quy trình dựa trên điều kiện:</p>
+                    <div class="code-block">
+                        <div class="code-block-header">Branching Example</div>
+                        <pre>Stage 1: RECEIVE ORDER
+  ↓
+CONDITION: Order Value > $10,000 ?
+  ├── YES → Stage 2A: MANAGER APPROVAL
+  │           ↓
+  │         Stage 3A: FINANCE REVIEW
+  │           ↓
+  │         Stage 4: FULFILLMENT
+  └── NO  → Stage 2B: AUTO APPROVE
+              ↓
+            Stage 4: FULFILLMENT</pre>
+                    </div>
+
+                    <div class="info-box tip">
+                        <div class="info-box-title">💡 Branching tips</div>
+                        <ul style="margin: 8px 0 0 20px;">
+                            <li>Branching dựa trên <strong>giá trị của column</strong> trong record</li>
+                            <li>Điều kiện được evaluate khi user click <strong>"Next Stage"</strong></li>
+                            <li>Branches có thể <strong>merge lại</strong> vào cùng một stage</li>
+                            <li>Tối đa <strong>5 branches</strong> từ một stage</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section class="content-section" id="instant-flows">
+                    <h2>⚡ Instant Flows trong BPF</h2>
+                    <p>Tích hợp <strong>instant cloud flows</strong> tại các stages trong BPF — cho phép users trigger automations trực tiếp từ process bar:</p>
+                    <ul>
+                        <li>Gửi email thông báo khi hoàn thành stage</li>
+                        <li>Tạo tasks/appointments liên quan</li>
+                        <li>Validate dữ liệu với external systems</li>
+                        <li>Upload documents, update related records</li>
+                    </ul>
+                </section>
+
+                <section class="content-section" id="custom-controls">
+                    <h2>🎨 Custom Controls</h2>
+                    <p>Thêm <strong>custom controls/components</strong> vào BPF steps để nâng cao UX:</p>
+                    <ul>
+                        <li><strong>Canvas app component</strong>: Nhúng canvas app nhỏ làm custom UI cho step</li>
+                        <li><strong>PCF controls</strong>: Power Apps Component Framework controls tùy chỉnh</li>
+                        <li><strong>Rich text editors</strong>, <strong>map controls</strong>, <strong>signature pads</strong></li>
+                    </ul>
+                </section>
+
+                <section class="content-section" id="best-practices">
+                    <h2>✅ Best Practices</h2>
+                    <div class="feature-grid">
+                        <div class="feature-item"><div class="feature-item-icon">📏</div><h4>Giữ đơn giản</h4><p>3-7 stages là lý tưởng. Quá nhiều stages làm user overwhelmed.</p></div>
+                        <div class="feature-item"><div class="feature-item-icon">📝</div><h4>Required steps hợp lý</h4><p>Chỉ đánh dấu required cho fields thực sự cần thiết ở mỗi stage.</p></div>
+                        <div class="feature-item"><div class="feature-item-icon">🏷️</div><h4>Đặt tên rõ ràng</h4><p>Stage names phải rõ ràng, ngắn gọn, phản ánh đúng giai đoạn.</p></div>
+                        <div class="feature-item"><div class="feature-item-icon">🔄</div><h4>Kết hợp Cloud Flows</h4><p>Dùng cloud flows cho automation, BPF cho guidance. Đừng nhồi tất cả vào BPF.</p></div>
+                    </div>
+
+                    <div class="info-box important">
+                        <div class="info-box-title">💡 Column best practices</div>
+                        <ul style="margin: 8px 0 0 20px;">
+                            <li>Tạo <strong>dedicated columns</strong> cho BPF steps (đừng reuse columns quan trọng)</li>
+                            <li>Sử dụng <strong>Choice columns</strong> thay vì text cho consistency</li>
+                            <li>Hạn chế thay đổi BPF sau khi đã production — ảnh hưởng existing records</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <div class="chapter-nav">
+                    <a href="chuong8-desktop-flows.html" class="prev"><span class="chapter-nav-arrow">←</span><div><div class="chapter-nav-label">Chương trước</div><div class="chapter-nav-title">Desktop Flows & RPA</div></div></a>
+                    <a href="chuong10-nang-cao.html" class="next"><span class="chapter-nav-arrow">→</span><div><div class="chapter-nav-label">Chương tiếp theo</div><div class="chapter-nav-title">Nâng cao & Tích hợp</div></div></a>
+                </div>
+            </div>
+            <footer class="footer"><p>📚 Giáo trình Power Apps & Power Automate — Tổng hợp từ tài liệu Microsoft Official Documentation</p></footer>
+        </main>
+    </div>
+    <script>function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('sidebarOverlay').classList.toggle('show');}window.addEventListener('resize',()=>{if(window.innerWidth>1024){document.getElementById('sidebar').classList.remove('open');document.getElementById('sidebarOverlay').classList.remove('show');}});</script>
+</body>
+</html>

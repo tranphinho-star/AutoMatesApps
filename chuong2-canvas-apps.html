@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Chương 2: Canvas Apps - Thiết kế ứng dụng pixel-perfect với screens, controls, Power Fx và data sources">
+    <title>Chương 2: Canvas Apps</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <button class="sidebar-toggle" onclick="toggleSidebar()" aria-label="Menu">☰</button>
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+    <div class="layout">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">
+                    <div class="sidebar-logo-icon">⚡</div>
+                    <div class="sidebar-logo-text">Power Platform<span>Giáo trình tổng hợp</span></div>
+                </a>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section"><div class="nav-section-title">Tổng quan</div><a href="index.html" class="nav-link"><span class="nav-link-icon">🏠</span> Trang chủ</a></div>
+                <div class="nav-section"><div class="nav-section-title">Power Apps</div>
+                    <a href="chuong1-gioi-thieu.html" class="nav-link"><span class="nav-link-icon">📖</span> Ch.1 Giới thiệu</a>
+                    <a href="chuong2-canvas-apps.html" class="nav-link active"><span class="nav-link-icon">🎨</span> Ch.2 Canvas Apps</a>
+                    <a href="chuong3-model-driven.html" class="nav-link"><span class="nav-link-icon">🏗️</span> Ch.3 Model-driven</a>
+                    <a href="chuong4-dataverse.html" class="nav-link"><span class="nav-link-icon">🗄️</span> Ch.4 Dataverse</a>
+                    <a href="chuong5-ket-noi-du-lieu.html" class="nav-link"><span class="nav-link-icon">🔗</span> Ch.5 Kết nối dữ liệu</a>
+                </div>
+                <div class="nav-section"><div class="nav-section-title">Power Automate</div>
+                    <a href="chuong6-power-automate.html" class="nav-link"><span class="nav-link-icon">⚙️</span> Ch.6 Giới thiệu PA</a>
+                    <a href="chuong7-cloud-flows.html" class="nav-link"><span class="nav-link-icon">☁️</span> Ch.7 Cloud Flows</a>
+                    <a href="chuong8-desktop-flows.html" class="nav-link"><span class="nav-link-icon">🖥️</span> Ch.8 Desktop Flows</a>
+                    <a href="chuong9-business-process.html" class="nav-link"><span class="nav-link-icon">📋</span> Ch.9 Business Process</a>
+                </div>
+                <div class="nav-section"><div class="nav-section-title">Nâng cao</div><a href="chuong10-nang-cao.html" class="nav-link"><span class="nav-link-icon">🚀</span> Ch.10 Nâng cao</a></div>
+                <div class="nav-section"><div class="nav-section-title">Thực hành</div><a href="bai-tap-thuc-hanh.html" class="nav-link"><span class="nav-link-icon">💻</span> Bài tập thực hành</a></div>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <div class="chapter-header">
+                <div class="chapter-header-content">
+                    <div class="chapter-badge">🎨 Chương 2</div>
+                    <h1>Canvas Apps</h1>
+                    <p class="description">Thiết kế ứng dụng pixel-perfect với Canvas Apps — screens, controls, Power Fx formulas, kết nối dữ liệu, preview, publish và share.</p>
+                </div>
+            </div>
+
+            <div class="content-area">
+                <div class="toc">
+                    <div class="toc-title">📑 Mục lục chương này</div>
+                    <ul class="toc-list">
+                        <li><a href="#khai-niem">Canvas Apps là gì?</a></li>
+                        <li><a href="#tao-app-dau-tien">Tạo app đầu tiên</a></li>
+                        <li><a href="#studio">PowerApps Studio & Designer</a></li>
+                        <li><a href="#screens-controls">Screens & Controls</a></li>
+                        <li><a href="#power-fx">Power Fx - Ngôn ngữ công thức</a></li>
+                        <li><a href="#data-sources">Kết nối Data Sources</a></li>
+                        <li><a href="#preview-publish">Preview, Save & Publish</a></li>
+                        <li><a href="#share">Share & Manage</a></li>
+                        <li><a href="#keyboard">Phím tắt hữu ích</a></li>
+                    </ul>
+                </div>
+
+                <!-- Canvas Apps Overview -->
+                <section class="content-section" id="khai-niem">
+                    <h2>🎨 Canvas Apps là gì?</h2>
+                    <p>Canvas Apps cho phép bạn tạo ứng dụng bằng cách <strong>kéo thả elements</strong> trên một "canvas" trống — giống như thiết kế slide trong PowerPoint. Bạn có <strong>toàn quyền kiểm soát</strong> giao diện người dùng.</p>
+                    
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <div class="feature-item-icon">✏️</div>
+                            <h4>Pixel-Perfect Design</h4>
+                            <p>Tự do sắp xếp mọi element trên canvas. Kiểm soát kích thước, vị trí, màu sắc của từng control.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-item-icon">📱</div>
+                            <h4>Multi-Platform</h4>
+                            <p>Ứng dụng chạy trên web browser, iOS, Android và Windows. Một lần build, chạy mọi nơi.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-item-icon">🔌</div>
+                            <h4>200+ Connectors</h4>
+                            <p>Kết nối với SharePoint, Excel, SQL, Salesforce, và hàng trăm service khác.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-item-icon">⚡</div>
+                            <h4>Rapid Development</h4>
+                            <p>Tạo ứng dụng CRUD hoàn chỉnh trong vài phút từ data source có sẵn.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Create First App -->
+                <section class="content-section" id="tao-app-dau-tien">
+                    <h2>🚀 Tạo app đầu tiên</h2>
+                    <p>Có nhiều cách để bắt đầu tạo Canvas App:</p>
+
+                    <h3>Cách 1: Tạo từ Data Source (Nhanh nhất)</h3>
+                    <div class="steps">
+                        <div class="step" data-step="1">
+                            <h4>Chuẩn bị Data Source</h4>
+                            <p>Tạo SharePoint list hoặc Excel table với dữ liệu mẫu. Ví dụ: danh sách "Consulting Interventions" trên SharePoint.</p>
+                        </div>
+                        <div class="step" data-step="2">
+                            <h4>Mở Power Apps → Create an App</h4>
+                            <p>Truy cập <strong>make.powerapps.com</strong>, chọn <strong>"Create"</strong>, sau đó chọn <strong>"Start from data"</strong>.</p>
+                        </div>
+                        <div class="step" data-step="3">
+                            <h4>Chọn Data Source & Connect</h4>
+                            <p>Chọn connector (SharePoint, Excel, SQL...), sau đó chọn table/list cụ thể.</p>
+                        </div>
+                        <div class="step" data-step="4">
+                            <h4>App được tạo tự động!</h4>
+                            <p>Power Apps Studio mở ra với ứng dụng <strong>3 screens</strong> hoàn chỉnh: Browse, Detail, Edit. Bạn có thể tùy chỉnh từ đây.</p>
+                        </div>
+                    </div>
+
+                    <h3>Cách 2: Tạo từ Template</h3>
+                    <p>Power Apps cung cấp nhiều template sẵn có cho các kịch bản phổ biến:</p>
+                    <ul>
+                        <li><strong>Budget Tracker</strong> — Theo dõi ngân sách</li>
+                        <li><strong>Leave Request</strong> — Đơn xin nghỉ phép</li>
+                        <li><strong>Help Desk</strong> — Hệ thống hỗ trợ IT</li>
+                        <li><strong>Site Inspection</strong> — Kiểm tra hiện trường</li>
+                        <li><strong>Inventory Management</strong> — Quản lý kho</li>
+                    </ul>
+
+                    <h3>Cách 3: Tạo từ Blank Canvas</h3>
+                    <p>Bắt đầu với canvas trống hoàn toàn. Phù hợp khi bạn muốn kiểm soát tối đa thiết kế.</p>
+                    
+                    <div class="info-box tip">
+                        <div class="info-box-title">💡 Khuyến nghị cho người mới</div>
+                        Hãy bắt đầu với <strong>Cách 1</strong> (từ Data Source) để hiểu cấu trúc cơ bản. Sau đó thử tùy chỉnh app được tạo tự động để học về controls và formulas.
+                    </div>
+                </section>
+
+                <!-- Studio & Designer -->
+                <section class="content-section" id="studio">
+                    <h2>🖥️ PowerApps Studio & Designer</h2>
+                    <p>PowerApps Studio là môi trường thiết kế chính, gồm <strong>3 panels</strong> và <strong>ribbon</strong>:</p>
+
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <div class="feature-item-icon">📐</div>
+                            <h4>Left Panel - Tree View</h4>
+                            <p>Hiển thị cấu trúc cây của tất cả screens và controls. Click để chọn, kéo thả để sắp xếp.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-item-icon">🎨</div>
+                            <h4>Center - Canvas</h4>
+                            <p>Vùng thiết kế chính. Kéo thả controls, sắp xếp layout, preview giao diện trực tiếp.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-item-icon">⚙️</div>
+                            <h4>Right Panel - Properties</h4>
+                            <p>Cấu hình properties của control đang chọn: size, color, data bindings, formulas.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-item-icon">📝</div>
+                            <h4>Formula Bar</h4>
+                            <p>Thanh công thức ở trên cùng — viết Power Fx formulas cho mỗi property của control.</p>
+                        </div>
+                    </div>
+
+                    <div class="info-box note">
+                        <div class="info-box-title">📝 Ribbon tabs quan trọng</div>
+                        <ul style="margin: 8px 0 0 20px;">
+                            <li><strong>Home</strong>: Insert controls, undo/redo, clipboard</li>
+                            <li><strong>Insert</strong>: Thêm controls (buttons, labels, galleries, forms...)</li>
+                            <li><strong>View</strong>: Data sources, collections, variables</li>
+                            <li><strong>Action</strong>: Flows, navigation, notifications</li>
+                            <li><strong>File</strong>: Save, publish, app settings</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Screens & Controls -->
+                <section class="content-section" id="screens-controls">
+                    <h2>📱 Screens & Controls</h2>
+
+                    <h3>Screens — Màn hình ứng dụng</h3>
+                    <p>Mỗi Canvas App gồm một hoặc nhiều <strong>screens</strong>. Mỗi screen là một trang riêng biệt chứa các controls.</p>
+                    <ul>
+                        <li><strong>BrowseScreen</strong>: Hiển thị danh sách records dạng gallery</li>
+                        <li><strong>DetailScreen</strong>: Hiển thị chi tiết một record</li>
+                        <li><strong>EditScreen</strong>: Biểu mẫu tạo mới / chỉnh sửa record</li>
+                        <li><strong>StartScreen</strong>: Trang welcome / menu chính</li>
+                    </ul>
+
+                    <h3>Controls — Thành phần giao diện</h3>
+                    <p>Controls là các building blocks cơ bản của Canvas App. Các nhóm controls quan trọng:</p>
+
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Nhóm Control</th>
+                                    <th>Ví dụ</th>
+                                    <th>Mô tả</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Input</strong></td>
+                                    <td>Text Input, Dropdown, Date Picker, Toggle, Slider</td>
+                                    <td>Nhận dữ liệu từ người dùng</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Display</strong></td>
+                                    <td>Label, HTML Text, Image, Video, PDF Viewer</td>
+                                    <td>Hiển thị thông tin</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Gallery</strong></td>
+                                    <td>Vertical, Horizontal, Blank Gallery</td>
+                                    <td>Hiển thị danh sách records</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Form</strong></td>
+                                    <td>Edit Form, Display Form</td>
+                                    <td>Tạo/sửa/xem records từ data source</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Layout</strong></td>
+                                    <td>Container, Horizontal Container, Scrollable Screen</td>
+                                    <td>Sắp xếp layout responsive</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Action</strong></td>
+                                    <td>Button, Timer, Power Automate</td>
+                                    <td>Thực hiện hành động khi click/trigger</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Charts</strong></td>
+                                    <td>Column, Line, Pie Chart</td>
+                                    <td>Biểu đồ trực quan</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Media</strong></td>
+                                    <td>Camera, Barcode Scanner, Audio, Microphone</td>
+                                    <td>Tương tác phần cứng thiết bị</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Icons</strong></td>
+                                    <td>Add, Edit, Delete, Search, Check icons</td>
+                                    <td>Biểu tượng cho actions</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="info-box tip">
+                        <div class="info-box-title">💡 Gallery là control quan trọng nhất</div>
+                        Gallery kết nối trực tiếp với data source và tự động hiển thị danh sách records. Mỗi item trong gallery là một template có thể chứa nhiều controls con (label, image, icon...).
+                    </div>
+                </section>
+
+                <!-- Power Fx -->
+                <section class="content-section" id="power-fx">
+                    <h2>📐 Power Fx - Ngôn ngữ công thức</h2>
+                    <p>Power Fx là ngôn ngữ công thức của Power Apps, lấy cảm hứng từ <strong>Excel formulas</strong>. Nếu bạn biết dùng Excel, bạn sẽ học Power Fx rất nhanh!</p>
+
+                    <h3>Formulas cơ bản</h3>
+                    <div class="code-block">
+                        <div class="code-block-header">Power Fx — Ví dụ cơ bản</div>
+                        <pre>// Điều hướng tới screen khác
+Navigate(DetailScreen, ScreenTransition.Fade)
+
+// Lọc dữ liệu
+Filter(Employees, Department = "IT")
+
+// Sắp xếp
+SortByColumns(Employees, "Name", SortOrder.Ascending)
+
+// Tìm kiếm
+Search(Products, SearchBox.Text, "Name", "Category")
+
+// Đếm records
+CountRows(Filter(Tasks, Status = "Completed"))</pre>
+                    </div>
+
+                    <h3>Formulas thao tác dữ liệu</h3>
+                    <div class="code-block">
+                        <div class="code-block-header">Power Fx — CRUD Operations</div>
+                        <pre>// Tạo record mới (Create)
+Patch(Employees, Defaults(Employees), {
+    Name: txtName.Text,
+    Email: txtEmail.Text,
+    Department: ddDepartment.Selected.Value
+})
+
+// Cập nhật record (Update)
+Patch(Employees, Gallery1.Selected, {
+    Status: "Active"
+})
+
+// Xóa record (Delete)
+Remove(Employees, Gallery1.Selected)
+
+// Submit form
+SubmitForm(EditForm1)
+
+// Reset form
+ResetForm(EditForm1)</pre>
+                    </div>
+
+                    <h3>Functions phổ biến</h3>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Function</th>
+                                    <th>Mô tả</th>
+                                    <th>Ví dụ</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td><code>Navigate()</code></td><td>Chuyển screen</td><td><code>Navigate(Screen2)</code></td></tr>
+                                <tr><td><code>Filter()</code></td><td>Lọc dữ liệu</td><td><code>Filter(Items, Price > 100)</code></td></tr>
+                                <tr><td><code>Search()</code></td><td>Tìm kiếm text</td><td><code>Search(Items, "laptop", "Name")</code></td></tr>
+                                <tr><td><code>Patch()</code></td><td>Tạo/sửa record</td><td><code>Patch(Table, record, changes)</code></td></tr>
+                                <tr><td><code>Remove()</code></td><td>Xóa record</td><td><code>Remove(Table, record)</code></td></tr>
+                                <tr><td><code>Collect()</code></td><td>Thêm vào collection</td><td><code>Collect(MyColl, {A:"x"})</code></td></tr>
+                                <tr><td><code>Set()</code></td><td>Gán biến global</td><td><code>Set(varUser, User())</code></td></tr>
+                                <tr><td><code>UpdateContext()</code></td><td>Gán biến screen</td><td><code>UpdateContext({show:true})</code></td></tr>
+                                <tr><td><code>LookUp()</code></td><td>Tìm 1 record</td><td><code>LookUp(Users, ID=5)</code></td></tr>
+                                <tr><td><code>If()</code></td><td>Điều kiện</td><td><code>If(x>0, "Yes", "No")</code></td></tr>
+                                <tr><td><code>Notify()</code></td><td>Thông báo</td><td><code>Notify("Saved!", Success)</code></td></tr>
+                                <tr><td><code>User()</code></td><td>User hiện tại</td><td><code>User().Email</code></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Data Sources -->
+                <section class="content-section" id="data-sources">
+                    <h2>🔌 Kết nối Data Sources</h2>
+                    <p>Trong Canvas Apps, bạn kết nối với data sources qua <strong>connectors</strong>:</p>
+
+                    <div class="steps">
+                        <div class="step" data-step="1">
+                            <h4>Mở Data Panel</h4>
+                            <p>Trong Studio, click <strong>View → Data sources</strong> hoặc icon <strong>Data</strong> bên trái.</p>
+                        </div>
+                        <div class="step" data-step="2">
+                            <h4>Add Data Source</h4>
+                            <p>Click <strong>"Add data"</strong>, tìm connector mong muốn (SharePoint, Excel, SQL...).</p>
+                        </div>
+                        <div class="step" data-step="3">
+                            <h4>Authenticate & Select</h4>
+                            <p>Đăng nhập (nếu cần), chọn site → list/table cụ thể để kết nối.</p>
+                        </div>
+                        <div class="step" data-step="4">
+                            <h4>Sử dụng trong Formulas</h4>
+                            <p>Data source xuất hiện trong formulas: <code>Filter(MyList, Status="Active")</code></p>
+                        </div>
+                    </div>
+
+                    <div class="info-box warning">
+                        <div class="info-box-title">⚠️ Delegation</div>
+                        Power Apps có giới hạn <strong>delegation</strong> — chỉ tải tối đa 500-2000 records mặc định. Với data sources lớn, sử dụng <code>Filter()</code> thay vì <code>Search()</code> và chọn operations được delegate (=, <>, StartsWith...).
+                    </div>
+                </section>
+
+                <!-- Preview, Save, Publish -->
+                <section class="content-section" id="preview-publish">
+                    <h2>▶️ Preview, Save & Publish</h2>
+                    
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <div class="feature-item-icon">👁️</div>
+                            <h4>Preview (F5)</h4>
+                            <p>Nhấn <kbd>F5</kbd> hoặc icon ▶ để test app trực tiếp trong Studio. Nhấn <kbd>Esc</kbd> để quay lại edit.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-item-icon">💾</div>
+                            <h4>Save (Ctrl+S)</h4>
+                            <p>Lưu version mới. Power Apps tự động lưu version history, bạn có thể rollback bất kỳ lúc nào.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-item-icon">📤</div>
+                            <h4>Publish</h4>
+                            <p>Xuất bản app cho users. Chỉ <strong>published version</strong> mới visible cho người được chia sẻ. File → Publish.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Share & Manage -->
+                <section class="content-section" id="share">
+                    <h2>👥 Share & Manage</h2>
+                    <p>Sau khi publish, bạn cần <strong>share</strong> app cho người dùng:</p>
+                    <ul>
+                        <li><strong>Share with specific users/groups</strong>: Nhập email hoặc security group</li>
+                        <li><strong>Co-owner</strong>: Người được share có thể edit app (nếu bạn cho quyền)</li>
+                        <li><strong>User</strong>: Chỉ có quyền sử dụng app, không chỉnh sửa</li>
+                        <li><strong>Data permissions</strong>: Đảm bảo users có quyền truy cập data source</li>
+                    </ul>
+
+                    <div class="info-box important">
+                        <div class="info-box-title">💡 Quan trọng</div>
+                        Khi share app, bạn cần đảm bảo người dùng cũng có quyền truy cập <strong>data sources</strong> mà app sử dụng. Ví dụ: nếu app dùng SharePoint list, user cần có permission trên list đó.
+                    </div>
+                </section>
+
+                <!-- Keyboard Shortcuts -->
+                <section class="content-section" id="keyboard">
+                    <h2>⌨️ Phím tắt hữu ích</h2>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr><th>Phím tắt</th><th>Chức năng</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td><kbd>F5</kbd></td><td>Preview app</td></tr>
+                                <tr><td><kbd>Esc</kbd></td><td>Thoát preview / Cancel</td></tr>
+                                <tr><td><kbd>Ctrl</kbd>+<kbd>S</kbd></td><td>Lưu app</td></tr>
+                                <tr><td><kbd>Ctrl</kbd>+<kbd>Z</kbd></td><td>Undo</td></tr>
+                                <tr><td><kbd>Ctrl</kbd>+<kbd>Y</kbd></td><td>Redo</td></tr>
+                                <tr><td><kbd>Ctrl</kbd>+<kbd>C/V</kbd></td><td>Copy/Paste control</td></tr>
+                                <tr><td><kbd>Ctrl</kbd>+<kbd>A</kbd></td><td>Chọn tất cả controls trên screen</td></tr>
+                                <tr><td><kbd>Delete</kbd></td><td>Xóa control đang chọn</td></tr>
+                                <tr><td><kbd>Tab</kbd></td><td>Chuyển giữa các controls</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <div class="chapter-nav">
+                    <a href="chuong1-gioi-thieu.html" class="prev">
+                        <span class="chapter-nav-arrow">←</span>
+                        <div><div class="chapter-nav-label">Chương trước</div><div class="chapter-nav-title">Giới thiệu Power Platform</div></div>
+                    </a>
+                    <a href="chuong3-model-driven.html" class="next">
+                        <span class="chapter-nav-arrow">→</span>
+                        <div><div class="chapter-nav-label">Chương tiếp theo</div><div class="chapter-nav-title">Model-driven Apps</div></div>
+                    </a>
+                </div>
+            </div>
+            <footer class="footer"><p>📚 Giáo trình Power Apps & Power Automate — Tổng hợp từ tài liệu Microsoft Official Documentation</p></footer>
+        </main>
+    </div>
+    <script>
+        function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('sidebarOverlay').classList.toggle('show');}
+        window.addEventListener('resize',()=>{if(window.innerWidth>1024){document.getElementById('sidebar').classList.remove('open');document.getElementById('sidebarOverlay').classList.remove('show');}});
+    </script>
+</body>
+</html>

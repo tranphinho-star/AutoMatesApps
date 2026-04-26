@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Chương 8: Desktop Flows & RPA - Power Automate for Desktop, flow designer, actions, machines">
+    <title>Chương 8: Desktop Flows & RPA</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <button class="sidebar-toggle" onclick="toggleSidebar()" aria-label="Menu">☰</button>
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+    <div class="layout">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header"><a href="index.html" class="sidebar-logo"><div class="sidebar-logo-icon">⚡</div><div class="sidebar-logo-text">Power Platform<span>Giáo trình tổng hợp</span></div></a></div>
+            <nav class="sidebar-nav">
+                <div class="nav-section"><div class="nav-section-title">Tổng quan</div><a href="index.html" class="nav-link"><span class="nav-link-icon">🏠</span> Trang chủ</a></div>
+                <div class="nav-section"><div class="nav-section-title">Power Apps</div>
+                    <a href="chuong1-gioi-thieu.html" class="nav-link"><span class="nav-link-icon">📖</span> Ch.1 Giới thiệu</a>
+                    <a href="chuong2-canvas-apps.html" class="nav-link"><span class="nav-link-icon">🎨</span> Ch.2 Canvas Apps</a>
+                    <a href="chuong3-model-driven.html" class="nav-link"><span class="nav-link-icon">🏗️</span> Ch.3 Model-driven</a>
+                    <a href="chuong4-dataverse.html" class="nav-link"><span class="nav-link-icon">🗄️</span> Ch.4 Dataverse</a>
+                    <a href="chuong5-ket-noi-du-lieu.html" class="nav-link"><span class="nav-link-icon">🔗</span> Ch.5 Kết nối dữ liệu</a>
+                </div>
+                <div class="nav-section"><div class="nav-section-title">Power Automate</div>
+                    <a href="chuong6-power-automate.html" class="nav-link"><span class="nav-link-icon">⚙️</span> Ch.6 Giới thiệu PA</a>
+                    <a href="chuong7-cloud-flows.html" class="nav-link"><span class="nav-link-icon">☁️</span> Ch.7 Cloud Flows</a>
+                    <a href="chuong8-desktop-flows.html" class="nav-link active"><span class="nav-link-icon">🖥️</span> Ch.8 Desktop Flows</a>
+                    <a href="chuong9-business-process.html" class="nav-link"><span class="nav-link-icon">📋</span> Ch.9 Business Process</a>
+                </div>
+                <div class="nav-section"><div class="nav-section-title">Nâng cao</div><a href="chuong10-nang-cao.html" class="nav-link"><span class="nav-link-icon">🚀</span> Ch.10 Nâng cao</a></div>
+                <div class="nav-section"><div class="nav-section-title">Thực hành</div><a href="bai-tap-thuc-hanh.html" class="nav-link"><span class="nav-link-icon">💻</span> Bài tập thực hành</a></div>
+            </nav>
+        </aside>
+        <main class="main-content">
+            <div class="chapter-header">
+                <div class="chapter-header-content">
+                    <div class="chapter-badge">🖥️ Chương 8</div>
+                    <h1>Desktop Flows & RPA</h1>
+                    <p class="description">Power Automate for Desktop — cài đặt, flow designer, desktop actions, machines, giám sát và kịch bản RPA thực tế.</p>
+                </div>
+            </div>
+            <div class="content-area">
+                <div class="toc">
+                    <div class="toc-title">📑 Mục lục chương này</div>
+                    <ul class="toc-list">
+                        <li><a href="#khai-niem">Desktop Flows & RPA là gì?</a></li>
+                        <li><a href="#cai-dat">Cài đặt & Setup</a></li>
+                        <li><a href="#console">Power Automate Console</a></li>
+                        <li><a href="#designer">Desktop Flow Designer</a></li>
+                        <li><a href="#actions">Desktop Actions Reference</a></li>
+                        <li><a href="#variables">Variables & Data Types</a></li>
+                        <li><a href="#web-ui">Web & UI Automation</a></li>
+                        <li><a href="#machines">Machines & Machine Groups</a></li>
+                        <li><a href="#trigger-cloud">Trigger từ Cloud Flow</a></li>
+                        <li><a href="#monitor">Monitor & Troubleshoot</a></li>
+                    </ul>
+                </div>
+
+                <section class="content-section" id="khai-niem">
+                    <h2>🤖 Desktop Flows & RPA là gì?</h2>
+                    <p><strong>RPA (Robotic Process Automation)</strong> — tự động hóa các tác vụ lặp đi lặp lại trên desktop: click buttons, nhập dữ liệu, điều khiển ứng dụng, scrape web... giống như một "robot" thao tác thay bạn.</p>
+
+                    <div class="feature-grid">
+                        <div class="feature-item"><div class="feature-item-icon">🖱️</div><h4>UI Automation</h4><p>Click, type, select trên bất kỳ ứng dụng desktop/web app nào.</p></div>
+                        <div class="feature-item"><div class="feature-item-icon">📊</div><h4>Excel Automation</h4><p>Mở, đọc, ghi, format Excel files — không cần viết VBA.</p></div>
+                        <div class="feature-item"><div class="feature-item-icon">🌐</div><h4>Web Scraping</h4><p>Trích xuất dữ liệu từ websites, fill forms, navigate pages.</p></div>
+                        <div class="feature-item"><div class="feature-item-icon">📁</div><h4>File Operations</h4><p>Copy, move, rename, compress files & folders tự động.</p></div>
+                    </div>
+
+                    <div class="info-box note">
+                        <div class="info-box-title">📝 Attended vs Unattended</div>
+                        <strong>Attended</strong>: Người dùng đang trước màn hình, flow chạy cùng lúc. <br>
+                        <strong>Unattended</strong>: Flow chạy trên VM/server khi không ai đang dùng. Yêu cầu license riêng.
+                    </div>
+                </section>
+
+                <section class="content-section" id="cai-dat">
+                    <h2>📥 Cài đặt & Setup</h2>
+                    <div class="steps">
+                        <div class="step" data-step="1"><h4>Cài đặt Power Automate for Desktop</h4><p>Tải từ <strong>flow.microsoft.com</strong> hoặc Microsoft Store. <strong>Miễn phí cho Windows 10/11</strong> (bản cơ bản).</p></div>
+                        <div class="step" data-step="2"><h4>Cài Browser Extension</h4><p>Cài extension cho Chrome/Edge/Firefox để hỗ trợ web automation và UI element recognition.</p></div>
+                        <div class="step" data-step="3"><h4>Đăng nhập</h4><p>Sử dụng tài khoản Microsoft (personal hoặc work/school). Work account cho full features.</p></div>
+                        <div class="step" data-step="4"><h4>Tạo Dataverse Database (Optional)</h4><p>Cần Dataverse environment để lưu desktop flows lên cloud và chia sẻ.</p></div>
+                    </div>
+
+                    <h3>System Requirements</h3>
+                    <div class="table-container">
+                        <table>
+                            <thead><tr><th>Yêu cầu</th><th>Chi tiết</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>OS</strong></td><td>Windows 10 Home/Pro/Enterprise, Windows 11, Windows Server 2016+</td></tr>
+                                <tr><td><strong>RAM</strong></td><td>Tối thiểu 2 GB (khuyến nghị 4 GB+)</td></tr>
+                                <tr><td><strong>.NET</strong></td><td>.NET Framework 4.7.2+</td></tr>
+                                <tr><td><strong>Browser</strong></td><td>Edge, Chrome, Firefox (cần extension)</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section class="content-section" id="console">
+                    <h2>🖥️ Power Automate Console</h2>
+                    <p>Console là cửa sổ chính khi mở Power Automate for Desktop:</p>
+                    <div class="feature-grid">
+                        <div class="feature-item"><div class="feature-item-icon">📋</div><h4>My Flows</h4><p>Danh sách desktop flows. Tạo mới, edit, run, share.</p></div>
+                        <div class="feature-item"><div class="feature-item-icon">📊</div><h4>Examples</h4><p>Flows mẫu để học và tham khảo.</p></div>
+                        <div class="feature-item"><div class="feature-item-icon">⚙️</div><h4>Settings</h4><p>Cấu hình: default env, notifications, machine settings.</p></div>
+                        <div class="feature-item"><div class="feature-item-icon">📝</div><h4>Logs</h4><p>Xem lịch sử chạy, errors, execution details.</p></div>
+                    </div>
+                </section>
+
+                <section class="content-section" id="designer">
+                    <h2>🎨 Desktop Flow Designer</h2>
+                    <p>Designer là IDE để tạo và chỉnh sửa desktop flows:</p>
+                    <ul>
+                        <li><strong>Actions pane (trái)</strong>: 400+ actions được phân nhóm theo category</li>
+                        <li><strong>Workspace (giữa)</strong>: Nơi kéo thả và sắp xếp actions thành flow</li>
+                        <li><strong>Variables pane (phải)</strong>: Quản lý input/output variables, flow variables</li>
+                        <li><strong>Subflows</strong>: Chia flow lớn thành các subflows nhỏ, tái sử dụng</li>
+                        <li><strong>UI Elements</strong>: Panel hiển thị captured UI elements cho automation</li>
+                        <li><strong>Errors pane</strong>: Hiển thị warnings, errors khi design time</li>
+                    </ul>
+
+                    <h3>Recorder</h3>
+                    <p>Sử dụng <strong>Desktop Recorder</strong> hoặc <strong>Web Recorder</strong> để record các thao tác, tự động tạo actions tương ứng. Chỉnh sửa sau khi record.</p>
+                </section>
+
+                <section class="content-section" id="actions">
+                    <h2>📋 Desktop Actions Reference</h2>
+                    <p>Power Automate for Desktop cung cấp <strong>400+ built-in actions</strong>:</p>
+                    <div class="table-container">
+                        <table>
+                            <thead><tr><th>Category</th><th>Actions</th><th>Ví dụ</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>Variables</strong></td><td>Set, Increase, Truncate, Create list, Add to list</td><td>Gán giá trị, xử lý mảng</td></tr>
+                                <tr><td><strong>Conditionals</strong></td><td>If, Else, Switch, Case</td><td>Logic if/else</td></tr>
+                                <tr><td><strong>Loops</strong></td><td>For each, Loop, While</td><td>Lặp qua danh sách</td></tr>
+                                <tr><td><strong>Flow Control</strong></td><td>Wait, Stop, Run subflow, Go to, Label</td><td>Điều khiển luồng</td></tr>
+                                <tr><td><strong>System</strong></td><td>Run application, Kill process, Get clipboard</td><td>Mở app, lấy clipboard</td></tr>
+                                <tr><td><strong>File</strong></td><td>Copy, Move, Rename, Delete, Get files in folder</td><td>Quản lý files</td></tr>
+                                <tr><td><strong>Folder</strong></td><td>Create, Delete, Get subfolders, Rename</td><td>Quản lý thư mục</td></tr>
+                                <tr><td><strong>Excel</strong></td><td>Launch, Read, Write, Close, Get column, Add row</td><td>Đọc/ghi Excel</td></tr>
+                                <tr><td><strong>Web</strong></td><td>Launch browser, Navigate, Click element, Extract data</td><td>Web automation</td></tr>
+                                <tr><td><strong>UI Automation</strong></td><td>Click, Type, Select, Get details, Focus window</td><td>Desktop app control</td></tr>
+                                <tr><td><strong>Email</strong></td><td>Send email (SMTP), Retrieve emails (IMAP/POP3)</td><td>Gửi/nhận email</td></tr>
+                                <tr><td><strong>Database</strong></td><td>Open SQL connection, Execute query</td><td>Query databases</td></tr>
+                                <tr><td><strong>PDF</strong></td><td>Extract text, Extract tables, Merge PDFs</td><td>Xử lý PDF</td></tr>
+                                <tr><td><strong>OCR</strong></td><td>Extract text from image/screen</td><td>Đọc text từ hình ảnh</td></tr>
+                                <tr><td><strong>Cryptography</strong></td><td>Encrypt, Decrypt, Hash</td><td>Mã hóa dữ liệu</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section class="content-section" id="variables">
+                    <h2>📦 Variables & Data Types</h2>
+                    <div class="table-container">
+                        <table>
+                            <thead><tr><th>Data Type</th><th>Mô tả</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>Text</strong></td><td>Chuỗi ký tự</td></tr>
+                                <tr><td><strong>Number</strong></td><td>Numeric value (integer hoặc decimal)</td></tr>
+                                <tr><td><strong>Boolean</strong></td><td>True/False</td></tr>
+                                <tr><td><strong>List</strong></td><td>Mảng các giá trị (tương tự array)</td></tr>
+                                <tr><td><strong>Datatable</strong></td><td>Bảng dữ liệu (rows & columns — giống DataTable)</td></tr>
+                                <tr><td><strong>Custom Object</strong></td><td>JSON-like objects with properties</td></tr>
+                                <tr><td><strong>Datetime</strong></td><td>Ngày giờ</td></tr>
+                                <tr><td><strong>File</strong></td><td>Reference tới file trên disk</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="info-box tip">
+                        <div class="info-box-title">💡 Variable naming</div>
+                        Sử dụng tên biến mô tả rõ ràng: <code>%CustomerName%</code>, <code>%TotalAmount%</code>, <code>%FilesList%</code>. Desktop flows dùng <code>%VariableName%</code> syntax.
+                    </div>
+                </section>
+
+                <section class="content-section" id="web-ui">
+                    <h2>🌐 Web & UI Automation</h2>
+                    <h3>Web Automation</h3>
+                    <div class="code-block">
+                        <div class="code-block-header">Ví dụ: Web Scraping</div>
+                        <pre>1. Launch new Chrome → URL: "https://example.com/reports"
+2. Click element → Login button
+3. Populate text field → Username: %Username%
+4. Populate text field → Password: %Password%
+5. Click element → Submit button
+6. Wait for page → Contains "Dashboard"
+7. Extract data from web page → Table element → %ReportData%
+8. Write to Excel → %ReportData% → Sheet1
+9. Close browser</pre>
+                    </div>
+
+                    <h3>UI Automation (Desktop Apps)</h3>
+                    <div class="code-block">
+                        <div class="code-block-header">Ví dụ: Nhập dữ liệu vào ERP</div>
+                        <pre>1. Run application → "C:\Program Files\ERP\erp.exe"
+2. Wait for window → Title: "ERP System"
+3. Focus window → "ERP System"
+4. FOR EACH row IN %ExcelData%
+   4.1. Click element → "New Record" button
+   4.2. Populate text field → Name: %row['Name']%
+   4.3. Populate text field → Amount: %row['Amount']%
+   4.4. Click element → "Save" button
+   4.5. Wait → 1 second
+5. END FOR</pre>
+                    </div>
+                </section>
+
+                <section class="content-section" id="machines">
+                    <h2>🖥️ Machines & Machine Groups</h2>
+                    <p><strong>Machines</strong> là các computer được đăng ký để chạy desktop flows:</p>
+                    <ul>
+                        <li><strong>Register machine</strong>: Đăng ký máy tính với Power Automate cloud</li>
+                        <li><strong>Machine groups</strong>: Nhóm nhiều machines — load balancing, high availability</li>
+                        <li><strong>Maintenance mode</strong>: Tạm dừng machine khỏi group để bảo trì</li>
+                        <li><strong>Connection credentials</strong>: Cấu hình Windows login credentials cho unattended runs</li>
+                    </ul>
+                </section>
+
+                <section class="content-section" id="trigger-cloud">
+                    <h2>☁️ Trigger từ Cloud Flow</h2>
+                    <p>Kết hợp <strong>Cloud Flow + Desktop Flow</strong> tạo hybrid automation mạnh mẽ:</p>
+                    <div class="code-block">
+                        <div class="code-block-header">Hybrid Flow — Cloud triggers Desktop</div>
+                        <pre>CLOUD FLOW:
+  TRIGGER: When a new invoice arrives (email)
+    ↓
+  ACTION: Get attachment content
+    ↓
+  ACTION: Run a flow built with PA Desktop
+    → Machine: "AccountingPC"
+    → Desktop flow: "Enter Invoice to SAP"
+    → Input: InvoiceData, AttachmentContent
+    ↓
+  ACTION: Send confirmation email</pre>
+                    </div>
+                </section>
+
+                <section class="content-section" id="monitor">
+                    <h2>📊 Monitor & Troubleshoot</h2>
+                    <ul>
+                        <li><strong>Run logs</strong>: Chi tiết từng action: success/fail, duration, screenshots</li>
+                        <li><strong>Desktop flow activity</strong>: Xem từ Power Automate portal</li>
+                        <li><strong>Analytics</strong>: Success rate, average run time, error trends</li>
+                        <li><strong>DLP policies</strong>: Data Loss Prevention cho desktop flows</li>
+                    </ul>
+                    <div class="info-box warning">
+                        <div class="info-box-title">⚠️ Tips Troubleshooting</div>
+                        <ul style="margin: 8px 0 0 20px;">
+                            <li>Thêm <strong>Wait</strong> actions giữa UI clicks (đợi UI load)</li>
+                            <li>Sử dụng <strong>Error Handling</strong> (On block error) cho mỗi action quan trọng</li>
+                            <li>Dùng <strong>Screenshot</strong> actions để debug visual issues</li>
+                            <li>Kiểm tra <strong>screen resolution</strong> trên machine phải giống lúc design</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <div class="chapter-nav">
+                    <a href="chuong7-cloud-flows.html" class="prev"><span class="chapter-nav-arrow">←</span><div><div class="chapter-nav-label">Chương trước</div><div class="chapter-nav-title">Cloud Flows</div></div></a>
+                    <a href="chuong9-business-process.html" class="next"><span class="chapter-nav-arrow">→</span><div><div class="chapter-nav-label">Chương tiếp theo</div><div class="chapter-nav-title">Business Process Flows</div></div></a>
+                </div>
+            </div>
+            <footer class="footer"><p>📚 Giáo trình Power Apps & Power Automate — Tổng hợp từ tài liệu Microsoft Official Documentation</p></footer>
+        </main>
+    </div>
+    <script>function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('sidebarOverlay').classList.toggle('show');}window.addEventListener('resize',()=>{if(window.innerWidth>1024){document.getElementById('sidebar').classList.remove('open');document.getElementById('sidebarOverlay').classList.remove('show');}});</script>
+</body>
+</html>

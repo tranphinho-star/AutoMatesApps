@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Chương 7: Cloud Flows - Automated, Scheduled, Instant flows, conditions, loops, expressions">
+    <title>Chương 7: Cloud Flows</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <button class="sidebar-toggle" onclick="toggleSidebar()" aria-label="Menu">☰</button>
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+    <div class="layout">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header"><a href="index.html" class="sidebar-logo"><div class="sidebar-logo-icon">⚡</div><div class="sidebar-logo-text">Power Platform<span>Giáo trình tổng hợp</span></div></a></div>
+            <nav class="sidebar-nav">
+                <div class="nav-section"><div class="nav-section-title">Tổng quan</div><a href="index.html" class="nav-link"><span class="nav-link-icon">🏠</span> Trang chủ</a></div>
+                <div class="nav-section"><div class="nav-section-title">Power Apps</div>
+                    <a href="chuong1-gioi-thieu.html" class="nav-link"><span class="nav-link-icon">📖</span> Ch.1 Giới thiệu</a>
+                    <a href="chuong2-canvas-apps.html" class="nav-link"><span class="nav-link-icon">🎨</span> Ch.2 Canvas Apps</a>
+                    <a href="chuong3-model-driven.html" class="nav-link"><span class="nav-link-icon">🏗️</span> Ch.3 Model-driven</a>
+                    <a href="chuong4-dataverse.html" class="nav-link"><span class="nav-link-icon">🗄️</span> Ch.4 Dataverse</a>
+                    <a href="chuong5-ket-noi-du-lieu.html" class="nav-link"><span class="nav-link-icon">🔗</span> Ch.5 Kết nối dữ liệu</a>
+                </div>
+                <div class="nav-section"><div class="nav-section-title">Power Automate</div>
+                    <a href="chuong6-power-automate.html" class="nav-link"><span class="nav-link-icon">⚙️</span> Ch.6 Giới thiệu PA</a>
+                    <a href="chuong7-cloud-flows.html" class="nav-link active"><span class="nav-link-icon">☁️</span> Ch.7 Cloud Flows</a>
+                    <a href="chuong8-desktop-flows.html" class="nav-link"><span class="nav-link-icon">🖥️</span> Ch.8 Desktop Flows</a>
+                    <a href="chuong9-business-process.html" class="nav-link"><span class="nav-link-icon">📋</span> Ch.9 Business Process</a>
+                </div>
+                <div class="nav-section"><div class="nav-section-title">Nâng cao</div><a href="chuong10-nang-cao.html" class="nav-link"><span class="nav-link-icon">🚀</span> Ch.10 Nâng cao</a></div>
+                <div class="nav-section"><div class="nav-section-title">Thực hành</div><a href="bai-tap-thuc-hanh.html" class="nav-link"><span class="nav-link-icon">💻</span> Bài tập thực hành</a></div>
+            </nav>
+        </aside>
+        <main class="main-content">
+            <div class="chapter-header">
+                <div class="chapter-header-content">
+                    <div class="chapter-badge">☁️ Chương 7</div>
+                    <h1>Cloud Flows</h1>
+                    <p class="description">Automated, Scheduled, Instant flows — triggers, actions, conditions, loops, expressions, approval workflows và các kịch bản phổ biến.</p>
+                </div>
+            </div>
+            <div class="content-area">
+                <div class="toc">
+                    <div class="toc-title">📑 Mục lục chương này</div>
+                    <ul class="toc-list">
+                        <li><a href="#automated">Automated Flows</a></li>
+                        <li><a href="#scheduled">Scheduled Flows</a></li>
+                        <li><a href="#instant">Instant Flows</a></li>
+                        <li><a href="#conditions">Conditions & Branching</a></li>
+                        <li><a href="#loops">Loops & Apply to Each</a></li>
+                        <li><a href="#expressions">Expressions</a></li>
+                        <li><a href="#approval">Approval Workflows</a></li>
+                        <li><a href="#error-handling">Error Handling</a></li>
+                        <li><a href="#scenarios">Kịch bản phổ biến</a></li>
+                        <li><a href="#share-manage">Share & Manage Flows</a></li>
+                    </ul>
+                </div>
+
+                <section class="content-section" id="automated">
+                    <h2>⚡ Automated Flows</h2>
+                    <p>Automated flows được <strong>kích hoạt tự động</strong> bởi một sự kiện (trigger). Đây là loại flow phổ biến nhất.</p>
+
+                    <h3>Triggers phổ biến</h3>
+                    <div class="table-container">
+                        <table>
+                            <thead><tr><th>Service</th><th>Trigger</th><th>Mô tả</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>SharePoint</strong></td><td>When an item is created</td><td>Item mới trong list</td></tr>
+                                <tr><td><strong>SharePoint</strong></td><td>When an item is modified</td><td>Item được cập nhật</td></tr>
+                                <tr><td><strong>Outlook</strong></td><td>When a new email arrives</td><td>Email mới vào inbox</td></tr>
+                                <tr><td><strong>Forms</strong></td><td>When a response is submitted</td><td>Form response mới</td></tr>
+                                <tr><td><strong>Dataverse</strong></td><td>When a row is added/modified</td><td>Record thay đổi</td></tr>
+                                <tr><td><strong>Teams</strong></td><td>When a keyword is mentioned</td><td>Từ khóa xuất hiện</td></tr>
+                                <tr><td><strong>Twitter</strong></td><td>When a new tweet is posted</td><td>Tweet mới matching</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3>Ví dụ: Auto-save Email Attachments</h3>
+                    <div class="code-block">
+                        <div class="code-block-header">Automated Flow</div>
+                        <pre>TRIGGER: When a new email arrives (Outlook)
+  → Filter: Has Attachments = Yes
+  ↓
+ACTION: Apply to each (attachment)
+  ↓
+  ACTION: Create file (OneDrive)
+    - Folder: /Email Attachments/
+    - File Name: attachment Name
+    - File Content: attachment Content
+  ↓
+  ACTION: Send notification
+    - "File saved: " + attachment Name</pre>
+                    </div>
+                </section>
+
+                <section class="content-section" id="scheduled">
+                    <h2>⏰ Scheduled Flows</h2>
+                    <p>Chạy theo <strong>lịch trình định kỳ</strong>: minutes, hours, daily, weekly, monthly.</p>
+
+                    <div class="feature-grid">
+                        <div class="feature-item"><div class="feature-item-icon">📊</div><h4>Weekly Reports</h4><p>Tạo báo cáo tổng hợp hàng tuần từ SharePoint data và gửi email.</p></div>
+                        <div class="feature-item"><div class="feature-item-icon">🧹</div><h4>Data Cleanup</h4><p>Xóa records cũ, archive data, clear temp files theo lịch.</p></div>
+                        <div class="feature-item"><div class="feature-item-icon">🔄</div><h4>Data Sync</h4><p>Đồng bộ dữ liệu giữa hệ thống hàng đêm.</p></div>
+                        <div class="feature-item"><div class="feature-item-icon">📧</div><h4>Reminders</h4><p>Gửi nhắc nhở hàng ngày cho tasks sắp đến hạn.</p></div>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-block-header">Scheduled Flow — Báo cáo tuần</div>
+                        <pre>TRIGGER: Recurrence
+  → Frequency: Week | Day: Monday | Time: 8:00 AM
+  ↓
+ACTION: Get items (SharePoint - "Sales Data")
+  → Filter: Modified last 7 days
+  ↓
+ACTION: Create HTML table
+  → From: Filtered items
+  ↓
+ACTION: Send email (Outlook)
+  → To: team@company.com
+  → Subject: "📊 Weekly Sales Report - " + utcNow()
+  → Body: HTML table content</pre>
+                    </div>
+                </section>
+
+                <section class="content-section" id="instant">
+                    <h2>👆 Instant Flows</h2>
+                    <p>Kích hoạt <strong>thủ công</strong> bằng button click — từ Power Apps, Power Automate mobile, Teams, hoặc SharePoint.</p>
+
+                    <h3>Trigger types</h3>
+                    <ul>
+                        <li><strong>Manually trigger a flow</strong>: Button trong Power Automate</li>
+                        <li><strong>Power Apps</strong>: Gọi từ Canvas App button</li>
+                        <li><strong>For a selected item</strong>: Right-click context menu trên SharePoint item</li>
+                        <li><strong>For a selected row</strong>: Từ Dataverse record</li>
+                        <li><strong>From Teams</strong>: Adaptive card button, compose box</li>
+                    </ul>
+
+                    <div class="info-box tip">
+                        <div class="info-box-title">💡 Input parameters</div>
+                        Instant flows có thể nhận <strong>input từ user</strong>: text, number, date, file, email, yes/no. Cấu hình inputs trong trigger settings.
+                    </div>
+                </section>
+
+                <section class="content-section" id="conditions">
+                    <h2>🔀 Conditions & Branching</h2>
+                    <p>Sử dụng <strong>Condition</strong> action để tạo logic If/Else:</p>
+                    <div class="code-block">
+                        <div class="code-block-header">Condition — Phân loại Priority</div>
+                        <pre>CONDITION: Priority equals "High"
+  ├── IF YES:
+  │   ├── Send email to Manager
+  │   └── Create follow-up Task
+  └── IF NO:
+      └── Add to weekly digest list</pre>
+                    </div>
+
+                    <h3>Switch (Multi-branch)</h3>
+                    <div class="code-block">
+                        <div class="code-block-header">Switch — Nhiều nhánh</div>
+                        <pre>SWITCH: Department
+  ├── Case "IT":    → Assign to IT Team
+  ├── Case "HR":    → Assign to HR Team
+  ├── Case "Sales": → Assign to Sales Team
+  └── Default:      → Assign to General</pre>
+                    </div>
+                </section>
+
+                <section class="content-section" id="loops">
+                    <h2>🔁 Loops & Apply to Each</h2>
+                    <div class="table-container">
+                        <table>
+                            <thead><tr><th>Loop Type</th><th>Mô tả</th><th>Ví dụ</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>Apply to each</strong></td><td>Lặp qua từng item trong array</td><td>Process each attachment, each list item</td></tr>
+                                <tr><td><strong>Do until</strong></td><td>Lặp cho đến khi điều kiện đúng</td><td>Poll API until status = "Complete"</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="info-box warning">
+                        <div class="info-box-title">⚠️ Performance</div>
+                        <ul style="margin: 8px 0 0 20px;">
+                            <li>Mặc định Apply to each chạy <strong>tuần tự</strong>. Bật <strong>Concurrency Control</strong> để chạy song song (max 50)</li>
+                            <li>Do until có giới hạn <strong>60 iterations</strong> và <strong>timeout 1 giờ</strong> mặc định</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section class="content-section" id="expressions">
+                    <h2>📐 Expressions</h2>
+                    <p>Expressions cho phép xử lý dữ liệu nâng cao trong flows:</p>
+                    <div class="table-container">
+                        <table>
+                            <thead><tr><th>Category</th><th>Functions</th><th>Ví dụ</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>String</strong></td><td>concat, substring, replace, split, toLower, toUpper, trim</td><td><code>concat('Hello ', triggerBody()?['Name'])</code></td></tr>
+                                <tr><td><strong>Date/Time</strong></td><td>utcNow, addDays, formatDateTime, convertTimeZone</td><td><code>formatDateTime(utcNow(), 'dd/MM/yyyy')</code></td></tr>
+                                <tr><td><strong>Logical</strong></td><td>if, equals, and, or, not, greater, less</td><td><code>if(equals(Status,'Done'), 'Yes', 'No')</code></td></tr>
+                                <tr><td><strong>Collection</strong></td><td>length, first, last, contains, join, union</td><td><code>length(body('Get_items')?['value'])</code></td></tr>
+                                <tr><td><strong>Math</strong></td><td>add, sub, mul, div, mod, min, max</td><td><code>add(Price, mul(Price, 0.1))</code></td></tr>
+                                <tr><td><strong>Conversion</strong></td><td>int, float, string, json, base64</td><td><code>int(triggerBody()?['Quantity'])</code></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section class="content-section" id="approval">
+                    <h2>✅ Approval Workflows</h2>
+                    <p>Approval là tính năng mạnh mẽ nhất của Power Automate cho quy trình phê duyệt:</p>
+
+                    <h3>Loại Approval</h3>
+                    <div class="feature-grid">
+                        <div class="feature-item"><div class="feature-item-icon">👤</div><h4>Approve/Reject - First</h4><p>Gửi tới nhiều người, chỉ cần <strong>1 người</strong> approve/reject.</p></div>
+                        <div class="feature-item"><div class="feature-item-icon">👥</div><h4>Approve/Reject - Everyone</h4><p>Gửi tới nhiều người, <strong>tất cả</strong> phải approve.</p></div>
+                        <div class="feature-item"><div class="feature-item-icon">📝</div><h4>Custom Responses</h4><p>Tùy chỉnh options: "Approve", "Reject", "Need More Info".</p></div>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-block-header">Approval Flow — Leave Request</div>
+                        <pre>TRIGGER: When a new item is created (SharePoint - "Leave Requests")
+  ↓
+ACTION: Start and wait for an approval
+  - Type: Approve/Reject - First to respond
+  - Title: "Leave Request from " + EmployeeName
+  - Assigned to: ManagerEmail
+  - Details: LeaveType + ": " + StartDate + " to " + EndDate
+  ↓
+CONDITION: Outcome equals "Approve"
+  ├── YES: Update item → Status = "Approved"
+  │        Send email → "✅ Your leave request was approved!"
+  └── NO:  Update item → Status = "Rejected"
+           Send email → "❌ Your leave request was rejected."</pre>
+                    </div>
+                </section>
+
+                <section class="content-section" id="error-handling">
+                    <h2>🛡️ Error Handling</h2>
+                    <ul>
+                        <li><strong>Configure run after</strong>: Chọn action chạy khi action trước: succeeded, failed, skipped, timed out</li>
+                        <li><strong>Scope + Try/Catch</strong>: Nhóm actions trong Scope. Nếu fail, actions "run after" sẽ xử lý error</li>
+                        <li><strong>Retry policy</strong>: Tự động retry action khi fail (default: 4 retries)</li>
+                        <li><strong>Terminate</strong>: Dừng flow với status: Succeeded, Failed, hoặc Cancelled</li>
+                    </ul>
+                    <div class="code-block">
+                        <div class="code-block-header">Error Handling Pattern</div>
+                        <pre>SCOPE: "Try"
+  ├── Action 1: Get data
+  ├── Action 2: Process data
+  └── Action 3: Save results
+
+SCOPE: "Catch" (Run after: "Try" has failed)
+  ├── Send error notification email
+  └── Log error to SharePoint list</pre>
+                    </div>
+                </section>
+
+                <section class="content-section" id="scenarios">
+                    <h2>🎯 Kịch bản phổ biến</h2>
+                    <div class="feature-grid">
+                        <div class="feature-item"><div class="feature-item-icon">📧</div><h4>Email Notifications</h4><p>Thông báo khi có item mới, task đến hạn, hoặc status thay đổi.</p></div>
+                        <div class="feature-item"><div class="feature-item-icon">✅</div><h4>Approval Processes</h4><p>Leave requests, purchase orders, document approvals, expense reports.</p></div>
+                        <div class="feature-item"><div class="feature-item-icon">🔄</div><h4>Data Synchronization</h4><p>Sync giữa SharePoint ↔ Excel, Forms → SharePoint, CRM → SQL.</p></div>
+                        <div class="feature-item"><div class="feature-item-icon">📋</div><h4>Document Generation</h4><p>Tạo PDF, Word docs từ templates khi có data mới.</p></div>
+                        <div class="feature-item"><div class="feature-item-icon">🔔</div><h4>Teams Notifications</h4><p>Post messages vào channels khi có events quan trọng.</p></div>
+                        <div class="feature-item"><div class="feature-item-icon">📊</div><h4>Scheduled Reports</h4><p>Tạo và gửi báo cáo tổng hợp daily/weekly/monthly.</p></div>
+                    </div>
+                </section>
+
+                <section class="content-section" id="share-manage">
+                    <h2>👥 Share & Manage Flows</h2>
+                    <ul>
+                        <li><strong>Share as owner</strong>: User có thể edit, turn on/off flow</li>
+                        <li><strong>Share as run-only</strong>: User chỉ có thể run instant flows</li>
+                        <li><strong>Solutions</strong>: Đóng gói flows trong solutions để deploy cross-environment</li>
+                        <li><strong>Run history</strong>: Xem lịch sử chạy 28 ngày gần nhất</li>
+                        <li><strong>Analytics</strong>: Xem thống kê: success/fail rate, average duration</li>
+                    </ul>
+                </section>
+
+                <div class="chapter-nav">
+                    <a href="chuong6-power-automate.html" class="prev"><span class="chapter-nav-arrow">←</span><div><div class="chapter-nav-label">Chương trước</div><div class="chapter-nav-title">Giới thiệu Power Automate</div></div></a>
+                    <a href="chuong8-desktop-flows.html" class="next"><span class="chapter-nav-arrow">→</span><div><div class="chapter-nav-label">Chương tiếp theo</div><div class="chapter-nav-title">Desktop Flows & RPA</div></div></a>
+                </div>
+            </div>
+            <footer class="footer"><p>📚 Giáo trình Power Apps & Power Automate — Tổng hợp từ tài liệu Microsoft Official Documentation</p></footer>
+        </main>
+    </div>
+    <script>function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('sidebarOverlay').classList.toggle('show');}window.addEventListener('resize',()=>{if(window.innerWidth>1024){document.getElementById('sidebar').classList.remove('open');document.getElementById('sidebarOverlay').classList.remove('show');}});</script>
+</body>
+</html>

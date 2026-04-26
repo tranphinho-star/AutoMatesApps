@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Chương 10: Nâng cao & Tích hợp - AI Builder, ALM, Security, Performance, Copilot">
+    <title>Chương 10: Nâng cao & Tích hợp</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <button class="sidebar-toggle" onclick="toggleSidebar()" aria-label="Menu">☰</button>
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+    <div class="layout">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header"><a href="index.html" class="sidebar-logo"><div class="sidebar-logo-icon">⚡</div><div class="sidebar-logo-text">Power Platform<span>Giáo trình tổng hợp</span></div></a></div>
+            <nav class="sidebar-nav">
+                <div class="nav-section"><div class="nav-section-title">Tổng quan</div><a href="index.html" class="nav-link"><span class="nav-link-icon">🏠</span> Trang chủ</a></div>
+                <div class="nav-section"><div class="nav-section-title">Power Apps</div>
+                    <a href="chuong1-gioi-thieu.html" class="nav-link"><span class="nav-link-icon">📖</span> Ch.1 Giới thiệu</a>
+                    <a href="chuong2-canvas-apps.html" class="nav-link"><span class="nav-link-icon">🎨</span> Ch.2 Canvas Apps</a>
+                    <a href="chuong3-model-driven.html" class="nav-link"><span class="nav-link-icon">🏗️</span> Ch.3 Model-driven</a>
+                    <a href="chuong4-dataverse.html" class="nav-link"><span class="nav-link-icon">🗄️</span> Ch.4 Dataverse</a>
+                    <a href="chuong5-ket-noi-du-lieu.html" class="nav-link"><span class="nav-link-icon">🔗</span> Ch.5 Kết nối dữ liệu</a>
+                </div>
+                <div class="nav-section"><div class="nav-section-title">Power Automate</div>
+                    <a href="chuong6-power-automate.html" class="nav-link"><span class="nav-link-icon">⚙️</span> Ch.6 Giới thiệu PA</a>
+                    <a href="chuong7-cloud-flows.html" class="nav-link"><span class="nav-link-icon">☁️</span> Ch.7 Cloud Flows</a>
+                    <a href="chuong8-desktop-flows.html" class="nav-link"><span class="nav-link-icon">🖥️</span> Ch.8 Desktop Flows</a>
+                    <a href="chuong9-business-process.html" class="nav-link"><span class="nav-link-icon">📋</span> Ch.9 Business Process</a>
+                </div>
+                <div class="nav-section"><div class="nav-section-title">Nâng cao</div><a href="chuong10-nang-cao.html" class="nav-link active"><span class="nav-link-icon">🚀</span> Ch.10 Nâng cao</a></div>
+                <div class="nav-section"><div class="nav-section-title">Thực hành</div><a href="bai-tap-thuc-hanh.html" class="nav-link"><span class="nav-link-icon">💻</span> Bài tập thực hành</a></div>
+            </nav>
+        </aside>
+        <main class="main-content">
+            <div class="chapter-header">
+                <div class="chapter-header-content">
+                    <div class="chapter-badge">🚀 Chương 10</div>
+                    <h1>Nâng cao & Tích hợp</h1>
+                    <p class="description">AI Builder, Power BI integration, ALM, Security governance, Performance optimization, Copilot Studio và xu hướng tương lai.</p>
+                </div>
+            </div>
+            <div class="content-area">
+                <div class="toc">
+                    <div class="toc-title">📑 Mục lục chương này</div>
+                    <ul class="toc-list">
+                        <li><a href="#ai-builder">AI Builder</a></li>
+                        <li><a href="#power-bi">Power BI Integration</a></li>
+                        <li><a href="#alm">Application Lifecycle Management</a></li>
+                        <li><a href="#security">Security & Governance</a></li>
+                        <li><a href="#performance">Performance Optimization</a></li>
+                        <li><a href="#copilot">Copilot Studio</a></li>
+                        <li><a href="#pcf">Power Apps Component Framework</a></li>
+                        <li><a href="#trends">Xu hướng tương lai</a></li>
+                    </ul>
+                </div>
+
+                <section class="content-section" id="ai-builder">
+                    <h2>🤖 AI Builder</h2>
+                    <p>AI Builder cho phép thêm <strong>AI capabilities</strong> vào Power Apps và Power Automate mà không cần kiến thức machine learning:</p>
+                    <div class="feature-grid">
+                        <div class="feature-item"><div class="feature-item-icon">📄</div><h4>Document Processing</h4><p>Trích xuất data từ invoices, receipts, business cards tự động.</p></div>
+                        <div class="feature-item"><div class="feature-item-icon">📝</div><h4>Text Analysis</h4><p>Sentiment analysis, key phrase extraction, language detection.</p></div>
+                        <div class="feature-item"><div class="feature-item-icon">📊</div><h4>Prediction</h4><p>Dự đoán outcomes dựa trên historical data (churn, default...).</p></div>
+                        <div class="feature-item"><div class="feature-item-icon">👁️</div><h4>Object Detection</h4><p>Nhận diện objects trong hình ảnh. Sử dụng cho QC, inventory.</p></div>
+                        <div class="feature-item"><div class="feature-item-icon">📋</div><h4>Category Classification</h4><p>Tự động phân loại text vào categories (support tickets, emails).</p></div>
+                        <div class="feature-item"><div class="feature-item-icon">💬</div><h4>GPT Models</h4><p>Tích hợp Azure OpenAI / GPT cho text generation, summarization.</p></div>
+                    </div>
+                    <div class="code-block">
+                        <div class="code-block-header">Ví dụ: Invoice Processing Flow</div>
+                        <pre>TRIGGER: When email arrives with attachment
+  ↓ 
+ACTION: AI Builder - Extract info from invoices
+  → Input: Email attachment
+  ↓
+ACTION: Create item in SharePoint
+  → Vendor: AI output → Vendor name
+  → Amount: AI output → Total amount
+  → Date: AI output → Invoice date
+  → Invoice #: AI output → Invoice number</pre>
+                    </div>
+                </section>
+
+                <section class="content-section" id="power-bi">
+                    <h2>📊 Power BI Integration</h2>
+                    <p>Power Platform tích hợp chặt chẽ với Power BI cho báo cáo và phân tích:</p>
+                    <ul>
+                        <li><strong>Embed Power BI in Canvas Apps</strong>: Nhúng reports/tiles trực tiếp vào app</li>
+                        <li><strong>Embed in Model-driven</strong>: Power BI dashboards trong navigation</li>
+                        <li><strong>Dataverse as data source</strong>: Power BI connect trực tiếp tới Dataverse</li>
+                        <li><strong>Power Automate triggers</strong>: Trigger flows khi Power BI alerts fire</li>
+                        <li><strong>Row-level security</strong>: Data security từ Dataverse respects trong BI</li>
+                    </ul>
+                </section>
+
+                <section class="content-section" id="alm">
+                    <h2>🔄 Application Lifecycle Management (ALM)</h2>
+                    <p>Quản lý vòng đời ứng dụng Power Platform một cách chuyên nghiệp:</p>
+                    <div class="steps">
+                        <div class="step" data-step="1"><h4>Development Environment</h4><p>Develop & test trong Dev environment. Sử dụng unmanaged solutions.</p></div>
+                        <div class="step" data-step="2"><h4>Source Control</h4><p>Export solution → Unpack với Power Platform CLI → Commit to Git (Azure DevOps/GitHub).</p></div>
+                        <div class="step" data-step="3"><h4>Build & Test</h4><p>CI pipeline: build managed solution, run automated tests, validate.</p></div>
+                        <div class="step" data-step="4"><h4>Deploy</h4><p>CD pipeline: import managed solution vào Test → UAT → Production environments.</p></div>
+                    </div>
+
+                    <h3>Environment Strategy</h3>
+                    <div class="code-block">
+                        <div class="code-block-header">Environment Architecture</div>
+                        <pre>DEV Environment          TEST Environment        PROD Environment
+┌───────────────┐       ┌───────────────┐       ┌───────────────┐
+│ Unmanaged     │──►    │ Managed       │──►    │ Managed       │
+│ Solutions     │ Export│ Solutions     │ Export│ Solutions     │
+│ Free to edit  │  &    │ Testing &     │  &    │ Live users    │
+│ Development   │ Import│ QA            │ Import│ Production    │
+└───────────────┘       └───────────────┘       └───────────────┘</pre>
+                    </div>
+                </section>
+
+                <section class="content-section" id="security">
+                    <h2>🔒 Security & Governance</h2>
+                    <div class="feature-grid">
+                        <div class="feature-item"><div class="feature-item-icon">🛡️</div><h4>DLP Policies</h4><p>Data Loss Prevention: phân loại connectors thành Business/Non-Business to prevent data leaks.</p></div>
+                        <div class="feature-item"><div class="feature-item-icon">🏛️</div><h4>Center of Excellence</h4><p>CoE Starter Kit: monitor adoption, governance, best practices cho toàn tổ chức.</p></div>
+                        <div class="feature-item"><div class="feature-item-icon">👤</div><h4>Conditional Access</h4><p>Azure AD Conditional Access policies cho Power Platform access.</p></div>
+                        <div class="feature-item"><div class="feature-item-icon">📝</div><h4>Audit Logs</h4><p>Activity logging trong Microsoft 365 compliance center.</p></div>
+                    </div>
+                </section>
+
+                <section class="content-section" id="performance">
+                    <h2>⚡ Performance Optimization</h2>
+                    <h3>Canvas Apps</h3>
+                    <ul>
+                        <li><strong>Delegation</strong>: Sử dụng delegable functions (Filter, LookUp) thay vì non-delegable (Search, CountRows)</li>
+                        <li><strong>Concurrent()</strong>: Load nhiều data sources song song khi app start</li>
+                        <li><strong>Collections</strong>: Cache data thường dùng bằng ClearCollect() thay vì query trực tiếp</li>
+                        <li><strong>Minimize controls</strong>: Giảm số controls trên mỗi screen (< 300)</li>
+                        <li><strong>Delay loading</strong>: Dùng Timer hoặc variable để delay load heavy content</li>
+                    </ul>
+
+                    <h3>Power Automate Flows</h3>
+                    <ul>
+                        <li><strong>Parallel branches</strong>: Chạy actions song song khi không phụ thuộc nhau</li>
+                        <li><strong>Concurrency control</strong>: Bật cho Apply to each (max 50 parallel)</li>
+                        <li><strong>Select & Filter</strong>: Sử dụng Select action thay vì Apply to each cho data transformation</li>
+                        <li><strong>Minimize actions</strong>: Gộp logic vào expressions thay vì nhiều actions</li>
+                        <li><strong>Child flows</strong>: Chia flow lớn thành child flows để đọc và maintain dễ hơn</li>
+                    </ul>
+                </section>
+
+                <section class="content-section" id="copilot">
+                    <h2>🤖 Copilot Studio (Power Virtual Agents)</h2>
+                    <p>Tạo <strong>AI chatbots</strong> không cần code, tích hợp với Power Platform:</p>
+                    <ul>
+                        <li><strong>Topic-based design</strong>: Thiết kế conversation flows theo topics</li>
+                        <li><strong>Generative AI answers</strong>: Bot trả lời dựa trên knowledge sources (websites, docs)</li>
+                        <li><strong>Power Automate integration</strong>: Gọi flows từ bot để thực hiện actions</li>
+                        <li><strong>Multi-channel</strong>: Deploy trên Teams, websites, Facebook, custom channels</li>
+                        <li><strong>Analytics</strong>: Dashboard chi tiết về user interactions, satisfaction, escalations</li>
+                    </ul>
+                </section>
+
+                <section class="content-section" id="pcf">
+                    <h2>🧩 Power Apps Component Framework (PCF)</h2>
+                    <p>Tạo <strong>custom visual components</strong> cho Canvas và Model-driven apps bằng TypeScript/React:</p>
+                    <div class="table-container">
+                        <table>
+                            <thead><tr><th>Feature</th><th>Mô tả</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>Code Components</strong></td><td>Custom controls sử dụng TypeScript + HTML/CSS/React</td></tr>
+                                <tr><td><strong>Full lifecycle</strong></td><td>init(), updateView(), getOutputs(), destroy() methods</td></tr>
+                                <tr><td><strong>Package & Deploy</strong></td><td>Build → package in solution → deploy qua ALM</td></tr>
+                                <tr><td><strong>Component Library</strong></td><td>PCF Gallery — community-built components</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section class="content-section" id="trends">
+                    <h2>🔮 Xu hướng tương lai</h2>
+                    <div class="feature-grid">
+                        <div class="feature-item"><div class="feature-item-icon">🤖</div><h4>Copilot Everywhere</h4><p>AI-assisted development: mô tả bằng ngôn ngữ tự nhiên → Copilot tạo app/flow.</p></div>
+                        <div class="feature-item"><div class="feature-item-icon">👨‍💻</div><h4>Pro Developer Tools</h4><p>VS Code extension, GitHub integration, Power Platform CLI ngày càng mạnh.</p></div>
+                        <div class="feature-item"><div class="feature-item-icon">🔗</div><h4>Deeper Integration</h4><p>Tích hợp sâu hơn với Azure, Dynamics 365, Microsoft 365, Teams.</p></div>
+                        <div class="feature-item"><div class="feature-item-icon">📱</div><h4>Responsive & PWA</h4><p>Canvas Apps responsive hơn, progressive web app capabilities.</p></div>
+                    </div>
+                </section>
+
+                <div class="chapter-nav">
+                    <a href="chuong9-business-process.html" class="prev"><span class="chapter-nav-arrow">←</span><div><div class="chapter-nav-label">Chương trước</div><div class="chapter-nav-title">Business Process Flows</div></div></a>
+                    <a href="bai-tap-thuc-hanh.html" class="next"><span class="chapter-nav-arrow">→</span><div><div class="chapter-nav-label">Tiếp theo</div><div class="chapter-nav-title">Bài tập thực hành</div></div></a>
+                </div>
+            </div>
+            <footer class="footer"><p>📚 Giáo trình Power Apps & Power Automate — Tổng hợp từ tài liệu Microsoft Official Documentation</p></footer>
+        </main>
+    </div>
+    <script>function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('sidebarOverlay').classList.toggle('show');}window.addEventListener('resize',()=>{if(window.innerWidth>1024){document.getElementById('sidebar').classList.remove('open');document.getElementById('sidebarOverlay').classList.remove('show');}});</script>
+</body>
+</html>

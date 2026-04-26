@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Chương 4: Microsoft Dataverse - Lưu trữ & quản lý dữ liệu cho Power Platform">
+    <title>Chương 4: Microsoft Dataverse</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <button class="sidebar-toggle" onclick="toggleSidebar()" aria-label="Menu">☰</button>
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+    <div class="layout">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header"><a href="index.html" class="sidebar-logo"><div class="sidebar-logo-icon">⚡</div><div class="sidebar-logo-text">Power Platform<span>Giáo trình tổng hợp</span></div></a></div>
+            <nav class="sidebar-nav">
+                <div class="nav-section"><div class="nav-section-title">Tổng quan</div><a href="index.html" class="nav-link"><span class="nav-link-icon">🏠</span> Trang chủ</a></div>
+                <div class="nav-section"><div class="nav-section-title">Power Apps</div>
+                    <a href="chuong1-gioi-thieu.html" class="nav-link"><span class="nav-link-icon">📖</span> Ch.1 Giới thiệu</a>
+                    <a href="chuong2-canvas-apps.html" class="nav-link"><span class="nav-link-icon">🎨</span> Ch.2 Canvas Apps</a>
+                    <a href="chuong3-model-driven.html" class="nav-link"><span class="nav-link-icon">🏗️</span> Ch.3 Model-driven</a>
+                    <a href="chuong4-dataverse.html" class="nav-link active"><span class="nav-link-icon">🗄️</span> Ch.4 Dataverse</a>
+                    <a href="chuong5-ket-noi-du-lieu.html" class="nav-link"><span class="nav-link-icon">🔗</span> Ch.5 Kết nối dữ liệu</a>
+                </div>
+                <div class="nav-section"><div class="nav-section-title">Power Automate</div>
+                    <a href="chuong6-power-automate.html" class="nav-link"><span class="nav-link-icon">⚙️</span> Ch.6 Giới thiệu PA</a>
+                    <a href="chuong7-cloud-flows.html" class="nav-link"><span class="nav-link-icon">☁️</span> Ch.7 Cloud Flows</a>
+                    <a href="chuong8-desktop-flows.html" class="nav-link"><span class="nav-link-icon">🖥️</span> Ch.8 Desktop Flows</a>
+                    <a href="chuong9-business-process.html" class="nav-link"><span class="nav-link-icon">📋</span> Ch.9 Business Process</a>
+                </div>
+                <div class="nav-section"><div class="nav-section-title">Nâng cao</div><a href="chuong10-nang-cao.html" class="nav-link"><span class="nav-link-icon">🚀</span> Ch.10 Nâng cao</a></div>
+                <div class="nav-section"><div class="nav-section-title">Thực hành</div><a href="bai-tap-thuc-hanh.html" class="nav-link"><span class="nav-link-icon">💻</span> Bài tập thực hành</a></div>
+            </nav>
+        </aside>
+        <main class="main-content">
+            <div class="chapter-header">
+                <div class="chapter-header-content">
+                    <div class="chapter-badge">🗄️ Chương 4</div>
+                    <h1>Microsoft Dataverse</h1>
+                    <p class="description">Lưu trữ và quản lý dữ liệu doanh nghiệp với Dataverse — tables, columns, relationships, business logic, solutions và security.</p>
+                </div>
+            </div>
+            <div class="content-area">
+                <div class="toc">
+                    <div class="toc-title">📑 Mục lục chương này</div>
+                    <ul class="toc-list">
+                        <li><a href="#khai-niem">Dataverse là gì?</a></li>
+                        <li><a href="#tai-sao">Tại sao chọn Dataverse?</a></li>
+                        <li><a href="#tables">Tables (Bảng dữ liệu)</a></li>
+                        <li><a href="#columns">Columns (Cột dữ liệu)</a></li>
+                        <li><a href="#relationships">Relationships (Quan hệ)</a></li>
+                        <li><a href="#business-logic">Business Logic</a></li>
+                        <li><a href="#solutions">Solutions</a></li>
+                        <li><a href="#security">Security & Roles</a></li>
+                    </ul>
+                </div>
+
+                <section class="content-section" id="khai-niem">
+                    <h2>🗄️ Dataverse là gì?</h2>
+                    <p><strong>Microsoft Dataverse</strong> (trước đây: Common Data Service - CDS) là nền tảng dữ liệu được thiết kế riêng cho Power Platform. Nó cung cấp khả năng lưu trữ, quản lý, và bảo mật dữ liệu kinh doanh một cách chuẩn hóa.</p>
+
+                    <div class="feature-grid">
+                        <div class="feature-item"><div class="feature-item-icon">☁️</div><h4>Cloud-Native</h4><p>Lưu trữ trên Azure cloud. Tự động scaling, backup, and disaster recovery.</p></div>
+                        <div class="feature-item"><div class="feature-item-icon">📊</div><h4>Standard Tables</h4><p>Sẵn có 400+ standard tables: Account, Contact, Activity, Case, etc.</p></div>
+                        <div class="feature-item"><div class="feature-item-icon">🔒</div><h4>Enterprise Security</h4><p>Role-based access control, field-level security, audit trails.</p></div>
+                        <div class="feature-item"><div class="feature-item-icon">🔗</div><h4>Integration</h4><p>Tích hợp Power BI, Power Automate, Dynamics 365, Azure services.</p></div>
+                    </div>
+                </section>
+
+                <section class="content-section" id="tai-sao">
+                    <h2>💡 Tại sao chọn Dataverse?</h2>
+                    <div class="comparison">
+                        <div class="comparison-item left">
+                            <h4>✅ Ưu điểm Dataverse</h4>
+                            <ul>
+                                <li>Bảo mật enterprise-grade</li>
+                                <li>Business logic tích hợp</li>
+                                <li>Standard data model</li>
+                                <li>API sẵn có (Web API, OData)</li>
+                                <li>Relationships & validations</li>
+                                <li>Audit & change tracking</li>
+                                <li>Offline support</li>
+                            </ul>
+                        </div>
+                        <div class="comparison-item right">
+                            <h4>⚡ So với SharePoint/Excel</h4>
+                            <ul>
+                                <li>SharePoint: tốt cho docs, hạn chế cho data</li>
+                                <li>Excel: giới hạn records, no security</li>
+                                <li>Dataverse: designed for data management</li>
+                                <li>Complex data types support</li>
+                                <li>Better performance at scale</li>
+                                <li>Server-side business logic</li>
+                                <li>Yêu cầu Premium license</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section" id="tables">
+                    <h2>📋 Tables (Bảng dữ liệu)</h2>
+                    <p>Tables là đơn vị lưu trữ cơ bản trong Dataverse. Có 3 loại tables:</p>
+                    <div class="table-container">
+                        <table>
+                            <thead><tr><th>Loại Table</th><th>Mô tả</th><th>Ví dụ</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>Standard</strong></td><td>Có sẵn trong Dataverse, cấu trúc chuẩn</td><td>Account, Contact, Activity, Task</td></tr>
+                                <tr><td><strong>Custom</strong></td><td>Tạo mới theo nhu cầu riêng</td><td>Products, Projects, Invoices</td></tr>
+                                <tr><td><strong>Virtual</strong></td><td>Maps to external data (không lưu trong Dataverse)</td><td>SQL tables, SharePoint lists</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3>Tạo Custom Table</h3>
+                    <div class="steps">
+                        <div class="step" data-step="1"><h4>Mở Tables</h4><p><strong>make.powerapps.com → Tables → New table</strong></p></div>
+                        <div class="step" data-step="2"><h4>Đặt tên & cấu hình</h4><p>Display name, plural name, primary column name. Chọn table type & ownership.</p></div>
+                        <div class="step" data-step="3"><h4>Thêm Columns</h4><p>Thêm các cột dữ liệu: text, number, date, lookup, choice, etc.</p></div>
+                        <div class="step" data-step="4"><h4>Lưu & Sử dụng</h4><p>Save table. Có thể sử dụng ngay trong Power Apps, Power Automate.</p></div>
+                    </div>
+                </section>
+
+                <section class="content-section" id="columns">
+                    <h2>📝 Columns (Cột dữ liệu)</h2>
+                    <p>Mỗi table chứa nhiều columns. Các loại column phổ biến:</p>
+                    <div class="table-container">
+                        <table>
+                            <thead><tr><th>Loại Column</th><th>Mô tả</th><th>Ví dụ</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>Text</strong></td><td>Chuỗi ký tự (max 4000 chars)</td><td>Name, Email, Address</td></tr>
+                                <tr><td><strong>Whole Number</strong></td><td>Số nguyên</td><td>Quantity, Age</td></tr>
+                                <tr><td><strong>Decimal</strong></td><td>Số thập phân</td><td>Price, Weight</td></tr>
+                                <tr><td><strong>Currency</strong></td><td>Giá trị tiền tệ (auto format)</td><td>Total, Salary</td></tr>
+                                <tr><td><strong>Date/Time</strong></td><td>Ngày giờ</td><td>Created On, Due Date</td></tr>
+                                <tr><td><strong>Choice</strong></td><td>Danh sách lựa chọn (enum)</td><td>Status, Priority, Category</td></tr>
+                                <tr><td><strong>Yes/No</strong></td><td>Boolean</td><td>IsActive, IsCompleted</td></tr>
+                                <tr><td><strong>Lookup</strong></td><td>Tham chiếu đến record khác</td><td>Customer → Account</td></tr>
+                                <tr><td><strong>File/Image</strong></td><td>File đính kèm hoặc hình ảnh</td><td>Photo, Document</td></tr>
+                                <tr><td><strong>Formula</strong></td><td>Tính toán từ columns khác</td><td>FullName = First + " " + Last</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section class="content-section" id="relationships">
+                    <h2>🔗 Relationships (Quan hệ)</h2>
+                    <p>Dataverse hỗ trợ 3 loại relationships giữa tables:</p>
+                    <div class="feature-grid">
+                        <div class="feature-item"><div class="feature-item-icon">1️⃣</div><h4>One-to-Many (1:N)</h4><p>Một Account có nhiều Contacts. Phổ biến nhất. Tạo bằng Lookup column.</p></div>
+                        <div class="feature-item"><div class="feature-item-icon">🔁</div><h4>Many-to-One (N:1)</h4><p>Ngược lại của 1:N. Nhiều Orders thuộc về 1 Customer.</p></div>
+                        <div class="feature-item"><div class="feature-item-icon">🔀</div><h4>Many-to-Many (N:N)</h4><p>Nhiều Students enroll nhiều Courses. Tạo intersect table tự động.</p></div>
+                    </div>
+
+                    <div class="info-box note">
+                        <div class="info-box-title">📝 Cascade behaviors</div>
+                        Khi thiết lập relationships, cần chỉ định cascade behavior: khi xóa parent record thì child records sẽ bị xóa (Cascade), giữ nguyên (Remove Link), hoặc chặn xóa (Restrict).
+                    </div>
+                </section>
+
+                <section class="content-section" id="business-logic">
+                    <h2>⚙️ Business Logic</h2>
+                    <p>Dataverse hỗ trợ nhiều cách để thêm logic nghiệp vụ:</p>
+                    <ul>
+                        <li><strong>Business Rules</strong>: Validation, set values, show/hide fields — no code</li>
+                        <li><strong>Calculated Columns</strong>: Tính toán giá trị từ columns khác</li>
+                        <li><strong>Rollup Columns</strong>: Aggregate dữ liệu từ related records (SUM, COUNT, AVG)</li>
+                        <li><strong>Power Automate Flows</strong>: Triggers khi record created/updated/deleted</li>
+                        <li><strong>Plugins</strong>: Custom code (C#) cho logic phức tạp — dành cho developers</li>
+                        <li><strong>Classic Workflows</strong>: Background workflows kế thừa từ Dynamics</li>
+                    </ul>
+                </section>
+
+                <section class="content-section" id="solutions">
+                    <h2>📦 Solutions</h2>
+                    <p>Solutions là cơ chế <strong>đóng gói</strong> tất cả components của ứng dụng (tables, apps, flows, security roles) để quản lý, export và deploy sang environments khác.</p>
+
+                    <div class="comparison">
+                        <div class="comparison-item left">
+                            <h4>📦 Managed Solutions</h4>
+                            <ul>
+                                <li>Không thể chỉnh sửa trực tiếp</li>
+                                <li>Dùng cho production deployment</li>
+                                <li>Có thể uninstall hoàn toàn</li>
+                                <li>Versioned</li>
+                            </ul>
+                        </div>
+                        <div class="comparison-item right">
+                            <h4>🔓 Unmanaged Solutions</h4>
+                            <ul>
+                                <li>Có thể chỉnh sửa tự do</li>
+                                <li>Dùng cho development</li>
+                                <li>Components merge vào default solution</li>
+                                <li>Export thành managed để deploy</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section" id="security">
+                    <h2>🔒 Security & Roles</h2>
+                    <p>Dataverse cung cấp bảo mật nhiều tầng:</p>
+                    <ul>
+                        <li><strong>Security Roles</strong>: Định nghĩa quyền CRUD trên từng table (Organization, Business Unit, User level)</li>
+                        <li><strong>Field-Level Security</strong>: Kiểm soát quyền truy cập từng column</li>
+                        <li><strong>Record-Level Security</strong>: Sharing, teams, access teams</li>
+                        <li><strong>Hierarchy Security</strong>: Manager hierarchy tự động</li>
+                        <li><strong>Audit</strong>: Ghi lại tất cả thay đổi dữ liệu cho compliance</li>
+                    </ul>
+
+                    <div class="info-box important">
+                        <div class="info-box-title">💡 License</div>
+                        Dataverse yêu cầu <strong>Premium license</strong> (Power Apps per user hoặc per app plan). Tuy nhiên, Dataverse for Teams (giới hạn) đi kèm với license Microsoft 365.
+                    </div>
+                </section>
+
+                <div class="chapter-nav">
+                    <a href="chuong3-model-driven.html" class="prev"><span class="chapter-nav-arrow">←</span><div><div class="chapter-nav-label">Chương trước</div><div class="chapter-nav-title">Model-driven Apps</div></div></a>
+                    <a href="chuong5-ket-noi-du-lieu.html" class="next"><span class="chapter-nav-arrow">→</span><div><div class="chapter-nav-label">Chương tiếp theo</div><div class="chapter-nav-title">Kết nối dữ liệu</div></div></a>
+                </div>
+            </div>
+            <footer class="footer"><p>📚 Giáo trình Power Apps & Power Automate — Tổng hợp từ tài liệu Microsoft Official Documentation</p></footer>
+        </main>
+    </div>
+    <script>function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('sidebarOverlay').classList.toggle('show');}window.addEventListener('resize',()=>{if(window.innerWidth>1024){document.getElementById('sidebar').classList.remove('open');document.getElementById('sidebarOverlay').classList.remove('show');}});</script>
+</body>
+</html>

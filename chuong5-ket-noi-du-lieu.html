@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Chương 5: Kết nối dữ liệu & Connectors - Standard, Premium, Custom connectors và Data Gateway">
+    <title>Chương 5: Kết nối dữ liệu & Connectors</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <button class="sidebar-toggle" onclick="toggleSidebar()" aria-label="Menu">☰</button>
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+    <div class="layout">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header"><a href="index.html" class="sidebar-logo"><div class="sidebar-logo-icon">⚡</div><div class="sidebar-logo-text">Power Platform<span>Giáo trình tổng hợp</span></div></a></div>
+            <nav class="sidebar-nav">
+                <div class="nav-section"><div class="nav-section-title">Tổng quan</div><a href="index.html" class="nav-link"><span class="nav-link-icon">🏠</span> Trang chủ</a></div>
+                <div class="nav-section"><div class="nav-section-title">Power Apps</div>
+                    <a href="chuong1-gioi-thieu.html" class="nav-link"><span class="nav-link-icon">📖</span> Ch.1 Giới thiệu</a>
+                    <a href="chuong2-canvas-apps.html" class="nav-link"><span class="nav-link-icon">🎨</span> Ch.2 Canvas Apps</a>
+                    <a href="chuong3-model-driven.html" class="nav-link"><span class="nav-link-icon">🏗️</span> Ch.3 Model-driven</a>
+                    <a href="chuong4-dataverse.html" class="nav-link"><span class="nav-link-icon">🗄️</span> Ch.4 Dataverse</a>
+                    <a href="chuong5-ket-noi-du-lieu.html" class="nav-link active"><span class="nav-link-icon">🔗</span> Ch.5 Kết nối dữ liệu</a>
+                </div>
+                <div class="nav-section"><div class="nav-section-title">Power Automate</div>
+                    <a href="chuong6-power-automate.html" class="nav-link"><span class="nav-link-icon">⚙️</span> Ch.6 Giới thiệu PA</a>
+                    <a href="chuong7-cloud-flows.html" class="nav-link"><span class="nav-link-icon">☁️</span> Ch.7 Cloud Flows</a>
+                    <a href="chuong8-desktop-flows.html" class="nav-link"><span class="nav-link-icon">🖥️</span> Ch.8 Desktop Flows</a>
+                    <a href="chuong9-business-process.html" class="nav-link"><span class="nav-link-icon">📋</span> Ch.9 Business Process</a>
+                </div>
+                <div class="nav-section"><div class="nav-section-title">Nâng cao</div><a href="chuong10-nang-cao.html" class="nav-link"><span class="nav-link-icon">🚀</span> Ch.10 Nâng cao</a></div>
+                <div class="nav-section"><div class="nav-section-title">Thực hành</div><a href="bai-tap-thuc-hanh.html" class="nav-link"><span class="nav-link-icon">💻</span> Bài tập thực hành</a></div>
+            </nav>
+        </aside>
+        <main class="main-content">
+            <div class="chapter-header">
+                <div class="chapter-header-content">
+                    <div class="chapter-badge">🔗 Chương 5</div>
+                    <h1>Kết nối dữ liệu & Connectors</h1>
+                    <p class="description">Kết nối với 200+ data sources — Standard, Premium, Custom connectors, On-premises Data Gateway, và data integration patterns.</p>
+                </div>
+            </div>
+            <div class="content-area">
+                <div class="toc">
+                    <div class="toc-title">📑 Mục lục chương này</div>
+                    <ul class="toc-list">
+                        <li><a href="#tong-quan">Tổng quan Connectors</a></li>
+                        <li><a href="#standard">Standard Connectors</a></li>
+                        <li><a href="#premium">Premium Connectors</a></li>
+                        <li><a href="#custom">Custom Connectors</a></li>
+                        <li><a href="#gateway">On-premises Data Gateway</a></li>
+                        <li><a href="#connections">Quản lý Connections</a></li>
+                        <li><a href="#patterns">Data Integration Patterns</a></li>
+                    </ul>
+                </div>
+
+                <section class="content-section" id="tong-quan">
+                    <h2>🔗 Tổng quan Connectors</h2>
+                    <p>Connectors là <strong>cầu nối</strong> giữa Power Apps/Power Automate và các data sources bên ngoài. Mỗi connector đóng gói một REST API, cho phép bạn truy cập dữ liệu và thực hiện actions mà không cần viết code API.</p>
+                    <p>Connectors được chia sẻ giữa <strong>Power Apps, Power Automate, và Logic Apps</strong> — tạo connector một lần, dùng mọi nơi.</p>
+
+                    <div class="feature-grid">
+                        <div class="feature-item"><div class="feature-item-icon">📋</div><h4>Tables</h4><p>Truy xuất dữ liệu dạng bảng — CRUD operations trên records.</p></div>
+                        <div class="feature-item"><div class="feature-item-icon">⚡</div><h4>Actions</h4><p>Thực hiện hành động cụ thể — gửi email, approve, trigger flow.</p></div>
+                        <div class="feature-item"><div class="feature-item-icon">🔔</div><h4>Triggers</h4><p>Khởi chạy flow khi có sự kiện — new item, modified record.</p></div>
+                    </div>
+                </section>
+
+                <section class="content-section" id="standard">
+                    <h2>📋 Standard Connectors (Miễn phí)</h2>
+                    <p>Standard connectors đi kèm với license Microsoft 365 hoặc Power Apps cơ bản:</p>
+                    <div class="table-container">
+                        <table>
+                            <thead><tr><th>Connector</th><th>Mô tả</th><th>Use Cases</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>SharePoint</strong></td><td>Lists, libraries, documents</td><td>CRUD trên lists, upload files</td></tr>
+                                <tr><td><strong>Excel Online</strong></td><td>Files trên OneDrive/SharePoint</td><td>Read/write tables trong Excel</td></tr>
+                                <tr><td><strong>Outlook 365</strong></td><td>Email, calendar, contacts</td><td>Gửi email, đọc calendar events</td></tr>
+                                <tr><td><strong>Teams</strong></td><td>Channels, messages, tabs</td><td>Post messages, create channels</td></tr>
+                                <tr><td><strong>OneDrive</strong></td><td>File storage</td><td>Upload/download/manage files</td></tr>
+                                <tr><td><strong>Approvals</strong></td><td>Approval workflows</td><td>Tạo approval requests</td></tr>
+                                <tr><td><strong>Notifications</strong></td><td>Push notifications</td><td>Gửi push to mobile app</td></tr>
+                                <tr><td><strong>RSS</strong></td><td>RSS feeds</td><td>Trigger khi có bài mới</td></tr>
+                                <tr><td><strong>Twitter</strong></td><td>Social media</td><td>Post tweet, search mentions</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section class="content-section" id="premium">
+                    <h2>⭐ Premium Connectors</h2>
+                    <p>Yêu cầu Power Apps hoặc Power Automate <strong>Per User / Per App license</strong>:</p>
+                    <div class="table-container">
+                        <table>
+                            <thead><tr><th>Connector</th><th>Mô tả</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>Dataverse</strong></td><td>Microsoft's enterprise data platform</td></tr>
+                                <tr><td><strong>SQL Server</strong></td><td>Cả cloud (Azure SQL) và on-premises</td></tr>
+                                <tr><td><strong>Salesforce</strong></td><td>CRM platform</td></tr>
+                                <tr><td><strong>Oracle Database</strong></td><td>Enterprise database</td></tr>
+                                <tr><td><strong>SAP</strong></td><td>ERP systems</td></tr>
+                                <tr><td><strong>Adobe Sign</strong></td><td>Digital signatures</td></tr>
+                                <tr><td><strong>DocuSign</strong></td><td>E-signatures</td></tr>
+                                <tr><td><strong>HTTP with Azure AD</strong></td><td>Call any REST API with auth</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="info-box warning">
+                        <div class="info-box-title">⚠️ License Impact</div>
+                        Nếu app của bạn sử dụng <strong>bất kỳ</strong> premium connector nào, tất cả users chạy app đó đều cần premium license. Hãy cân nhắc kỹ trước khi thêm premium connector!
+                    </div>
+                </section>
+
+                <section class="content-section" id="custom">
+                    <h2>🛠️ Custom Connectors</h2>
+                    <p>Tạo connector riêng cho API của bạn hoặc API bên thứ 3 chưa có connector sẵn:</p>
+                    <div class="steps">
+                        <div class="step" data-step="1"><h4>Chuẩn bị API Definition</h4><p>Cần OpenAPI (Swagger) definition, Postman collection, hoặc tạo thủ công.</p></div>
+                        <div class="step" data-step="2"><h4>Tạo Custom Connector</h4><p><strong>make.powerapps.com → Data → Custom Connectors → New</strong>. Import definition hoặc tạo từ blank.</p></div>
+                        <div class="step" data-step="3"><h4>Cấu hình Authentication</h4><p>Chọn phương thức: API Key, OAuth 2.0, Basic Auth, hoặc No Authentication.</p></div>
+                        <div class="step" data-step="4"><h4>Define Actions & Triggers</h4><p>Thêm các actions (GET, POST, PUT, DELETE) và cấu hình request/response schema.</p></div>
+                        <div class="step" data-step="5"><h4>Test & Publish</h4><p>Test connector, sau đó sử dụng trong Power Apps và Power Automate như connector thường.</p></div>
+                    </div>
+                    <div class="info-box tip">
+                        <div class="info-box-title">💡 Certify & Share</div>
+                        Bạn có thể <strong>certify</strong> custom connector với Microsoft để share công khai cho cộng đồng. Connector certified sẽ xuất hiện trong danh sách connectors chính thức.
+                    </div>
+                </section>
+
+                <section class="content-section" id="gateway">
+                    <h2>🏢 On-premises Data Gateway</h2>
+                    <p>Gateway cho phép kết nối <strong>an toàn</strong> từ cloud tới data sources on-premises:</p>
+
+                    <h3>Cách hoạt động</h3>
+                    <ul>
+                        <li>Cài đặt <strong>Gateway application</strong> trên server on-premises</li>
+                        <li>Gateway tạo kênh <strong>encrypted</strong> qua Azure Service Bus</li>
+                        <li>Power Apps/Automate gửi request → Gateway → On-premises data → Trả kết quả</li>
+                        <li>Gateway chia sẻ giữa: Power BI, Power Apps, Power Automate, Azure Logic Apps</li>
+                    </ul>
+
+                    <h3>Data Sources hỗ trợ qua Gateway</h3>
+                    <div class="feature-grid">
+                        <div class="feature-item"><div class="feature-item-icon">🗄️</div><h4>SQL Server</h4><p>On-premises SQL Server databases</p></div>
+                        <div class="feature-item"><div class="feature-item-icon">📋</div><h4>SharePoint</h4><p>SharePoint Server on-premises</p></div>
+                        <div class="feature-item"><div class="feature-item-icon">🔮</div><h4>Oracle</h4><p>Oracle Database</p></div>
+                        <div class="feature-item"><div class="feature-item-icon">📁</div><h4>File System</h4><p>Files trên server nội bộ</p></div>
+                    </div>
+                </section>
+
+                <section class="content-section" id="connections">
+                    <h2>🔧 Quản lý Connections</h2>
+                    <p>Connections là instances cụ thể của connectors với credentials đã lưu:</p>
+                    <ul>
+                        <li><strong>Tạo connection</strong>: Khi thêm data source vào app lần đầu</li>
+                        <li><strong>Quản lý</strong>: <strong>make.powerapps.com → Data → Connections</strong></li>
+                        <li><strong>Shared connections</strong>: Chia sẻ connection với users khác (họ dùng credentials riêng)</li>
+                        <li><strong>Connection references</strong>: Sử dụng trong solutions để portable giữa environments</li>
+                    </ul>
+                </section>
+
+                <section class="content-section" id="patterns">
+                    <h2>📐 Data Integration Patterns</h2>
+                    <div class="feature-grid">
+                        <div class="feature-item"><div class="feature-item-icon">📊</div><h4>Direct Connection</h4><p>App kết nối trực tiếp tới data source. Đơn giản nhất — data luôn real-time.</p></div>
+                        <div class="feature-item"><div class="feature-item-icon">💾</div><h4>Collections (Cache)</h4><p>Load data vào collection cục bộ bằng <code>ClearCollect()</code>. Giảm API calls, tăng performance.</p></div>
+                        <div class="feature-item"><div class="feature-item-icon">🔄</div><h4>Dataflows</h4><p>ETL process: Extract data từ sources → Transform → Load vào Dataverse. Scheduled refresh.</p></div>
+                        <div class="feature-item"><div class="feature-item-icon">🔀</div><h4>Dual-Write</h4><p>Sync real-time giữa Dataverse và Finance/Operations. Cho enterprise integration.</p></div>
+                    </div>
+                </section>
+
+                <div class="chapter-nav">
+                    <a href="chuong4-dataverse.html" class="prev"><span class="chapter-nav-arrow">←</span><div><div class="chapter-nav-label">Chương trước</div><div class="chapter-nav-title">Microsoft Dataverse</div></div></a>
+                    <a href="chuong6-power-automate.html" class="next"><span class="chapter-nav-arrow">→</span><div><div class="chapter-nav-label">Chương tiếp theo</div><div class="chapter-nav-title">Giới thiệu Power Automate</div></div></a>
+                </div>
+            </div>
+            <footer class="footer"><p>📚 Giáo trình Power Apps & Power Automate — Tổng hợp từ tài liệu Microsoft Official Documentation</p></footer>
+        </main>
+    </div>
+    <script>function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('sidebarOverlay').classList.toggle('show');}window.addEventListener('resize',()=>{if(window.innerWidth>1024){document.getElementById('sidebar').classList.remove('open');document.getElementById('sidebarOverlay').classList.remove('show');}});</script>
+</body>
+</html>

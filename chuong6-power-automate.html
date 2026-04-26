@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Chương 6: Giới thiệu Power Automate - Tổng quan, types of flows, Process Advisor">
+    <title>Chương 6: Giới thiệu Power Automate</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <button class="sidebar-toggle" onclick="toggleSidebar()" aria-label="Menu">☰</button>
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+    <div class="layout">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header"><a href="index.html" class="sidebar-logo"><div class="sidebar-logo-icon">⚡</div><div class="sidebar-logo-text">Power Platform<span>Giáo trình tổng hợp</span></div></a></div>
+            <nav class="sidebar-nav">
+                <div class="nav-section"><div class="nav-section-title">Tổng quan</div><a href="index.html" class="nav-link"><span class="nav-link-icon">🏠</span> Trang chủ</a></div>
+                <div class="nav-section"><div class="nav-section-title">Power Apps</div>
+                    <a href="chuong1-gioi-thieu.html" class="nav-link"><span class="nav-link-icon">📖</span> Ch.1 Giới thiệu</a>
+                    <a href="chuong2-canvas-apps.html" class="nav-link"><span class="nav-link-icon">🎨</span> Ch.2 Canvas Apps</a>
+                    <a href="chuong3-model-driven.html" class="nav-link"><span class="nav-link-icon">🏗️</span> Ch.3 Model-driven</a>
+                    <a href="chuong4-dataverse.html" class="nav-link"><span class="nav-link-icon">🗄️</span> Ch.4 Dataverse</a>
+                    <a href="chuong5-ket-noi-du-lieu.html" class="nav-link"><span class="nav-link-icon">🔗</span> Ch.5 Kết nối dữ liệu</a>
+                </div>
+                <div class="nav-section"><div class="nav-section-title">Power Automate</div>
+                    <a href="chuong6-power-automate.html" class="nav-link active"><span class="nav-link-icon">⚙️</span> Ch.6 Giới thiệu PA</a>
+                    <a href="chuong7-cloud-flows.html" class="nav-link"><span class="nav-link-icon">☁️</span> Ch.7 Cloud Flows</a>
+                    <a href="chuong8-desktop-flows.html" class="nav-link"><span class="nav-link-icon">🖥️</span> Ch.8 Desktop Flows</a>
+                    <a href="chuong9-business-process.html" class="nav-link"><span class="nav-link-icon">📋</span> Ch.9 Business Process</a>
+                </div>
+                <div class="nav-section"><div class="nav-section-title">Nâng cao</div><a href="chuong10-nang-cao.html" class="nav-link"><span class="nav-link-icon">🚀</span> Ch.10 Nâng cao</a></div>
+                <div class="nav-section"><div class="nav-section-title">Thực hành</div><a href="bai-tap-thuc-hanh.html" class="nav-link"><span class="nav-link-icon">💻</span> Bài tập thực hành</a></div>
+            </nav>
+        </aside>
+        <main class="main-content">
+            <div class="chapter-header">
+                <div class="chapter-header-content">
+                    <div class="chapter-badge">⚙️ Chương 6</div>
+                    <h1>Giới thiệu Power Automate</h1>
+                    <p class="description">Tổng quan Power Automate, các loại flows, Process Advisor, đăng ký tài khoản và bắt đầu tự động hóa quy trình.</p>
+                </div>
+            </div>
+            <div class="content-area">
+                <div class="toc">
+                    <div class="toc-title">📑 Mục lục chương này</div>
+                    <ul class="toc-list">
+                        <li><a href="#khai-niem">Power Automate là gì?</a></li>
+                        <li><a href="#types">Các loại Flows</a></li>
+                        <li><a href="#triggers-actions">Triggers & Actions</a></li>
+                        <li><a href="#process-advisor">Process Advisor</a></li>
+                        <li><a href="#getting-started">Getting Started</a></li>
+                        <li><a href="#giao-dien">Giao diện Power Automate</a></li>
+                        <li><a href="#templates">Templates</a></li>
+                    </ul>
+                </div>
+
+                <section class="content-section" id="khai-niem">
+                    <h2>⚙️ Power Automate là gì?</h2>
+                    <p><strong>Power Automate</strong> (trước đây là Microsoft Flow) là dịch vụ tự động hóa quy trình kinh doanh — cho phép tạo automated workflows giữa các ứng dụng và dịch vụ để đồng bộ files, nhận notifications, thu thập dữ liệu, v.v.</p>
+
+                    <div class="feature-grid">
+                        <div class="feature-item"><div class="feature-item-icon">🔄</div><h4>Tự động hóa</h4><p>Giảm công việc thủ công, lặp đi lặp lại. Tập trung vào việc quan trọng hơn.</p></div>
+                        <div class="feature-item"><div class="feature-item-icon">🔌</div><h4>400+ Connectors</h4><p>Kết nối Microsoft services, third-party apps, on-premises systems.</p></div>
+                        <div class="feature-item"><div class="feature-item-icon">🖥️</div><h4>RPA (Desktop)</h4><p>Tự động hóa desktop applications — web scraping, data entry, legacy systems.</p></div>
+                        <div class="feature-item"><div class="feature-item-icon">🤖</div><h4>AI Builder</h4><p>Tích hợp AI: form processing, object detection, text classification, prediction.</p></div>
+                    </div>
+
+                    <div class="info-box important">
+                        <div class="info-box-title">💡 Power Automate vs Traditional Coding</div>
+                        Power Automate cho phép business users tạo automations mà không cần viết code. Tuy nhiên, IT professionals cũng có thể sử dụng để xây dựng enterprise-grade workflows phức tạp.
+                    </div>
+                </section>
+
+                <section class="content-section" id="types">
+                    <h2>📊 Các loại Flows</h2>
+                    <p>Power Automate cung cấp <strong>3 loại flows chính</strong>:</p>
+
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <div class="feature-item-icon">☁️</div>
+                            <h4>Cloud Flows</h4>
+                            <p>Chạy trên cloud. 3 sub-types:<br>
+                            • <strong>Automated</strong>: trigger bởi event<br>
+                            • <strong>Scheduled</strong>: chạy theo lịch<br>
+                            • <strong>Instant</strong>: kích hoạt thủ công</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-item-icon">🖥️</div>
+                            <h4>Desktop Flows</h4>
+                            <p>RPA — tự động hóa ứng dụng desktop. Record & playback UI actions. Chạy trên máy local hoặc VM.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-item-icon">📋</div>
+                            <h4>Business Process Flows</h4>
+                            <p>Hướng dẫn users qua quy trình nghiệp vụ từng bước. Đảm bảo consistency & compliance.</p>
+                        </div>
+                    </div>
+
+                    <div class="table-container">
+                        <table>
+                            <thead><tr><th>Loại Flow</th><th>Chạy ở đâu</th><th>Trigger</th><th>Ví dụ</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>Cloud - Automated</strong></td><td>Cloud</td><td>Event (new email, new item...)</td><td>Email khi có item mới trên SharePoint</td></tr>
+                                <tr><td><strong>Cloud - Scheduled</strong></td><td>Cloud</td><td>Thời gian (daily, weekly...)</td><td>Báo cáo tổng hợp hàng tuần</td></tr>
+                                <tr><td><strong>Cloud - Instant</strong></td><td>Cloud</td><td>Manual button click</td><td>Nút approve/reject trong Teams</td></tr>
+                                <tr><td><strong>Desktop</strong></td><td>Local machine</td><td>Manual hoặc từ cloud flow</td><td>Nhập dữ liệu vào SAP</td></tr>
+                                <tr><td><strong>Business Process</strong></td><td>Dataverse</td><td>Khi mở record</td><td>Quy trình onboarding nhân viên</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section class="content-section" id="triggers-actions">
+                    <h2>🎯 Triggers & Actions</h2>
+                    <p>Mỗi flow gồm 2 thành phần chính:</p>
+                    <div class="comparison">
+                        <div class="comparison-item left">
+                            <h4>🎯 Triggers</h4>
+                            <ul>
+                                <li>Sự kiện khởi chạy flow</li>
+                                <li>Mỗi flow có <strong>đúng 1 trigger</strong></li>
+                                <li>Ví dụ: "Khi item mới được tạo"</li>
+                                <li>Tần suất polling: ~1-5 phút</li>
+                            </ul>
+                        </div>
+                        <div class="comparison-item right">
+                            <h4>⚡ Actions</h4>
+                            <ul>
+                                <li>Hành động thực hiện sau trigger</li>
+                                <li>Có thể có <strong>nhiều actions</strong></li>
+                                <li>Ví dụ: "Gửi email", "Tạo record"</li>
+                                <li>Chạy tuần tự hoặc song song</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h3>Ví dụ flow đơn giản</h3>
+                    <div class="code-block">
+                        <div class="code-block-header">Flow: Thông báo khi có item SharePoint mới</div>
+                        <pre>TRIGGER: When an item is created (SharePoint)
+  ↓
+ACTION 1: Get item details (SharePoint)
+  ↓
+ACTION 2: Send an email (Outlook)
+  - To: manager@company.com
+  - Subject: "[New] " + Title
+  - Body: "Item mới: " + Description
+  ↓
+ACTION 3: Post message (Teams)
+  - Channel: #notifications
+  - Message: "📢 New item: " + Title</pre>
+                    </div>
+                </section>
+
+                <section class="content-section" id="process-advisor">
+                    <h2>🔍 Process Advisor</h2>
+                    <p>Process Advisor giúp bạn <strong>phân tích và tối ưu hóa</strong> quy trình kinh doanh trước khi tự động hóa:</p>
+
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <div class="feature-item-icon">🖱️</div>
+                            <h4>Task Mining</h4>
+                            <p>Record hoạt động của users trên desktop. Phân tích patterns, bottlenecks, và cơ hội automation.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-item-icon">📊</div>
+                            <h4>Process Mining</h4>
+                            <p>Import event logs từ hệ thống. Tạo process maps, phát hiện deviations, và tối ưu hóa workflows.</p>
+                        </div>
+                    </div>
+
+                    <div class="steps">
+                        <div class="step" data-step="1"><h4>Record Processes</h4><p>Users record các tác vụ hàng ngày sử dụng recorder tool.</p></div>
+                        <div class="step" data-step="2"><h4>Analyze</h4><p>Process Advisor phân tích recordings, tìm patterns và bottlenecks.</p></div>
+                        <div class="step" data-step="3"><h4>Recommend</h4><p>Đề xuất automations phù hợp: cloud flows, desktop flows, hoặc kết hợp.</p></div>
+                        <div class="step" data-step="4"><h4>Automate</h4><p>Tạo flows trực tiếp từ recommendations.</p></div>
+                    </div>
+                </section>
+
+                <section class="content-section" id="getting-started">
+                    <h2>🚀 Getting Started</h2>
+                    <div class="steps">
+                        <div class="step" data-step="1"><h4>Truy cập Power Automate</h4><p>Mở <strong>flow.microsoft.com</strong> hoặc <strong>make.powerautomate.com</strong>.</p></div>
+                        <div class="step" data-step="2"><h4>Đăng nhập</h4><p>Sử dụng tài khoản Work hoặc School. Power Automate đi kèm với nhiều Microsoft 365 plans.</p></div>
+                        <div class="step" data-step="3"><h4>Chọn Template hoặc Blank</h4><p>Bắt đầu từ template phổ biến hoặc tạo flow mới từ blank.</p></div>
+                        <div class="step" data-step="4"><h4>Cấu hình & Test</h4><p>Thêm trigger, actions, test flow, và bật "Turn on" để activate.</p></div>
+                    </div>
+
+                    <h3>Licensing</h3>
+                    <div class="table-container">
+                        <table>
+                            <thead><tr><th>Plan</th><th>Bao gồm</th><th>Giới hạn</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>Microsoft 365</strong></td><td>Standard connectors, cloud flows</td><td>6000 runs/tháng</td></tr>
+                                <tr><td><strong>Power Automate per User</strong></td><td>Premium connectors, attended RPA</td><td>40,000 actions/ngày</td></tr>
+                                <tr><td><strong>Per User with Attended RPA</strong></td><td>Desktop flows, cloud flows</td><td>Unlimited cloud flows</td></tr>
+                                <tr><td><strong>Per Flow</strong></td><td>Cho specific flows (chia sẻ team)</td><td>Không giới hạn users</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section class="content-section" id="giao-dien">
+                    <h2>🖥️ Giao diện Power Automate</h2>
+                    <div class="feature-grid">
+                        <div class="feature-item"><div class="feature-item-icon">🏠</div><h4>Home</h4><p>Overview, recent flows, templates gợi ý.</p></div>
+                        <div class="feature-item"><div class="feature-item-icon">➕</div><h4>Create</h4><p>Tạo flow mới: Automated, Scheduled, Instant, Desktop, BPF.</p></div>
+                        <div class="feature-item"><div class="feature-item-icon">📋</div><h4>My Flows</h4><p>Quản lý flows: turn on/off, edit, share, view run history.</p></div>
+                        <div class="feature-item"><div class="feature-item-icon">📊</div><h4>Flow Activity</h4><p>Xem lịch sử chạy, thành công/thất bại, và chi tiết từng run.</p></div>
+                    </div>
+                </section>
+
+                <section class="content-section" id="templates">
+                    <h2>📑 Templates phổ biến</h2>
+                    <div class="feature-grid">
+                        <div class="feature-item"><div class="feature-item-icon">📧</div><h4>Save email attachments</h4><p>Tự động lưu file đính kèm email vào OneDrive/SharePoint.</p></div>
+                        <div class="feature-item"><div class="feature-item-icon">✅</div><h4>Approval workflow</h4><p>Gửi approval request qua email/Teams khi có document mới.</p></div>
+                        <div class="feature-item"><div class="feature-item-icon">🔔</div><h4>Push notifications</h4><p>Thông báo mobile khi có email quan trọng hoặc task mới.</p></div>
+                        <div class="feature-item"><div class="feature-item-icon">📊</div><h4>Collect data</h4><p>Lưu responses từ Microsoft Forms vào Excel/SharePoint.</p></div>
+                        <div class="feature-item"><div class="feature-item-icon">🔄</div><h4>Sync between services</h4><p>Đồng bộ contacts, events, tasks giữa các services.</p></div>
+                        <div class="feature-item"><div class="feature-item-icon">📝</div><h4>Social media monitor</h4><p>Track mentions trên Twitter, ghi vào spreadsheet.</p></div>
+                    </div>
+                </section>
+
+                <div class="chapter-nav">
+                    <a href="chuong5-ket-noi-du-lieu.html" class="prev"><span class="chapter-nav-arrow">←</span><div><div class="chapter-nav-label">Chương trước</div><div class="chapter-nav-title">Kết nối dữ liệu</div></div></a>
+                    <a href="chuong7-cloud-flows.html" class="next"><span class="chapter-nav-arrow">→</span><div><div class="chapter-nav-label">Chương tiếp theo</div><div class="chapter-nav-title">Cloud Flows</div></div></a>
+                </div>
+            </div>
+            <footer class="footer"><p>📚 Giáo trình Power Apps & Power Automate — Tổng hợp từ tài liệu Microsoft Official Documentation</p></footer>
+        </main>
+    </div>
+    <script>function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('sidebarOverlay').classList.toggle('show');}window.addEventListener('resize',()=>{if(window.innerWidth>1024){document.getElementById('sidebar').classList.remove('open');document.getElementById('sidebarOverlay').classList.remove('show');}});</script>
+</body>
+</html>

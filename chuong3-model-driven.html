@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Chương 3: Model-driven Apps - Xây dựng ứng dụng dựa trên dữ liệu với forms, views, dashboards">
+    <title>Chương 3: Model-driven Apps</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <button class="sidebar-toggle" onclick="toggleSidebar()" aria-label="Menu">☰</button>
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+    <div class="layout">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header"><a href="index.html" class="sidebar-logo"><div class="sidebar-logo-icon">⚡</div><div class="sidebar-logo-text">Power Platform<span>Giáo trình tổng hợp</span></div></a></div>
+            <nav class="sidebar-nav">
+                <div class="nav-section"><div class="nav-section-title">Tổng quan</div><a href="index.html" class="nav-link"><span class="nav-link-icon">🏠</span> Trang chủ</a></div>
+                <div class="nav-section"><div class="nav-section-title">Power Apps</div>
+                    <a href="chuong1-gioi-thieu.html" class="nav-link"><span class="nav-link-icon">📖</span> Ch.1 Giới thiệu</a>
+                    <a href="chuong2-canvas-apps.html" class="nav-link"><span class="nav-link-icon">🎨</span> Ch.2 Canvas Apps</a>
+                    <a href="chuong3-model-driven.html" class="nav-link active"><span class="nav-link-icon">🏗️</span> Ch.3 Model-driven</a>
+                    <a href="chuong4-dataverse.html" class="nav-link"><span class="nav-link-icon">🗄️</span> Ch.4 Dataverse</a>
+                    <a href="chuong5-ket-noi-du-lieu.html" class="nav-link"><span class="nav-link-icon">🔗</span> Ch.5 Kết nối dữ liệu</a>
+                </div>
+                <div class="nav-section"><div class="nav-section-title">Power Automate</div>
+                    <a href="chuong6-power-automate.html" class="nav-link"><span class="nav-link-icon">⚙️</span> Ch.6 Giới thiệu PA</a>
+                    <a href="chuong7-cloud-flows.html" class="nav-link"><span class="nav-link-icon">☁️</span> Ch.7 Cloud Flows</a>
+                    <a href="chuong8-desktop-flows.html" class="nav-link"><span class="nav-link-icon">🖥️</span> Ch.8 Desktop Flows</a>
+                    <a href="chuong9-business-process.html" class="nav-link"><span class="nav-link-icon">📋</span> Ch.9 Business Process</a>
+                </div>
+                <div class="nav-section"><div class="nav-section-title">Nâng cao</div><a href="chuong10-nang-cao.html" class="nav-link"><span class="nav-link-icon">🚀</span> Ch.10 Nâng cao</a></div>
+                <div class="nav-section"><div class="nav-section-title">Thực hành</div><a href="bai-tap-thuc-hanh.html" class="nav-link"><span class="nav-link-icon">💻</span> Bài tập thực hành</a></div>
+            </nav>
+        </aside>
+        <main class="main-content">
+            <div class="chapter-header">
+                <div class="chapter-header-content">
+                    <div class="chapter-badge">🏗️ Chương 3</div>
+                    <h1>Model-driven Apps</h1>
+                    <p class="description">Xây dựng ứng dụng dựa trên mô hình dữ liệu với forms, views, charts, dashboards, business rules và site map designer.</p>
+                </div>
+            </div>
+            <div class="content-area">
+                <div class="toc">
+                    <div class="toc-title">📑 Mục lục chương này</div>
+                    <ul class="toc-list">
+                        <li><a href="#khai-niem">Model-driven Apps là gì?</a></li>
+                        <li><a href="#so-sanh">So sánh với Canvas Apps</a></li>
+                        <li><a href="#components">Các thành phần chính</a></li>
+                        <li><a href="#tao-app">Tạo Model-driven App</a></li>
+                        <li><a href="#forms">Forms — Biểu mẫu dữ liệu</a></li>
+                        <li><a href="#views">Views — Giao diện danh sách</a></li>
+                        <li><a href="#charts-dashboards">Charts & Dashboards</a></li>
+                        <li><a href="#business-rules">Business Rules</a></li>
+                        <li><a href="#sitemap">Site Map Designer</a></li>
+                        <li><a href="#validate-publish">Validate & Publish</a></li>
+                    </ul>
+                </div>
+
+                <section class="content-section" id="khai-niem">
+                    <h2>🏗️ Model-driven Apps là gì?</h2>
+                    <p>Model-driven apps là loại ứng dụng được xây dựng trên nền tảng <strong>Dataverse</strong> (trước đây gọi là Common Data Service). Thay vì thiết kế từng pixel như Canvas Apps, bạn <strong>xây dựng dựa trên mô hình dữ liệu</strong> — layout được tự động tạo dựa trên components bạn thêm vào.</p>
+
+                    <div class="info-box important">
+                        <div class="info-box-title">💡 Khác biệt cốt lõi</div>
+                        Canvas Apps = <strong>"Bắt đầu từ UI"</strong> — bạn thiết kế giao diện trước, kết nối dữ liệu sau.<br>
+                        Model-driven Apps = <strong>"Bắt đầu từ Data"</strong> — bạn định nghĩa dữ liệu trước, giao diện tự động được tạo.
+                    </div>
+
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <div class="feature-item-icon">📊</div>
+                            <h4>Data-First Approach</h4>
+                            <p>Thiết kế tables, columns, relationships trong Dataverse trước. App tự động phản ánh structure.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-item-icon">🧩</div>
+                            <h4>Component-Based</h4>
+                            <p>Thêm forms, views, charts, dashboards. Layout tự động responsive và nhất quán.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-item-icon">📱</div>
+                            <h4>Responsive UI</h4>
+                            <p>Giao diện tự động điều chỉnh cho desktop, tablet, mobile — không cần thiết kế riêng.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-item-icon">⚙️</div>
+                            <h4>Business Logic</h4>
+                            <p>Business rules, workflows, Power Automate flows tích hợp sẵn trong model.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section" id="so-sanh">
+                    <h2>🔄 So sánh với Canvas Apps</h2>
+                    <div class="table-container">
+                        <table>
+                            <thead><tr><th>Tiêu chí</th><th>Canvas Apps</th><th>Model-driven Apps</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>Bắt đầu từ</strong></td><td>UI / Blank canvas</td><td>Data model / Dataverse</td></tr>
+                                <tr><td><strong>Control layout</strong></td><td>Toàn quyền (pixel-perfect)</td><td>Tự động bởi framework</td></tr>
+                                <tr><td><strong>Data source</strong></td><td>200+ connectors</td><td>Chủ yếu Dataverse</td></tr>
+                                <tr><td><strong>Phức tạp ứng dụng</strong></td><td>Nhẹ → Trung bình</td><td>Trung bình → Enterprise</td></tr>
+                                <tr><td><strong>Responsive</strong></td><td>Cần thiết kế thủ công</td><td>Tự động</td></tr>
+                                <tr><td><strong>Offline</strong></td><td>Hạn chế</td><td>Hỗ trợ tốt (mobile)</td></tr>
+                                <tr><td><strong>Thích hợp cho</strong></td><td>Task apps, forms, tools</td><td>CRM, ERP, case mgmt</td></tr>
+                                <tr><td><strong>License</strong></td><td>Standard hoặc Premium</td><td>Luôn cần Premium</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section class="content-section" id="components">
+                    <h2>🧩 Các thành phần chính</h2>
+                    <p>Model-driven app được cấu thành từ các components cốt lõi:</p>
+                    <div class="feature-grid">
+                        <div class="feature-item"><div class="feature-item-icon">📋</div><h4>Forms</h4><p>Biểu mẫu nhập/xem dữ liệu. Main, Quick Create, Quick View forms.</p></div>
+                        <div class="feature-item"><div class="feature-item-icon">📊</div><h4>Views</h4><p>Danh sách records với cột, filter, sort tùy chỉnh.</p></div>
+                        <div class="feature-item"><div class="feature-item-icon">📈</div><h4>Charts</h4><p>Biểu đồ trực quan cho dữ liệu: bar, pie, line, funnel.</p></div>
+                        <div class="feature-item"><div class="feature-item-icon">📰</div><h4>Dashboards</h4><p>Tổng hợp views, charts, web resources trên một trang.</p></div>
+                        <div class="feature-item"><div class="feature-item-icon">📐</div><h4>Business Rules</h4><p>Logic nghiệp vụ: validation, show/hide, set values, locks.</p></div>
+                        <div class="feature-item"><div class="feature-item-icon">🗺️</div><h4>Site Map</h4><p>Cấu trúc navigation: Areas, Groups, Sub Areas.</p></div>
+                    </div>
+                </section>
+
+                <section class="content-section" id="tao-app">
+                    <h2>🚀 Tạo Model-driven App</h2>
+                    <div class="steps">
+                        <div class="step" data-step="1">
+                            <h4>Tạo Solution trong Dataverse</h4>
+                            <p>Vào <strong>make.powerapps.com → Solutions → New solution</strong>. Solution chứa tất cả components của app.</p>
+                        </div>
+                        <div class="step" data-step="2">
+                            <h4>Tạo / Import Tables</h4>
+                            <p>Thêm tables (entities) cần thiết: custom tables hoặc standard tables (Account, Contact...).</p>
+                        </div>
+                        <div class="step" data-step="3">
+                            <h4>Thiết kế Forms & Views</h4>
+                            <p>Tùy chỉnh Main Form (thêm/sắp xếp columns, tabs, sections) và Views (chọn cột hiển thị, filter).</p>
+                        </div>
+                        <div class="step" data-step="4">
+                            <h4>Tạo Model-driven App</h4>
+                            <p><strong>New → App → Model-driven app</strong>. Sử dụng app designer để thêm tables, forms, views.</p>
+                        </div>
+                        <div class="step" data-step="5">
+                            <h4>Cấu hình Site Map</h4>
+                            <p>Thiết kế navigation: tạo Areas, Groups, Sub Areas dẫn đến tables/views/dashboards.</p>
+                        </div>
+                        <div class="step" data-step="6">
+                            <h4>Validate & Publish</h4>
+                            <p>Kiểm tra app, sửa lỗi (nếu có), publish to make live.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section" id="forms">
+                    <h2>📋 Forms — Biểu mẫu dữ liệu</h2>
+                    <p>Forms là giao diện chính để người dùng tương tác với records. Có nhiều loại form:</p>
+                    <div class="table-container">
+                        <table>
+                            <thead><tr><th>Loại Form</th><th>Mô tả</th><th>Khi nào dùng</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>Main Form</strong></td><td>Form đầy đủ với tabs, sections, fields</td><td>Xem/chỉnh sửa record chi tiết</td></tr>
+                                <tr><td><strong>Quick Create</strong></td><td>Form popup nhỏ, ít fields</td><td>Tạo record mới nhanh</td></tr>
+                                <tr><td><strong>Quick View</strong></td><td>Form read-only, nhúng trong form khác</td><td>Xem dữ liệu liên quan</td></tr>
+                                <tr><td><strong>Card Form</strong></td><td>Form dạng card cho views</td><td>Hiển thị trong danh sách</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3>Cấu trúc Main Form</h3>
+                    <ul>
+                        <li><strong>Header</strong>: Hiển thị fields quan trọng nhất (luôn visible)</li>
+                        <li><strong>Tabs</strong>: Chia form thành các nhóm nội dung (General, Details, Notes...)</li>
+                        <li><strong>Sections</strong>: Mỗi tab chứa một hoặc nhiều sections</li>
+                        <li><strong>Fields</strong>: Columns từ table, hiển thị theo loại dữ liệu</li>
+                        <li><strong>Sub-grids</strong>: Danh sách related records (1:N relationships)</li>
+                        <li><strong>Timeline</strong>: Lịch sử activities (emails, calls, notes)</li>
+                    </ul>
+                </section>
+
+                <section class="content-section" id="views">
+                    <h2>📊 Views — Giao diện danh sách</h2>
+                    <p>Views hiển thị danh sách records theo cấu hình tùy chỉnh:</p>
+                    <div class="table-container">
+                        <table>
+                            <thead><tr><th>Loại View</th><th>Mô tả</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>Public Views</strong></td><td>Mọi user đều thấy. Ví dụ: "Active Contacts"</td></tr>
+                                <tr><td><strong>Personal Views</strong></td><td>Chỉ người tạo thấy</td></tr>
+                                <tr><td><strong>System Views</strong></td><td>Views hệ thống: "My Records", "All Records"</td></tr>
+                                <tr><td><strong>Quick Find View</strong></td><td>View cho thanh tìm kiếm</td></tr>
+                                <tr><td><strong>Lookup View</strong></td><td>View cho lookup dialogs</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>Mỗi view cho phép bạn cấu hình: <strong>columns hiển thị</strong>, <strong>sort order</strong>, <strong>filter criteria</strong>, và <strong>column widths</strong>.</p>
+                </section>
+
+                <section class="content-section" id="charts-dashboards">
+                    <h2>📈 Charts & Dashboards</h2>
+                    
+                    <h3>Charts</h3>
+                    <p>Các loại chart hỗ trợ: <strong>Bar, Column, Pie, Line, Funnel, Tag, Doughnut</strong>. Charts kết nối trực tiếp với views và cập nhật real-time.</p>
+
+                    <h3>Dashboards</h3>
+                    <p>Dashboard tổng hợp nhiều components:</p>
+                    <ul>
+                        <li><strong>Charts</strong>: Biểu đồ trực quan</li>
+                        <li><strong>Lists (Views)</strong>: Danh sách records</li>
+                        <li><strong>Web Resources</strong>: HTML, JavaScript tùy chỉnh</li>
+                        <li><strong>IFRAMEs</strong>: Nhúng trang web bên ngoài</li>
+                        <li><strong>Power BI tiles</strong>: Nhúng Power BI reports</li>
+                    </ul>
+
+                    <div class="info-box tip">
+                        <div class="info-box-title">💡 Interactive Dashboards</div>
+                        Sử dụng Interactive dashboards cho trải nghiệm người dùng tốt hơn — cho phép filter trực tiếp bằng cách click vào chart segments, và visual filters hiển thị real-time.
+                    </div>
+                </section>
+
+                <section class="content-section" id="business-rules">
+                    <h2>📐 Business Rules</h2>
+                    <p>Business Rules cho phép bạn thêm logic nghiệp vụ <strong>mà không cần code</strong>:</p>
+
+                    <div class="table-container">
+                        <table>
+                            <thead><tr><th>Action</th><th>Mô tả</th><th>Ví dụ</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>Show Error</strong></td><td>Hiện thông báo lỗi</td><td>Email format không đúng</td></tr>
+                                <tr><td><strong>Set Value</strong></td><td>Gán giá trị cho field</td><td>Auto-fill city từ zip code</td></tr>
+                                <tr><td><strong>Set Visibility</strong></td><td>Ẩn/hiện field</td><td>Ẩn "Spouse" nếu marital = Single</td></tr>
+                                <tr><td><strong>Lock/Unlock</strong></td><td>Khóa/mở khóa field</td><td>Lock fields khi status = Closed</td></tr>
+                                <tr><td><strong>Set Required</strong></td><td>Bắt buộc/optional</td><td>Phone required nếu method = Call</td></tr>
+                                <tr><td><strong>Recommendation</strong></td><td>Đề xuất giá trị (AI)</td><td>Suggest category cho case</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-block-header">Ví dụ Business Rule Logic</div>
+                        <pre>IF Condition:
+    Field: "Priority" Equals "High"
+THEN Action:
+    Set Required: "Resolution Date" = Required
+    Show Error: "High priority cases must have resolution date"
+    Set Value: "SLA Days" = 3</pre>
+                    </div>
+                </section>
+
+                <section class="content-section" id="sitemap">
+                    <h2>🗺️ Site Map Designer</h2>
+                    <p>Site Map định nghĩa cấu trúc navigation của model-driven app:</p>
+                    <ul>
+                        <li><strong>Area</strong>: Phần lớn nhất (ví dụ: Sales, Service, Marketing)</li>
+                        <li><strong>Group</strong>: Nhóm trong Area (ví dụ: Customers, Products)</li>
+                        <li><strong>Sub Area</strong>: Mục cụ thể dẫn đến table/view/dashboard/URL</li>
+                    </ul>
+
+                    <div class="code-block">
+                        <div class="code-block-header">Ví dụ cấu trúc Site Map</div>
+                        <pre>📁 Area: Sales
+  📂 Group: Customers
+    📄 Sub Area: Contacts → Contact table
+    📄 Sub Area: Accounts → Account table
+  📂 Group: Orders
+    📄 Sub Area: Orders → Order table
+    📄 Sub Area: Products → Product table
+📁 Area: Service
+  📂 Group: Cases
+    📄 Sub Area: Active Cases → Case (filter: Active)
+    📄 Sub Area: Dashboard → Service Dashboard</pre>
+                    </div>
+                </section>
+
+                <section class="content-section" id="validate-publish">
+                    <h2>✅ Validate & Publish</h2>
+                    <div class="steps">
+                        <div class="step" data-step="1">
+                            <h4>Validate</h4>
+                            <p>Click <strong>"Validate"</strong> trong app designer. Hệ thống kiểm tra tất cả components và hiển thị warnings/errors.</p>
+                        </div>
+                        <div class="step" data-step="2">
+                            <h4>Fix Issues</h4>
+                            <p>Sửa các lỗi: thiếu form, view chưa được thêm, site map invalid, etc.</p>
+                        </div>
+                        <div class="step" data-step="3">
+                            <h4>Save & Publish</h4>
+                            <p>Save app, sau đó click <strong>"Publish"</strong>. App trở thành live cho tất cả users được assigned.</p>
+                        </div>
+                        <div class="step" data-step="4">
+                            <h4>Play / Test</h4>
+                            <p>Click <strong>"Play"</strong> để test app trong browser. Kiểm tra navigation, forms, views, business rules.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="chapter-nav">
+                    <a href="chuong2-canvas-apps.html" class="prev"><span class="chapter-nav-arrow">←</span><div><div class="chapter-nav-label">Chương trước</div><div class="chapter-nav-title">Canvas Apps</div></div></a>
+                    <a href="chuong4-dataverse.html" class="next"><span class="chapter-nav-arrow">→</span><div><div class="chapter-nav-label">Chương tiếp theo</div><div class="chapter-nav-title">Microsoft Dataverse</div></div></a>
+                </div>
+            </div>
+            <footer class="footer"><p>📚 Giáo trình Power Apps & Power Automate — Tổng hợp từ tài liệu Microsoft Official Documentation</p></footer>
+        </main>
+    </div>
+    <script>function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('sidebarOverlay').classList.toggle('show');}window.addEventListener('resize',()=>{if(window.innerWidth>1024){document.getElementById('sidebar').classList.remove('open');document.getElementById('sidebarOverlay').classList.remove('show');}});</script>
+</body>
+</html>

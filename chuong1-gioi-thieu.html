@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Chương 1: Giới thiệu Power Platform & Power Apps - Tổng quan nền tảng, các thành phần, môi trường làm việc và loại ứng dụng">
+    <title>Chương 1: Giới thiệu Power Platform & Power Apps</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <button class="sidebar-toggle" onclick="toggleSidebar()" aria-label="Menu">☰</button>
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+    <div class="layout">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">
+                    <div class="sidebar-logo-icon">⚡</div>
+                    <div class="sidebar-logo-text">
+                        Power Platform
+                        <span>Giáo trình tổng hợp</span>
+                    </div>
+                </a>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-section-title">Tổng quan</div>
+                    <a href="index.html" class="nav-link"><span class="nav-link-icon">🏠</span> Trang chủ</a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">Power Apps</div>
+                    <a href="chuong1-gioi-thieu.html" class="nav-link active"><span class="nav-link-icon">📖</span> Ch.1 Giới thiệu</a>
+                    <a href="chuong2-canvas-apps.html" class="nav-link"><span class="nav-link-icon">🎨</span> Ch.2 Canvas Apps</a>
+                    <a href="chuong3-model-driven.html" class="nav-link"><span class="nav-link-icon">🏗️</span> Ch.3 Model-driven</a>
+                    <a href="chuong4-dataverse.html" class="nav-link"><span class="nav-link-icon">🗄️</span> Ch.4 Dataverse</a>
+                    <a href="chuong5-ket-noi-du-lieu.html" class="nav-link"><span class="nav-link-icon">🔗</span> Ch.5 Kết nối dữ liệu</a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">Power Automate</div>
+                    <a href="chuong6-power-automate.html" class="nav-link"><span class="nav-link-icon">⚙️</span> Ch.6 Giới thiệu PA</a>
+                    <a href="chuong7-cloud-flows.html" class="nav-link"><span class="nav-link-icon">☁️</span> Ch.7 Cloud Flows</a>
+                    <a href="chuong8-desktop-flows.html" class="nav-link"><span class="nav-link-icon">🖥️</span> Ch.8 Desktop Flows</a>
+                    <a href="chuong9-business-process.html" class="nav-link"><span class="nav-link-icon">📋</span> Ch.9 Business Process</a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">Nâng cao</div>
+                    <a href="chuong10-nang-cao.html" class="nav-link"><span class="nav-link-icon">🚀</span> Ch.10 Nâng cao</a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">Thực hành</div>
+                    <a href="bai-tap-thuc-hanh.html" class="nav-link"><span class="nav-link-icon">💻</span> Bài tập thực hành</a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="chapter-header">
+                <div class="chapter-header-content">
+                    <div class="chapter-badge">📖 Chương 1</div>
+                    <h1>Giới thiệu Power Platform & Power Apps</h1>
+                    <p class="description">Tìm hiểu tổng quan về Microsoft Power Platform, Power Apps là gì, các môi trường làm việc, loại ứng dụng, và cách bắt đầu xây dựng ứng dụng đầu tiên.</p>
+                </div>
+            </div>
+
+            <div class="content-area">
+                <!-- Table of Contents -->
+                <div class="toc">
+                    <div class="toc-title">📑 Mục lục chương này</div>
+                    <ul class="toc-list">
+                        <li><a href="#power-platform">Power Platform là gì?</a></li>
+                        <li><a href="#power-apps">Power Apps là gì?</a></li>
+                        <li><a href="#4-moi-truong">4 môi trường làm việc</a></li>
+                        <li><a href="#loai-app">2 loại ứng dụng: Canvas vs Model-driven</a></li>
+                        <li><a href="#storage">Chọn nguồn dữ liệu (Storage)</a></li>
+                        <li><a href="#ket-noi">Kết nối Cloud vs On-premises</a></li>
+                        <li><a href="#license">Licensing & Getting Started</a></li>
+                    </ul>
+                </div>
+
+                <!-- Section 1: Power Platform -->
+                <section class="content-section" id="power-platform">
+                    <h2>⚡ Power Platform là gì?</h2>
+                    
+                    <p>Microsoft <strong>Power Platform</strong> là bộ công cụ phát triển low-code/no-code cho phép người dùng kinh doanh (citizen developers) xây dựng ứng dụng, tự động hóa quy trình, phân tích dữ liệu — mà không cần kỹ năng lập trình chuyên sâu.</p>
+
+                    <div class="info-box important">
+                        <div class="info-box-title">💡 Ý tưởng cốt lõi</div>
+                        Power Platform cho phép "citizen developers" — những người không phải lập trình viên chuyên nghiệp — tiếp cận khả năng phát triển ứng dụng trước đây chỉ dành cho các công cụ phát triển cao cấp.
+                    </div>
+
+                    <p>Power Platform bao gồm <strong>3 thành phần chính</strong>, phối hợp chặt chẽ với nhau:</p>
+
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <div class="feature-item-icon">📊</div>
+                            <h4>Power BI</h4>
+                            <p>Hiển thị và phân tích dữ liệu — tạo báo cáo, dashboard trực quan từ nhiều nguồn dữ liệu khác nhau.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-item-icon">📱</div>
+                            <h4>Power Apps</h4>
+                            <p>Tạo ứng dụng di động và web — thao tác, chỉnh sửa dữ liệu thông qua giao diện tùy chỉnh.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-item-icon">⚙️</div>
+                            <h4>Power Automate (Flow)</h4>
+                            <p>Tự động hóa quy trình — kết nối các dịch vụ, tự động thực hiện tác vụ lặp đi lặp lại.</p>
+                        </div>
+                    </div>
+
+                    <div class="info-box note">
+                        <div class="info-box-title">📝 Ghi chú</div>
+                        Microsoft ngày càng quảng bá Power Platform như một tổng thể. Ba dịch vụ này cung cấp công cụ để quản lý thế giới số nơi dữ liệu là nền tảng của mọi quy trình doanh nghiệp.
+                    </div>
+                </section>
+
+                <!-- Section 2: Power Apps -->
+                <section class="content-section" id="power-apps">
+                    <h2>📱 Power Apps là gì?</h2>
+                    
+                    <p>Power Apps là <strong>nền tảng phát triển ứng dụng di động và web</strong> cho phép bạn tạo ứng dụng kinh doanh tùy chỉnh kết nối với dữ liệu được lưu trữ trong nhiều nguồn online và on-premises khác nhau.</p>
+
+                    <p>Với Power Apps, bạn có thể:</p>
+                    <ul>
+                        <li><strong>Tạo ứng dụng nhanh chóng</strong> — bắt đầu từ data source, template hoặc từ đầu</li>
+                        <li><strong>Tùy chỉnh giao diện</strong> — thiết kế pixel-perfect hoặc model-driven</li>
+                        <li><strong>Kết nối 200+ data sources</strong> — SharePoint, Excel, SQL, Salesforce, v.v.</li>
+                        <li><strong>Chia sẻ & quản lý</strong> — publish, share với người dùng, quản lý versions</li>
+                        <li><strong>Chạy trên mọi thiết bị</strong> — web browser, iOS, Android, Windows</li>
+                    </ul>
+
+                    <div class="info-box tip">
+                        <div class="info-box-title">💡 Mẹo cho người mới</div>
+                        Cách đơn giản nhất để xây dựng PowerApps app: bắt đầu từ data source (ví dụ: SharePoint list). Power Apps sẽ tự động tạo ứng dụng CRUD hoàn chỉnh cho bạn!
+                    </div>
+
+                    <h3>Quy trình xây dựng ứng dụng cơ bản</h3>
+                    <div class="steps">
+                        <div class="step" data-step="1">
+                            <h4>Chọn môi trường (Environment)</h4>
+                            <p>Chọn một trong 4 môi trường: Website, Studio, Mobile App, hoặc Admin Center — tùy theo vai trò và mục đích.</p>
+                        </div>
+                        <div class="step" data-step="2">
+                            <h4>Chọn loại ứng dụng (App Type)</h4>
+                            <p>Canvas App cho giao diện tùy chỉnh tự do, hoặc Model-driven App cho ứng dụng dựa trên dữ liệu.</p>
+                        </div>
+                        <div class="step" data-step="3">
+                            <h4>Chọn nguồn dữ liệu (Storage)</h4>
+                            <p>SharePoint, Excel, SQL Server, Dataverse, hoặc 200+ connectors khác.</p>
+                        </div>
+                        <div class="step" data-step="4">
+                            <h4>Kết nối & Xây dựng (Connect & Build)</h4>
+                            <p>Kết nối data source (cloud hoặc on-premises), thiết kế UI, thêm logic, và publish.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 3: 4 Environments -->
+                <section class="content-section" id="4-moi-truong">
+                    <h2>🖥️ 4 Môi trường làm việc</h2>
+                    
+                    <p>Trong Power Apps có <strong>4 công cụ/môi trường</strong> chính, mỗi loại có vai trò và khả năng riêng:</p>
+
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <div class="feature-item-icon">🌐</div>
+                            <h4>1. PowerApps Website</h4>
+                            <p><strong>make.powerapps.com</strong> — Nơi bạn bắt đầu hành trình. Tạo app mới, quản lý apps hiện có, xem templates, và quản lý connections.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-item-icon">🎨</div>
+                            <h4>2. PowerApps Studio</h4>
+                            <p>Công cụ thiết kế ứng dụng — gồm <strong>3 panes</strong> và <strong>ribbon</strong>. Cảm giác tương tự tạo slide PowerPoint. Kéo thả controls, viết formulas.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-item-icon">📱</div>
+                            <h4>3. PowerApps Mobile</h4>
+                            <p>Ứng dụng di động cho <strong>iOS, Android & Windows 10</strong>. Chạy tất cả apps của bạn và apps được chia sẻ với bạn.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-item-icon">⚙️</div>
+                            <h4>4. Admin Center</h4>
+                            <p><strong>admin.powerapps.com</strong> — Quản lý environments, DLP policies, user roles, và xem danh sách licenses.</p>
+                        </div>
+                    </div>
+
+                    <div class="info-box note">
+                        <div class="info-box-title">📝 PowerApps Studio</div>
+                        Studio chứa 3 panes và ribbon giúp việc tạo app giống như tạo slide trong PowerPoint. Đây là nơi bạn sẽ dành nhiều thời gian nhất khi phát triển Canvas Apps.
+                    </div>
+                </section>
+
+                <!-- Section 4: App Types -->
+                <section class="content-section" id="loai-app">
+                    <h2>🔄 2 Loại ứng dụng: Canvas vs Model-driven</h2>
+                    
+                    <p>Power Apps cung cấp <strong>2 loại ứng dụng chính</strong>, mỗi loại phù hợp với nhu cầu khác nhau:</p>
+
+                    <div class="comparison">
+                        <div class="comparison-item left">
+                            <h4>🎨 Canvas Apps</h4>
+                            <ul>
+                                <li>Giao diện <strong>pixel-perfect</strong>, tự do sắp xếp</li>
+                                <li>Kéo thả controls trên "canvas" trống</li>
+                                <li>Phù hợp cho <strong>lightweight apps</strong></li>
+                                <li>Có thể tạo "disposable apps" trong vài phút</li>
+                                <li>Designer có <strong>toàn quyền kiểm soát</strong> layout</li>
+                                <li>Tập trung vào <strong>sáng tạo & thiết kế</strong></li>
+                            </ul>
+                        </div>
+                        <div class="comparison-item right">
+                            <h4>🏗️ Model-driven Apps</h4>
+                            <ul>
+                                <li>Xây dựng trên <strong>Common Data Service</strong></li>
+                                <li>Layout phần lớn <strong>tự động xác định</strong></li>
+                                <li>Phù hợp cho <strong>heavy apps</strong> (sử dụng nhiều giờ)</li>
+                                <li>Nhanh chóng xây dựng forms, processes, rules</li>
+                                <li>Cấu trúc dựa trên <strong>components bạn thêm vào</strong></li>
+                                <li>Tập trung vào <strong>dữ liệu & quy trình</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Tiêu chí</th>
+                                    <th>Canvas Apps</th>
+                                    <th>Model-driven Apps</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Kiểm soát UI</strong></td>
+                                    <td>Hoàn toàn tự do</td>
+                                    <td>Tự động dựa trên components</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Data source</strong></td>
+                                    <td>200+ connectors</td>
+                                    <td>Chủ yếu Dataverse</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Độ phức tạp</strong></td>
+                                    <td>Đơn giản → Trung bình</td>
+                                    <td>Trung bình → Cao</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Thời gian dùng</strong></td>
+                                    <td>Tác vụ nhanh, vài phút</td>
+                                    <td>Sử dụng chuyên sâu, nhiều giờ</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Kỹ năng cần</strong></td>
+                                    <td>Thiết kế + Power Fx</td>
+                                    <td>Data modeling + Business rules</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3>SharePoint List Customized Forms</h3>
+                    <p>Ngoài 2 loại chính, còn có loại thứ 3 — đặc biệt cho Canvas: <strong>SharePoint list customized forms</strong>. Từ SharePoint list, bạn có thể sử dụng Power Apps để tùy chỉnh form chuẩn của SharePoint.</p>
+                    
+                    <div class="info-box tip">
+                        <div class="info-box-title">💡 SharePointIntegration Control</div>
+                        Khi sử dụng "Customize forms" từ SharePoint, bạn sẽ truy cập component <code>SharePointIntegration</code> trong Power Apps. Control này cung cấp các properties như <code>OnNew</code>, <code>OnSave</code>, <code>OnEdit</code> để app phản hồi khi người dùng tạo mới, lưu, hoặc chỉnh sửa item.
+                    </div>
+                </section>
+
+                <!-- Section 5: Storage -->
+                <section class="content-section" id="storage">
+                    <h2>💾 Chọn nguồn dữ liệu (Storage)</h2>
+                    
+                    <p>Chọn đúng nguồn dữ liệu là <strong>rất quan trọng</strong> khi thiết kế ứng dụng. Dữ liệu được lưu trong data source và bạn import chúng vào app bằng cách tạo connection.</p>
+
+                    <h3>Các nguồn dữ liệu phổ biến</h3>
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <div class="feature-item-icon">📋</div>
+                            <h4>SharePoint Lists</h4>
+                            <p>Phổ biến nhất cho apps doanh nghiệp. Tích hợp sẵn trong Microsoft 365.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-item-icon">📊</div>
+                            <h4>Excel Spreadsheets</h4>
+                            <p>Nguồn dữ liệu quen thuộc. Lưu trên OneDrive hoặc SharePoint để chia sẻ.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-item-icon">🗄️</div>
+                            <h4>SQL Server</h4>
+                            <p>Database chuyên nghiệp. Hỗ trợ cả cloud (Azure SQL) và on-premises.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-item-icon">⚡</div>
+                            <h4>Dataverse</h4>
+                            <p>Cơ sở dữ liệu được Microsoft thiết kế riêng cho Power Platform.</p>
+                        </div>
+                    </div>
+
+                    <div class="info-box warning">
+                        <div class="info-box-title">⚠️ Lưu ý về License</div>
+                        Nếu bạn chọn data source <strong>Premium</strong> (như Salesforce hoặc Common Data Service), bạn sẽ cần license <strong>Power Apps P1 hoặc P2</strong>. SharePoint và Excel không yêu cầu license premium.
+                    </div>
+
+                    <h3>Connectors: Tables & Actions</h3>
+                    <p>Trong Power Apps, một connector có thể cung cấp <strong>data tables</strong>, <strong>actions</strong>, hoặc cả hai:</p>
+                    <ul>
+                        <li><strong>Tables</strong>: Truy xuất dữ liệu dạng bảng — browse, create, update, delete records</li>
+                        <li><strong>Actions</strong>: Thực hiện hành động cụ thể — gửi email, approve request, v.v. Actions cần được kết nối thủ công với controls.</li>
+                    </ul>
+
+                    <p>Power Apps có hơn <strong>200 data connectors</strong>, bao gồm:</p>
+                    <ul>
+                        <li><strong>Microsoft</strong>: Office 365, SQL Server, Azure, Dynamics 365, Teams</li>
+                        <li><strong>External</strong>: Salesforce, Dropbox, Google Drive, Twitter, v.v.</li>
+                        <li><strong>Custom connectors</strong>: Tạo connector riêng cho API của bạn</li>
+                    </ul>
+                </section>
+
+                <!-- Section 6: Cloud vs On-premises -->
+                <section class="content-section" id="ket-noi">
+                    <h2>🌐 Kết nối Cloud vs On-premises</h2>
+                    
+                    <p>Power Apps được sinh ra trong cloud và kết nối trực tiếp với các cloud data sources. Tuy nhiên, nó cũng hỗ trợ kết nối với dữ liệu <strong>on-premises</strong> thông qua <strong>On-premises Data Gateway</strong>.</p>
+
+                    <div class="comparison">
+                        <div class="comparison-item left">
+                            <h4>☁️ Cloud Data Sources</h4>
+                            <ul>
+                                <li>SharePoint Online</li>
+                                <li>OneDrive for Business</li>
+                                <li>Azure SQL Database</li>
+                                <li>Dataverse</li>
+                                <li>Salesforce, Dropbox, etc.</li>
+                            </ul>
+                            <p style="margin-top: 10px; font-size: 13px; color: var(--text-muted);">Kết nối trực tiếp, không cần gateway</p>
+                        </div>
+                        <div class="comparison-item right">
+                            <h4>🏢 On-premises Data Sources</h4>
+                            <ul>
+                                <li>SharePoint On-premises</li>
+                                <li>SQL Server</li>
+                                <li>Oracle</li>
+                                <li>File System</li>
+                                <li>DB2, Informix</li>
+                            </ul>
+                            <p style="margin-top: 10px; font-size: 13px; color: var(--text-muted);">Cần cấu hình Data Gateway</p>
+                        </div>
+                    </div>
+
+                    <div class="info-box note">
+                        <div class="info-box-title">📝 On-premises Data Gateway</div>
+                        Gateway được chia sẻ giữa nhiều ứng dụng cloud: Power BI, Power Automate, Power Apps, Azure Analysis Services, và Azure Logic Apps. Cần được cài đặt trên server on-premises.
+                    </div>
+
+                    <div class="info-box warning">
+                        <div class="info-box-title">⚠️ License khi dùng On-premises</div>
+                        Sử dụng on-premises data sources yêu cầu <strong>Power Apps P1 hoặc P2 license</strong>. Hãy kiểm tra Microsoft's PowerApps plan website để biết chi tiết licensing.
+                    </div>
+                </section>
+
+                <!-- Section 7: License & Getting Started -->
+                <section class="content-section" id="license">
+                    <h2>🔑 Licensing & Getting Started</h2>
+                    
+                    <h3>Cách đăng ký sử dụng Power Apps</h3>
+                    <div class="steps">
+                        <div class="step" data-step="1">
+                            <h4>Truy cập Power Apps</h4>
+                            <p>Truy cập <strong>powerapps.microsoft.com</strong> hoặc <strong>make.powerapps.com</strong> để bắt đầu.</p>
+                        </div>
+                        <div class="step" data-step="2">
+                            <h4>Đăng nhập bằng tài khoản Work/School</h4>
+                            <p>Sử dụng email công ty hoặc trường học. <strong>Email cá nhân</strong> (Gmail, Outlook.com) không được hỗ trợ.</p>
+                        </div>
+                        <div class="step" data-step="3">
+                            <h4>Chọn Plan phù hợp</h4>
+                            <p>Power Apps Developer Plan (miễn phí), Trial 30 ngày, hoặc Per User/Per App plan.</p>
+                        </div>
+                        <div class="step" data-step="4">
+                            <h4>Thiết lập Developer Environment</h4>
+                            <p>Tạo environment riêng cho phát triển — không ảnh hưởng đến default environment.</p>
+                        </div>
+                    </div>
+
+                    <h3>Các loại License</h3>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Plan</th>
+                                    <th>Phù hợp cho</th>
+                                    <th>Ghi chú</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Developer Plan</strong></td>
+                                    <td>Học tập, phát triển</td>
+                                    <td>Miễn phí, môi trường riêng</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Microsoft 365</strong></td>
+                                    <td>Tích hợp cơ bản</td>
+                                    <td>Giới hạn connectors standard</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Per App Plan</strong></td>
+                                    <td>1-2 apps cụ thể</td>
+                                    <td>Cho mỗi user, mỗi app</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Per User Plan</strong></td>
+                                    <td>Nhiều apps, premium</td>
+                                    <td>Truy cập không giới hạn apps</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="info-box important">
+                        <div class="info-box-title">💡 Bắt đầu miễn phí</div>
+                        Bạn có thể bắt đầu với <strong>Power Apps Developer Plan</strong> hoàn toàn miễn phí. Plan này cung cấp môi trường phát triển riêng với Dataverse database, cho phép bạn học và thử nghiệm tất cả tính năng.
+                    </div>
+                </section>
+
+                <!-- Chapter Navigation -->
+                <div class="chapter-nav">
+                    <a href="index.html" class="prev">
+                        <span class="chapter-nav-arrow">←</span>
+                        <div>
+                            <div class="chapter-nav-label">Quay lại</div>
+                            <div class="chapter-nav-title">Trang chủ</div>
+                        </div>
+                    </a>
+                    <a href="chuong2-canvas-apps.html" class="next">
+                        <span class="chapter-nav-arrow">→</span>
+                        <div>
+                            <div class="chapter-nav-label">Chương tiếp theo</div>
+                            <div class="chapter-nav-title">Canvas Apps</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <footer class="footer">
+                <p>📚 Giáo trình Power Apps & Power Automate — Tổng hợp từ tài liệu Microsoft Official Documentation</p>
+            </footer>
+        </main>
+    </div>
+
+    <script>
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('open');
+            document.getElementById('sidebarOverlay').classList.toggle('show');
+        }
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 1024) {
+                document.getElementById('sidebar').classList.remove('open');
+                document.getElementById('sidebarOverlay').classList.remove('show');
+            }
+        });
+    </script>
+</body>
+</html>

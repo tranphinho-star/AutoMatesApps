@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Bài tập thực hành Power Apps & Power Automate - 10 bài tập từ cơ bản đến nâng cao">
+    <title>Bài tập thực hành</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <button class="sidebar-toggle" onclick="toggleSidebar()" aria-label="Menu">☰</button>
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+    <div class="layout">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header"><a href="index.html" class="sidebar-logo"><div class="sidebar-logo-icon">⚡</div><div class="sidebar-logo-text">Power Platform<span>Giáo trình tổng hợp</span></div></a></div>
+            <nav class="sidebar-nav">
+                <div class="nav-section"><div class="nav-section-title">Tổng quan</div><a href="index.html" class="nav-link"><span class="nav-link-icon">🏠</span> Trang chủ</a></div>
+                <div class="nav-section"><div class="nav-section-title">Power Apps</div>
+                    <a href="chuong1-gioi-thieu.html" class="nav-link"><span class="nav-link-icon">📖</span> Ch.1 Giới thiệu</a>
+                    <a href="chuong2-canvas-apps.html" class="nav-link"><span class="nav-link-icon">🎨</span> Ch.2 Canvas Apps</a>
+                    <a href="chuong3-model-driven.html" class="nav-link"><span class="nav-link-icon">🏗️</span> Ch.3 Model-driven</a>
+                    <a href="chuong4-dataverse.html" class="nav-link"><span class="nav-link-icon">🗄️</span> Ch.4 Dataverse</a>
+                    <a href="chuong5-ket-noi-du-lieu.html" class="nav-link"><span class="nav-link-icon">🔗</span> Ch.5 Kết nối dữ liệu</a>
+                </div>
+                <div class="nav-section"><div class="nav-section-title">Power Automate</div>
+                    <a href="chuong6-power-automate.html" class="nav-link"><span class="nav-link-icon">⚙️</span> Ch.6 Giới thiệu PA</a>
+                    <a href="chuong7-cloud-flows.html" class="nav-link"><span class="nav-link-icon">☁️</span> Ch.7 Cloud Flows</a>
+                    <a href="chuong8-desktop-flows.html" class="nav-link"><span class="nav-link-icon">🖥️</span> Ch.8 Desktop Flows</a>
+                    <a href="chuong9-business-process.html" class="nav-link"><span class="nav-link-icon">📋</span> Ch.9 Business Process</a>
+                </div>
+                <div class="nav-section"><div class="nav-section-title">Nâng cao</div><a href="chuong10-nang-cao.html" class="nav-link"><span class="nav-link-icon">🚀</span> Ch.10 Nâng cao</a></div>
+                <div class="nav-section"><div class="nav-section-title">Thực hành</div><a href="bai-tap-thuc-hanh.html" class="nav-link active"><span class="nav-link-icon">💻</span> Bài tập thực hành</a></div>
+            </nav>
+        </aside>
+        <main class="main-content">
+            <div class="chapter-header">
+                <div class="chapter-header-content">
+                    <div class="chapter-badge">💻 Thực hành</div>
+                    <h1>Bài tập thực hành</h1>
+                    <p class="description">10 bài tập từ cơ bản đến nâng cao — Canvas Apps, Model-driven, Cloud Flows, Desktop Flows, Approval, tích hợp AI Builder.</p>
+                </div>
+            </div>
+            <div class="content-area">
+                <div class="toc">
+                    <div class="toc-title">📑 Danh sách bài tập</div>
+                    <ul class="toc-list">
+                        <li><a href="#bt1">BT1: Canvas App từ SharePoint (⭐)</a></li>
+                        <li><a href="#bt2">BT2: Canvas CRUD App (⭐⭐)</a></li>
+                        <li><a href="#bt3">BT3: Gallery + Search + Filter (⭐⭐)</a></li>
+                        <li><a href="#bt4">BT4: Model-driven CRM App (⭐⭐⭐)</a></li>
+                        <li><a href="#bt5">BT5: Automated Cloud Flow (⭐)</a></li>
+                        <li><a href="#bt6">BT6: Scheduled Report Flow (⭐⭐)</a></li>
+                        <li><a href="#bt7">BT7: Approval Workflow (⭐⭐⭐)</a></li>
+                        <li><a href="#bt8">BT8: Desktop Flow - Excel Processing (⭐⭐)</a></li>
+                        <li><a href="#bt9">BT9: Power Apps + Power Automate (⭐⭐⭐)</a></li>
+                        <li><a href="#bt10">BT10: Full Enterprise App (⭐⭐⭐⭐)</a></li>
+                    </ul>
+                </div>
+
+                <!-- BT1 -->
+                <section class="content-section" id="bt1">
+                    <h2>⭐ BT1: Canvas App từ SharePoint List</h2>
+                    <div class="info-box note"><div class="info-box-title">📝 Mức độ: Cơ bản | Thời gian: 15 phút | Chương liên quan: Ch.2</div></div>
+
+                    <h3>Mục tiêu</h3>
+                    <p>Tạo Canvas App tự động từ SharePoint list — hiểu cấu trúc 3-screen app cơ bản.</p>
+
+                    <h3>Yêu cầu</h3>
+                    <ol>
+                        <li>Tạo SharePoint list "<strong>Employees</strong>" với các columns: Name (Text), Email (Text), Department (Choice: IT, HR, Sales, Marketing), Phone (Text), Start Date (Date)</li>
+                        <li>Thêm 5-10 records mẫu</li>
+                        <li>Tạo Canvas App từ SharePoint list (Start from data)</li>
+                        <li>Test 3 screens: Browse, Detail, Edit</li>
+                        <li>Publish và chia sẻ app</li>
+                    </ol>
+
+                    <h3>Hướng dẫn chi tiết</h3>
+                    <div class="steps">
+                        <div class="step" data-step="1"><h4>Tạo SharePoint List</h4>
+                            <p>Truy cập SharePoint site → <strong>New → List</strong> → Đặt tên "Employees" → Thêm columns theo yêu cầu. Lưu ý: column "Department" là <strong>Choice</strong> type.</p>
+                        </div>
+                        <div class="step" data-step="2"><h4>Tạo App</h4>
+                            <p><strong>make.powerapps.com → Create → Start from data → SharePoint</strong> → Chọn site → Chọn list "Employees". Đợi app được tạo tự động.</p>
+                        </div>
+                        <div class="step" data-step="3"><h4>Khám phá 3 screens</h4>
+                            <p>Xem cấu trúc: <strong>BrowseScreen1</strong> (Gallery), <strong>DetailScreen1</strong> (Display form), <strong>EditScreen1</strong> (Edit form). Nhấn F5 để preview.</p>
+                        </div>
+                        <div class="step" data-step="4"><h4>Tùy chỉnh</h4>
+                            <p>Thay đổi Gallery layout: hiển thị Name + Department. Thêm icon ở Detail screen. Đổi màu header.</p>
+                        </div>
+                        <div class="step" data-step="5"><h4>Save & Publish</h4>
+                            <p><strong>Ctrl+S</strong> → Save → <strong>File → Publish</strong>. Test trên mobile bằng Power Apps mobile app.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- BT2 -->
+                <section class="content-section" id="bt2">
+                    <h2>⭐⭐ BT2: Canvas CRUD App từ Blank</h2>
+                    <div class="info-box note"><div class="info-box-title">📝 Mức độ: Trung bình | Thời gian: 30 phút | Chương liên quan: Ch.2</div></div>
+
+                    <h3>Mục tiêu</h3>
+                    <p>Tự tay tạo Canvas App từ blank với đầy đủ CRUD operations.</p>
+
+                    <h3>Yêu cầu</h3>
+                    <ol>
+                        <li>Tạo app blank (Phone layout)</li>
+                        <li>Kết nối tới data source (SharePoint list hoặc Excel)</li>
+                        <li>Tạo <strong>Home Screen</strong> với gallery hiển thị danh sách products</li>
+                        <li>Tạo <strong>Add Screen</strong> với form thêm product mới (Name, Price, Category, InStock)</li>
+                        <li>Tạo <strong>Edit Screen</strong> với form chỉnh sửa product</li>
+                        <li>Thêm nút Delete với xác nhận (Confirm dialog)</li>
+                        <li>Thêm navigation giữa các screens</li>
+                    </ol>
+
+                    <h3>Power Fx cần sử dụng</h3>
+                    <div class="code-block">
+                        <div class="code-block-header">Power Fx Functions</div>
+                        <pre>// Navigate — Chuyển screen
+Navigate(AddScreen, ScreenTransition.Fade)
+
+// Patch — Tạo record mới
+Patch(Products, Defaults(Products), {
+    Name: txtName.Text,
+    Price: Value(txtPrice.Text),
+    Category: ddCategory.Selected.Value,
+    InStock: tglInStock.Value
+})
+
+// Patch — Cập nhật record
+Patch(Products, Gallery1.Selected, {
+    Name: txtEditName.Text
+})
+
+// Remove — Xóa record
+Remove(Products, Gallery1.Selected)
+
+// Notify — Thông báo
+Notify("Product saved!", NotificationType.Success)
+
+// Back — Quay lại screen trước
+Back()</pre>
+                    </div>
+                </section>
+
+                <!-- BT3 -->
+                <section class="content-section" id="bt3">
+                    <h2>⭐⭐ BT3: Gallery + Search + Filter nâng cao</h2>
+                    <div class="info-box note"><div class="info-box-title">📝 Mức độ: Trung bình | Thời gian: 25 phút | Chương liên quan: Ch.2</div></div>
+
+                    <h3>Mục tiêu</h3>
+                    <p>Xây dựng gallery với search, filter, sort — hiểu Power Fx nâng cao.</p>
+
+                    <h3>Yêu cầu</h3>
+                    <ol>
+                        <li>Hiển thị gallery với hình ảnh, tên, giá, và category</li>
+                        <li>Search box tìm kiếm theo tên sản phẩm</li>
+                        <li>Dropdown filter theo Category</li>
+                        <li>Sort button: A-Z / Z-A / Price Low-High / Price High-Low</li>
+                        <li>Hiển thị tổng số kết quả tìm được</li>
+                        <li>Nút "Clear Filters" reset tất cả</li>
+                    </ol>
+
+                    <h3>Formula mẫu</h3>
+                    <div class="code-block">
+                        <div class="code-block-header">Gallery Items Property</div>
+                        <pre>SortByColumns(
+    Filter(
+        Search(
+            Products,
+            txtSearch.Text,
+            "Name"
+        ),
+        Or(
+            ddCategory.Selected.Value = "All",
+            Category = ddCategory.Selected.Value
+        )
+    ),
+    ddSort.Selected.Column,
+    If(ddSort.Selected.Order = "Asc",
+       SortOrder.Ascending,
+       SortOrder.Descending
+    )
+)</pre>
+                    </div>
+                </section>
+
+                <!-- BT4 -->
+                <section class="content-section" id="bt4">
+                    <h2>⭐⭐⭐ BT4: Model-driven CRM App</h2>
+                    <div class="info-box note"><div class="info-box-title">📝 Mức độ: Nâng cao | Thời gian: 45 phút | Chương liên quan: Ch.3, Ch.4</div></div>
+
+                    <h3>Mục tiêu</h3>
+                    <p>Xây dựng mini CRM (Customer Relationship Management) app với Model-driven approach.</p>
+
+                    <h3>Yêu cầu</h3>
+                    <ol>
+                        <li>Tạo 3 custom tables trong Dataverse:
+                            <ul>
+                                <li><strong>Customers</strong>: Name, Email, Phone, Company, Status (Active/Inactive)</li>
+                                <li><strong>Deals</strong>: Title, Amount (Currency), Stage (Choice: Lead/Qualified/Proposal/Won/Lost), CloseDate</li>
+                                <li><strong>Activities</strong>: Subject, Description, Type (Call/Email/Meeting), Date</li>
+                            </ul>
+                        </li>
+                        <li>Thiết lập relationships: Customer → Deals (1:N), Customer → Activities (1:N)</li>
+                        <li>Tạo forms: Customize Main Form cho mỗi table</li>
+                        <li>Tạo views: "Active Customers", "Open Deals", "This Week Activities"</li>
+                        <li>Tạo Business Rule: Khi Deal Stage = "Won" → Lock Amount field</li>
+                        <li>Tạo Model-driven app với site map: Sales → Customers, Deals | Activities → All Activities</li>
+                        <li>Tạo Dashboard: "Sales Overview" với chart Deals by Stage + list Open Deals</li>
+                    </ol>
+                </section>
+
+                <!-- BT5 -->
+                <section class="content-section" id="bt5">
+                    <h2>⭐ BT5: Automated Cloud Flow — Email Notification</h2>
+                    <div class="info-box note"><div class="info-box-title">📝 Mức độ: Cơ bản | Thời gian: 10 phút | Chương liên quan: Ch.7</div></div>
+
+                    <h3>Mục tiêu</h3>
+                    <p>Tạo automated flow: gửi email thông báo khi có item mới trên SharePoint.</p>
+
+                    <h3>Yêu cầu</h3>
+                    <ol>
+                        <li>Trigger: "When an item is created" trên SharePoint list</li>
+                        <li>Action 1: Format email body với HTML template (tên, ngày tạo, link tới item)</li>
+                        <li>Action 2: Gửi email tới manager</li>
+                        <li>Action 3: Post message lên Teams channel</li>
+                        <li>Test bằng cách thêm item mới vào SharePoint list</li>
+                    </ol>
+
+                    <h3>Hướng dẫn</h3>
+                    <div class="steps">
+                        <div class="step" data-step="1"><h4>Tạo Flow</h4><p>make.powerautomate.com → <strong>Create → Automated cloud flow</strong> → Đặt tên → Chọn trigger "When an item is created (SharePoint)".</p></div>
+                        <div class="step" data-step="2"><h4>Cấu hình Trigger</h4><p>Chọn Site Address và List Name.</p></div>
+                        <div class="step" data-step="3"><h4>Thêm Actions</h4><p>+ New step → "Send an email (V2)" → Cấu hình To, Subject, Body. Sử dụng dynamic content từ trigger.</p></div>
+                        <div class="step" data-step="4"><h4>Test</h4><p>Click <strong>Test → Manually</strong> → Thêm item vào SharePoint → Kiểm tra email nhận được.</p></div>
+                    </div>
+                </section>
+
+                <!-- BT6 -->
+                <section class="content-section" id="bt6">
+                    <h2>⭐⭐ BT6: Scheduled Report Flow</h2>
+                    <div class="info-box note"><div class="info-box-title">📝 Mức độ: Trung bình | Thời gian: 20 phút | Chương liên quan: Ch.7</div></div>
+
+                    <h3>Mục tiêu</h3>
+                    <p>Tạo scheduled flow gửi báo cáo tổng hợp hàng tuần từ SharePoint data.</p>
+
+                    <h3>Yêu cầu</h3>
+                    <ol>
+                        <li>Trigger: Recurrence — hàng tuần vào thứ Hai 8:00 AM</li>
+                        <li>Get items từ SharePoint list (filter: modified trong 7 ngày qua)</li>
+                        <li>Tạo HTML table từ dữ liệu</li>
+                        <li>Tính tổng hợp: Count items, Sum amounts</li>
+                        <li>Compose email HTML đẹp với thống kê + bảng dữ liệu</li>
+                        <li>Gửi email tới team</li>
+                    </ol>
+
+                    <h3>Expressions cần dùng</h3>
+                    <div class="code-block">
+                        <div class="code-block-header">Expressions</div>
+                        <pre>// Filter items trong 7 ngày qua
+addDays(utcNow(), -7)
+
+// Format ngày
+formatDateTime(utcNow(), 'dd/MM/yyyy')
+
+// Đếm items
+length(body('Get_items')?['value'])
+
+// Tạo filter query (OData)
+Modified ge '@{addDays(utcNow(), -7)}'</pre>
+                    </div>
+                </section>
+
+                <!-- BT7 -->
+                <section class="content-section" id="bt7">
+                    <h2>⭐⭐⭐ BT7: Approval Workflow hoàn chỉnh</h2>
+                    <div class="info-box note"><div class="info-box-title">📝 Mức độ: Nâng cao | Thời gian: 30 phút | Chương liên quan: Ch.7</div></div>
+
+                    <h3>Mục tiêu</h3>
+                    <p>Xây dựng quy trình phê duyệt đơn nghỉ phép (Leave Request) hoàn chỉnh.</p>
+
+                    <h3>Yêu cầu</h3>
+                    <ol>
+                        <li>SharePoint list "Leave Requests" với columns: Employee, Type (Annual/Sick/Personal), StartDate, EndDate, Days, Status, Comments</li>
+                        <li>Trigger: Khi có item mới (Status = "Pending")</li>
+                        <li>Condition: Nếu Days ≤ 3 → Single approval (Direct Manager). Nếu Days > 3 → Sequential approval (Manager → HR)</li>
+                        <li>Approval action với details: tên NV, loại nghỉ, ngày, lý do</li>
+                        <li>Nếu Approve → Update Status = "Approved", gửi email xác nhận</li>
+                        <li>Nếu Reject → Update Status = "Rejected", gửi email kèm comments</li>
+                        <li>Post notification lên Teams</li>
+                    </ol>
+
+                    <h3>Flow structure</h3>
+                    <div class="code-block">
+                        <div class="code-block-header">Approval Flow Architecture</div>
+                        <pre>TRIGGER: When item created → Status = "Pending"
+  ↓
+CONDITION: Days <= 3 ?
+  ├── YES: Start approval → Manager only
+  └── NO:  Start approval → Manager
+           ↓ (if approved)
+           Start approval → HR Director
+  ↓
+CONDITION: Final Outcome = "Approve" ?
+  ├── YES: Update Status → "Approved"
+  │        Send approval email
+  │        Post Teams: "✅ Leave approved"
+  └── NO:  Update Status → "Rejected"
+           Send rejection email (include comments)
+           Post Teams: "❌ Leave rejected"</pre>
+                    </div>
+                </section>
+
+                <!-- BT8 -->
+                <section class="content-section" id="bt8">
+                    <h2>⭐⭐ BT8: Desktop Flow — Excel Data Processing</h2>
+                    <div class="info-box note"><div class="info-box-title">📝 Mức độ: Trung bình | Thời gian: 25 phút | Chương liên quan: Ch.8</div></div>
+
+                    <h3>Mục tiêu</h3>
+                    <p>Tạo desktop flow tự động xử lý file Excel: đọc dữ liệu, tính toán, và tạo báo cáo.</p>
+
+                    <h3>Yêu cầu</h3>
+                    <ol>
+                        <li>Mở Power Automate for Desktop → New flow</li>
+                        <li>Tạo file Excel mẫu "SalesData.xlsx" với columns: Product, Quantity, UnitPrice, Date</li>
+                        <li>Flow actions:
+                            <ul>
+                                <li>Launch Excel → Open SalesData.xlsx</li>
+                                <li>Read from Excel → Get all data into variable</li>
+                                <li>Loop through each row → Tính Total = Quantity × UnitPrice</li>
+                                <li>Write Total vào column mới</li>
+                                <li>Tính Grand Total bằng variable</li>
+                                <li>Ghi Grand Total vào cell cuối cùng</li>
+                                <li>Save & Close Excel</li>
+                            </ul>
+                        </li>
+                        <li>Hiển thị message box với kết quả: "Processed X rows. Grand Total: $Y"</li>
+                    </ol>
+
+                    <h3>Desktop Flow Structure</h3>
+                    <div class="code-block">
+                        <div class="code-block-header">Desktop Flow Actions</div>
+                        <pre>1. Set variable: GrandTotal = 0
+2. Launch Excel → "C:\Data\SalesData.xlsx"
+3. Read from Excel worksheet → First row has headers
+   → Store into: %ExcelData%
+4. Get first free column/row → %FirstFreeRow%
+5. FOR EACH %CurrentRow% IN %ExcelData%
+   5.1. Set variable: Total = %CurrentRow['Quantity']% * %CurrentRow['UnitPrice']%
+   5.2. Write to Excel → Column E, Current row → %Total%
+   5.3. Set variable: GrandTotal = %GrandTotal% + %Total%
+6. END FOR
+7. Write to Excel → Cell E1 → "Total" (header)
+8. Write to Excel → Cell F%FirstFreeRow% → %GrandTotal%
+9. Save Excel
+10. Close Excel
+11. Display message → "Done! Grand Total: $" + %GrandTotal%</pre>
+                    </div>
+                </section>
+
+                <!-- BT9 -->
+                <section class="content-section" id="bt9">
+                    <h2>⭐⭐⭐ BT9: Power Apps + Power Automate Integration</h2>
+                    <div class="info-box note"><div class="info-box-title">📝 Mức độ: Nâng cao | Thời gian: 40 phút | Chương liên quan: Ch.2, Ch.7</div></div>
+
+                    <h3>Mục tiêu</h3>
+                    <p>Xây dựng app quản lý IT Support Tickets — Canvas App gọi Power Automate flow để gửi notifications.</p>
+
+                    <h3>Yêu cầu</h3>
+                    <ol>
+                        <li><strong>Power Automate (Instant Flow)</strong>:
+                            <ul>
+                                <li>Trigger: PowerApps (V2)</li>
+                                <li>Input parameters: TicketTitle (text), Category (text), Priority (text), Description (text), ReporterEmail (text)</li>
+                                <li>Actions: Tạo item trên SharePoint "IT Tickets", gửi email tới IT team, post Teams message, gửi push notification</li>
+                                <li>Return: Ticket ID và Link</li>
+                            </ul>
+                        </li>
+                        <li><strong>Canvas App</strong>:
+                            <ul>
+                                <li>Screen 1: Form nhập ticket (Title, Category dropdown, Priority radio, Description multiline)</li>
+                                <li>Submit button gọi Power Automate flow</li>
+                                <li>Hiện success message với Ticket ID</li>
+                                <li>Screen 2: Gallery hiển thị "My Tickets" (filter theo User().Email)</li>
+                                <li>Screen 3: Ticket Detail view</li>
+                            </ul>
+                        </li>
+                    </ol>
+
+                    <h3>Power Fx — Gọi Flow</h3>
+                    <div class="code-block">
+                        <div class="code-block-header">Button OnSelect</div>
+                        <pre>// Gọi Power Automate flow từ Canvas App
+Set(varResult,
+    CreateTicketFlow.Run(
+        txtTitle.Text,
+        ddCategory.Selected.Value,
+        rdPriority.Selected.Value,
+        txtDescription.Text,
+        User().Email
+    )
+);
+
+// Hiện kết quả
+Notify(
+    "✅ Ticket created! ID: " & varResult.ticketid,
+    NotificationType.Success
+);
+
+// Reset form
+Reset(txtTitle);
+Reset(txtDescription);
+
+// Chuyển sang screen danh sách
+Navigate(MyTicketsScreen, ScreenTransition.Fade)</pre>
+                    </div>
+                </section>
+
+                <!-- BT10 -->
+                <section class="content-section" id="bt10">
+                    <h2>⭐⭐⭐⭐ BT10: Full Enterprise App — Employee Onboarding</h2>
+                    <div class="info-box note"><div class="info-box-title">📝 Mức độ: Chuyên sâu | Thời gian: 2+ giờ | Chương liên quan: Ch.2-10</div></div>
+
+                    <h3>Mục tiêu</h3>
+                    <p>Xây dựng hệ thống Onboarding nhân viên mới hoàn chỉnh — kết hợp tất cả kiến thức.</p>
+
+                    <h3>Yêu cầu</h3>
+                    <ol>
+                        <li><strong>Dataverse Tables</strong>:
+                            <ul>
+                                <li>New Employees (Name, Email, Department, StartDate, Manager, Status)</li>
+                                <li>Onboarding Tasks (TaskName, Category, DueDate, AssignedTo, Status, NewEmployee lookup)</li>
+                                <li>Equipment Requests (Item, Specs, Status, NewEmployee lookup)</li>
+                            </ul>
+                        </li>
+                        <li><strong>Model-driven App</strong> cho HR: Manage employees, track onboarding progress</li>
+                        <li><strong>Business Process Flow</strong>: HR Review → IT Setup → Manager Welcome → Complete</li>
+                        <li><strong>Canvas App</strong> cho Managers: Submit new hire request form</li>
+                        <li><strong>Cloud Flows</strong>:
+                            <ul>
+                                <li>Khi new employee được tạo → Auto-create onboarding tasks</li>
+                                <li>Khi task hoàn thành → Notify manager, update progress</li>
+                                <li>Scheduled: Daily reminder cho overdue tasks</li>
+                                <li>Approval: Equipment requests > $500 cần manager approval</li>
+                            </ul>
+                        </li>
+                        <li><strong>Dashboard</strong>: Onboarding status, tasks by department, completion rate</li>
+                    </ol>
+
+                    <h3>Architecture</h3>
+                    <div class="code-block">
+                        <div class="code-block-header">System Architecture</div>
+                        <pre>┌─────────────────┐     ┌──────────────────┐     ┌─────────────────┐
+│  Canvas App     │────►│   Dataverse      │◄────│  Model-driven   │
+│  (Managers)     │     │   (Data Store)   │     │  App (HR Team)  │
+│  Submit Form    │     │  ┌────────────┐  │     │  Full CRM View  │
+└─────────────────┘     │  │ Employees  │  │     └─────────────────┘
+                        │  │ Tasks      │  │
+┌─────────────────┐     │  │ Equipment  │  │     ┌─────────────────┐
+│  Power Automate │────►│  └────────────┘  │────►│  Power BI       │
+│  Cloud Flows    │     └──────────────────┘     │  Dashboard      │
+│  • Notifications│                              │  Analytics      │
+│  • Auto-tasks   │     ┌──────────────────┐     └─────────────────┘
+│  • Approvals    │     │  Business Process│
+│  • Reminders    │     │  Flow (HR→IT→Mgr)│
+└─────────────────┘     └──────────────────┘</pre>
+                    </div>
+
+                    <div class="info-box tip">
+                        <div class="info-box-title">💡 Tips cho bài tập này</div>
+                        <ul style="margin: 8px 0 0 20px;">
+                            <li>Bắt đầu với Dataverse tables và relationships trước</li>
+                            <li>Tạo model-driven app trước (nhanh hơn), sau đó canvas app</li>
+                            <li>Test từng flow riêng lẻ trước khi tích hợp</li>
+                            <li>Sử dụng Solutions để quản lý tất cả components</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <div class="chapter-nav">
+                    <a href="chuong10-nang-cao.html" class="prev"><span class="chapter-nav-arrow">←</span><div><div class="chapter-nav-label">Chương trước</div><div class="chapter-nav-title">Nâng cao & Tích hợp</div></div></a>
+                    <a href="index.html" class="next"><span class="chapter-nav-arrow">→</span><div><div class="chapter-nav-label">Quay về</div><div class="chapter-nav-title">Trang chủ</div></div></a>
+                </div>
+            </div>
+            <footer class="footer"><p>📚 Giáo trình Power Apps & Power Automate — Tổng hợp từ tài liệu Microsoft Official Documentation</p></footer>
+        </main>
+    </div>
+    <script>function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('sidebarOverlay').classList.toggle('show');}window.addEventListener('resize',()=>{if(window.innerWidth>1024){document.getElementById('sidebar').classList.remove('open');document.getElementById('sidebarOverlay').classList.remove('show');}});</script>
+</body>
+</html>
