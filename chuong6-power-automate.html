@@ -1,6 +1,14 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="vi">
 <head>
+<script>
+// Auth check - redirect to login if not authenticated
+(function() {
+    if (sessionStorage.getItem('authenticated') !== 'true') {
+        window.location.href = 'login.html';
+    }
+})();
+</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Chương 6: Giới thiệu Power Automate - Tổng quan, types of flows, Process Advisor">
